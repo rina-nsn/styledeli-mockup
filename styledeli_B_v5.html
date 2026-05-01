@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=900">
+<title>STYLE DELI – Pattern B v5 売上重視</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:#e8e5e0;padding:32px 24px;display:flex;flex-direction:column;align-items:center}
+h1{font-size:11px;letter-spacing:.2em;color:#999;font-weight:400;margin-bottom:4px;text-align:center}
+p.sub{font-size:10px;color:#bbb;margin-bottom:6px;letter-spacing:.06em;text-align:center}
+p.note{font-size:10px;color:#c0a882;line-height:1.8;margin-bottom:24px;text-align:center}
+.phone{width:375px;overflow:hidden;border-radius:14px;border:1px solid #c8c4be;box-shadow:0 8px 32px rgba(0,0,0,.12);background:#faf9f7;color:#2a2a2a}
+
+/* header <a href="styledeli_B_v5.html" title="styledeli_B_v5"></a>*/
+.hdr{background:#faf9f7;padding:0 16px;height:54px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ece9e4}
+.hdr-ham{display:flex;flex-direction:column;gap:5px}
+.hdr-ham span{display:block;width:18px;height:1px;background:#2a2a2a}
+.hdr-logo{font-size:12px;letter-spacing:.36em;font-weight:300}
+.hdr-icons{display:flex;align-items:center;gap:16px}
+.icon{display:flex;align-items:center;justify-content:center}
+
+/* hero */
+.hero-wrap{position:relative;width:375px;height:480px;overflow:hidden}
+.hero-slide{width:375px;height:480px;display:flex;align-items:flex-end;padding:0 0 40px}
+.slide1{background:#cfc9c0}
+.hero-text{padding:0 28px;color:#2a2a2a}
+.hero-eye{font-size:9px;letter-spacing:.36em;color:#7a7570;margin-bottom:14px}
+.hero-h{font-size:34px;font-weight:300;letter-spacing:.03em;line-height:1.15;margin-bottom:8px}
+.hero-desc{font-size:11px;color:#7a7570;font-weight:300;line-height:1.7;margin-bottom:20px}
+/* CTA: 塗りボタンで目立つ */
+.hero-cta-btn{display:inline-block;background:#2a2a2a;color:#faf9f7;font-size:10px;letter-spacing:.2em;padding:12px 28px}
+.hero-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:7px}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(42,42,42,.2)}
+.dot.active{background:#2a2a2a;width:18px;border-radius:3px}
+.hero-arr{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.5);border:none;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:#2a2a2a;cursor:pointer}
+.hero-arr.prev{left:12px}
+.hero-arr.next{right:12px}
+
+/* section header */
+.sh{display:flex;justify-content:space-between;align-items:baseline;padding:24px 20px 12px}
+.sh-t{font-size:9px;letter-spacing:.3em;color:#aaa;font-weight:400}
+.sh-more{font-size:9px;letter-spacing:.1em;color:#bbb;border-bottom:1px solid #ccc;padding-bottom:1px}
+
+/* お知らせバー */
+.announce{background:#2a2a2a;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:8px}
+.announce-txt{font-size:10px;color:#e8e4dc;letter-spacing:.08em}
+.announce-cta{font-size:9px;color:#c0a882;letter-spacing:.1em;border-bottom:1px solid #c0a882;padding-bottom:1px;white-space:nowrap}
+
+/* ranking */
+.rank-list{display:flex;flex-direction:column}
+.rank-item{display:flex;gap:12px;padding:10px 20px;border-bottom:1px solid #ece9e4;align-items:center}
+.rank-num{font-size:18px;color:#e0dbd4;width:22px;text-align:center;flex-shrink:0;font-weight:300}
+.rank-num.top{color:#b0a898;font-weight:400}
+.rank-img{width:54px;height:68px;background:#e4dfd8;flex-shrink:0;display:flex;align-items:center;justify-content:center;position:relative}
+.rank-img span{font-size:7px;color:#c0bab3}
+.stock-badge{position:absolute;bottom:0;left:0;right:0;background:rgba(42,42,42,.75);color:#faf9f7;font-size:7px;letter-spacing:.08em;padding:2px 0;text-align:center}
+.rank-info{flex:1}
+.rank-name{font-size:11px;font-weight:300;color:#2a2a2a;margin-bottom:2px}
+.rank-price{font-size:11px;color:#aaa;font-weight:300;margin-bottom:4px}
+.rank-link{font-size:9px;letter-spacing:.1em;color:#bbb;border-bottom:1px solid #ddd;padding-bottom:1px}
+
+/* tabs */
+.tab-wrap{padding:12px 20px 0}
+.tab-bar{display:flex;border-bottom:1px solid #ece9e4}
+.tab{flex:1;text-align:center;padding:10px 0;font-size:9px;letter-spacing:.16em;color:#bbb;border-bottom:1.5px solid transparent;margin-bottom:-1px;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer}
+.tab.active{color:#2a2a2a;border-bottom:1.5px solid #2a2a2a}
+.badge{display:inline-block;background:#e8e4dc;color:#9a9490;font-size:8px;padding:1px 6px;border-radius:7px;letter-spacing:.03em}
+.tab.active .badge{background:#2a2a2a;color:#faf9f7}
+.tab-link{font-size:9px;letter-spacing:.1em;color:#bbb;border-bottom:1px solid #ddd;padding-bottom:1px;cursor:pointer}
+
+/* products */
+.prods{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:14px 16px 4px}
+.prod-img{width:100%;aspect-ratio:4/5;background:#e4dfd8;display:flex;align-items:center;justify-content:center;margin-bottom:9px;position:relative}
+.prod-img span{font-size:8px;color:#c0bab3;letter-spacing:.05em}
+.back-label{position:absolute;top:8px;left:0;background:#faf9f7;font-size:7px;letter-spacing:.1em;padding:2px 8px;color:#8a8580}
+.prod-name{font-size:11px;font-weight:300;color:#2a2a2a;margin-bottom:2px}
+.prod-price{font-size:11px;color:#aaa;font-weight:300;margin-bottom:5px}
+.prod-link{font-size:9px;letter-spacing:.08em;color:#bbb;border-bottom:1px solid #ddd;padding-bottom:1px}
+
+/* note bar */
+.note-bar{display:flex;align-items:center;gap:7px;padding:8px 20px;background:#f5f3ef;border-top:1px solid #ece9e4;border-bottom:1px solid #ece9e4;margin-top:4px}
+.note-dot{width:5px;height:5px;border-radius:50%;background:#c0a882;flex-shrink:0}
+.note-txt{font-size:9px;color:#b0a898;letter-spacing:.03em;line-height:1.5}
+
+/* brand banners */
+.brand-banners{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 16px 4px}
+.brand-banner{height:82px;display:flex;align-items:center;justify-content:center}
+.bb-name{font-size:11px;letter-spacing:.22em;font-weight:300}
+.bb-blk{background:#1a1a1a}.bb-blk .bb-name{color:#e8e4dc}
+.bb-mar{background:#d4cec6}.bb-mar .bb-name{color:#4a4540}
+.bb-deli{background:#e8e0d4}.bb-deli .bb-name{color:#6a5a4a}
+.bb-dre{background:#c8d0cc}.bb-dre .bb-name{color:#3a4a44}
+
+/* coord scroll */
+.coord-scroll{display:flex;overflow-x:auto;gap:10px;padding:0 20px 4px}
+.coord-scroll::-webkit-scrollbar{display:none}
+.coord-card{flex-shrink:0;width:136px}
+.coord-img{width:136px;height:170px;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.coord-img span{font-size:8px;color:#bbb}
+.coord-ai-bg{background:#ddd8e4}
+.coord-staff-bg{background:#dad5cd}
+.coord-info{padding:0 0 2px}
+.coord-label{font-size:8px;letter-spacing:.12em;color:#bbb;margin-bottom:2px}
+.coord-sname{font-size:11px;font-weight:300;color:#2a2a2a;margin-bottom:3px}
+.coord-comment{font-size:10px;font-weight:300;color:#aaa;line-height:1.6;margin-top:2px}
+.coord-link{font-size:9px;letter-spacing:.08em;color:#bbb;border-bottom:1px solid #ddd;padding-bottom:1px;display:inline-block;margin-top:5px}
+
+/* instagram */
+.itab{padding:9px 14px;font-size:9px;letter-spacing:.14em;color:#bbb;border-bottom:1.5px solid transparent;margin-bottom:-1px;cursor:pointer;white-space:nowrap}
+.itab.active{color:#2a2a2a;border-bottom-color:#2a2a2a}
+.ipanel{padding:12px 16px 4px}
+.insta-grid-main{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.insta-cell{aspect-ratio:1}
+.ic1{background:#dad5cd}.ic2{background:#d5d0c8}.ic3{background:#cfc9c0}
+.ic4{background:#c8c4bc}.ic5{background:#d0ccc4}
+.insta-handle{font-size:9px;letter-spacing:.14em;color:#bbb;margin-bottom:8px;display:flex;align-items:center;gap:4px}
+
+/* blog */
+.blog-list{margin:0 20px}
+.blog-item{display:flex;align-items:baseline;gap:14px;padding:11px 0;border-bottom:1px solid #ece9e4}
+.blog-item:last-child{border-bottom:none}
+.blog-date{font-size:9px;color:#ccc;letter-spacing:.06em;white-space:nowrap;min-width:60px}
+.blog-ttl{font-size:12px;font-weight:300;color:#2a2a2a;line-height:1.5}
+
+/* feature */
+.feature-list{margin:0 20px}
+.feature-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #ece9e4;align-items:center}
+.feature-item:last-child{border-bottom:none}
+.feature-thumb{width:64px;height:40px;background:#cfc9c0;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.feature-thumb span{font-size:7px;color:#b0aaa2}
+.feature-ttl{font-size:11px;font-weight:300;color:#2a2a2a;line-height:1.45;flex:1}
+.feature-arr{font-size:16px;color:#ccc;flex-shrink:0;font-weight:200}
+
+/* media */
+.media-section{margin:0 20px}
+.media-entry{padding:13px 0;border-bottom:1px solid #ece9e4}
+.media-entry:last-child{border-bottom:none}
+.media-cat{font-size:8px;letter-spacing:.18em;color:#bbb;margin-bottom:4px}
+.media-name{font-size:14px;font-weight:300;color:#2a2a2a;margin-bottom:3px}
+.media-desc{font-size:11px;font-weight:300;color:#aaa}
+
+/* info */
+.info-block{padding:11px 20px;border-bottom:1px solid #ece9e4}
+.info-date{font-size:9px;color:#ccc;letter-spacing:.06em;margin-bottom:3px}
+.info-ttl{font-size:12px;font-weight:300;color:#2a2a2a;line-height:1.5}
+
+/* newsletter */
+.nl{background:#faf9f7;padding:32px 24px;text-align:center;border-top:1px solid #ece9e4}
+.nl-ttl{font-size:13px;font-weight:300;letter-spacing:.14em;margin-bottom:8px}
+.nl-sub{font-size:10px;color:#bbb;font-weight:300;margin-bottom:20px;line-height:1.7}
+.nl-input{width:100%;border:0;border-bottom:1px solid #ccc;background:transparent;font-size:12px;font-weight:300;padding:9px 0;outline:none;margin-bottom:16px;color:#2a2a2a}
+.nl-btn{width:100%;background:#2a2a2a;color:#faf9f7;font-size:9px;letter-spacing:.24em;padding:14px;border:0}
+
+/* footer */
+.ftr{background:#2a2a2a;padding:20px 16px;text-align:center}
+.ftr a{font-size:9px;color:#555;letter-spacing:.08em;text-decoration:none;display:inline-block;margin:3px 8px;font-weight:300}
+.ftr-copy{font-size:9px;color:#444;letter-spacing:.06em;margin-top:10px;font-weight:300}
+</style>
+</head>
+<body>
+
+<h1>STYLE DELI — Pattern B v5</h1>
+<p class="sub">売上・CV最適化版 / 375px</p>
+<p class="note">
+  変更点：ヒーローCTAを塗りボタンに強化 / ランキング直後に商品 / 各商品に詳細リンク追加<br>
+  在庫わずかバッジで購買を後押し / STAFF WEARINGをコンテンツより前に / OUR BRANDSを後方へ
+</p>
+
+<div class="phone">
+
+  <!-- Header -->
+  <div class="hdr">
+    <div class="hdr-ham"><span></span><span></span><span></span></div>
+    <div class="hdr-logo">STYLE DELI</div>
+    <div class="hdr-icons">
+      <div class="icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#2a2a2a" stroke-width="1.2" stroke-linecap="round"><circle cx="7.5" cy="7.5" r="5"/><line x1="11.5" y1="11.5" x2="16" y2="16"/></svg>
+      </div>
+      <div class="icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#2a2a2a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15s-7-4.5-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 16 6c0 4.5-7 9-7 9z"/></svg>
+      </div>
+      <div class="icon" style="position:relative">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#2a2a2a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h12l-1.5 9h-9L3 3z"/><path d="M1 1h2"/><circle cx="6.5" cy="15.5" r="1" fill="#2a2a2a" stroke="none"/><circle cx="12.5" cy="15.5" r="1" fill="#2a2a2a" stroke="none"/></svg>
+        <div style="position:absolute;top:-4px;right:-5px;background:#2a2a2a;color:#faf9f7;font-size:7px;width:13px;height:13px;border-radius:50%;display:flex;align-items:center;justify-content:center">2</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- お知らせバー -->
+  <div class="announce">
+    <span class="announce-txt">新作＆ピックアップ商品 24H ポイントアップ開催中</span>
+    <span class="announce-cta">詳細 ›</span>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero-wrap">
+    <div class="hero-slide slide1">
+      <div class="hero-text">
+        <div class="hero-eye">2025 SPRING</div>
+        <div class="hero-h">Quiet<br>Elegance</div>
+        <div class="hero-desc">大人のための、<br>静かに際立つ春服</div>
+        <div class="hero-cta-btn">SHOP COLLECTION</div>
+      </div>
+    </div>
+    <div class="hero-dots">
+      <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    <button class="hero-arr prev">‹</button>
+    <button class="hero-arr next">›</button>
+  </div>
+
+  <!-- Ranking -->
+  <div class="sh"><span class="sh-t">RANKING</span><span class="sh-more">すべて見る</span></div>
+  <div class="rank-list">
+    <div class="rank-item">
+      <div class="rank-num top">1</div>
+      <div class="rank-img"><span>4:5</span><div class="stock-badge">残りわずか</div></div>
+      <div class="rank-info"><div class="rank-name">ドレープワンピース</div><div class="rank-price">¥18,900</div></div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num top">2</div>
+      <div class="rank-img"><span>4:5</span></div>
+      <div class="rank-info"><div class="rank-name">リネンブレンドシャツ</div><div class="rank-price">¥12,800</div></div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num top">3</div>
+      <div class="rank-img"><span>4:5</span><div class="stock-badge">残りわずか</div></div>
+      <div class="rank-info"><div class="rank-name">テーラードジャケット</div><div class="rank-price">¥22,000</div></div>
+    </div>
+    <div class="rank-item">
+      <div class="rank-num">4</div>
+      <div class="rank-img"><span>4:5</span></div>
+      <div class="rank-info"><div class="rank-name">ハイウエストパンツ</div><div class="rank-price">¥14,500</div></div>
+    </div>
+    <div class="rank-item" style="border-bottom:none">
+      <div class="rank-num">5</div>
+      <div class="rank-img"><span>4:5</span></div>
+      <div class="rank-info"><div class="rank-name">シルクブラウス</div><div class="rank-price">¥16,500</div></div>
+    </div>
+  </div>
+
+  <!-- Items Tab -->
+  <div class="sh" style="padding-bottom:0"><span class="sh-t">ITEMS</span></div>
+  <div class="tab-wrap">
+    <div class="tab-bar">
+      <div class="tab active" id="tab-new" onclick="switchTab('new')">NEW ARRIVALS <span class="badge">12</span></div>
+      <div class="tab" id="tab-rear" onclick="switchTab('rear')">REARRIVAL <span class="badge">8</span></div>
+    </div>
+  </div>
+  <div id="link-new" style="padding:10px 20px 0;text-align:right"><span class="tab-link">新着一覧を見る</span></div>
+  <div id="link-rear" style="padding:10px 20px 0;text-align:right;display:none"><span class="tab-link">再入荷一覧を見る</span></div>
+
+  <!-- New Arrivals -->
+  <div id="panel-new" class="prods">
+    <div><div class="prod-img"><span>4:5 IMAGE</span></div><div class="prod-name">リネンブレンドシャツ</div><div class="prod-price">¥12,800</div></div>
+    <div><div class="prod-img"><span>4:5 IMAGE</span></div><div class="prod-name">ハイウエストパンツ</div><div class="prod-price">¥14,500</div></div>
+    <div><div class="prod-img"><span>4:5 IMAGE</span></div><div class="prod-name">ドレープワンピース</div><div class="prod-price">¥18,900</div></div>
+    <div><div class="prod-img"><span>4:5 IMAGE</span></div><div class="prod-name">テーラードジャケット</div><div class="prod-price">¥22,000</div></div>
+  </div>
+
+  <!-- Rearrival -->
+  <div id="panel-rear" style="display:none">
+    <div class="note-bar">
+      <div class="note-dot"></div>
+      <div class="note-txt">入荷から7日以内の商品を自動表示（Shopify Flowで管理）</div>
+    </div>
+    <div class="prods">
+      <div><div class="prod-img" style="background:#dedad4"><div class="back-label">BACK IN STOCK</div><span>4:5 IMAGE</span></div><div class="prod-name">シルクブラウス</div><div class="prod-price">¥16,500</div></div>
+      <div><div class="prod-img" style="background:#dedad4"><div class="back-label">BACK IN STOCK</div><span>4:5 IMAGE</span></div><div class="prod-name">カシミヤニット</div><div class="prod-price">¥24,800</div></div>
+    </div>
+  </div>
+
+  <!-- Staff Wearing（購買意欲を高めるコンテンツを先に） -->
+  <div class="sh"><span class="sh-t">STAFF WEARING</span><span class="sh-more">すべて見る</span></div>
+  <div class="coord-scroll">
+    <div class="coord-card"><div class="coord-img coord-staff-bg"><span>4:5 IMAGE</span></div><div class="coord-info"><div class="coord-label">HEIGHT 162cm</div><div class="coord-sname">スタッフ 田中</div><div class="coord-comment">ゆったりシルエットで一日快適に。</div></div></div>
+    <div class="coord-card"><div class="coord-img coord-staff-bg"><span>4:5 IMAGE</span></div><div class="coord-info"><div class="coord-label">HEIGHT 158cm</div><div class="coord-sname">スタッフ 山田</div></div></div>
+    <div class="coord-card"><div class="coord-img coord-staff-bg"><span>4:5 IMAGE</span></div><div class="coord-info"><div class="coord-label">HEIGHT 165cm</div><div class="coord-sname">スタッフ 鈴木</div><div class="coord-comment">細見えするのにストレスフリー。</div></div></div>
+    <div class="coord-card"><div class="coord-img coord-staff-bg"><span>4:5 IMAGE</span></div><div class="coord-info"><div class="coord-label">HEIGHT 160cm</div><div class="coord-sname">スタッフ 佐藤</div></div></div>
+  </div>
+
+  <!-- Styling Lab -->
+  <div class="sh"><span class="sh-t">STYLING LAB</span><span class="sh-more">すべて見る</span></div>
+  <div class="coord-scroll">
+    <div class="coord-card"><div class="coord-img coord-ai-bg"><span>4:5 IMAGE</span></div></div>
+    <div class="coord-card"><div class="coord-img coord-ai-bg"><span>4:5 IMAGE</span></div></div>
+    <div class="coord-card"><div class="coord-img coord-ai-bg"><span>4:5 IMAGE</span></div></div>
+    <div class="coord-card"><div class="coord-img coord-ai-bg"><span>4:5 IMAGE</span></div></div>
+  </div>
+
+  <!-- Instagram -->
+  <div class="sh"><span class="sh-t">INSTAGRAM</span></div>
+  <div style="overflow-x:auto;padding:0 20px">
+    <div style="display:flex;border-bottom:1px solid #ece9e4;min-width:max-content">
+      <div class="itab active" onclick="switchInsta(this,'official')">STYLE DELI</div>
+      <div class="itab" onclick="switchInsta(this,'producer')">PRODUCER</div>
+      <div class="itab" onclick="switchInsta(this,'staff')">STAFF</div>
+      <div class="itab" onclick="switchInsta(this,'blk')">BLK001</div>
+      <div class="itab" onclick="switchInsta(this,'marjour')">MARJOUR</div>
+    </div>
+  </div>
+  <div id="insta-official" class="ipanel">
+    <div class="insta-handle"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="#bbb"/></svg>@styledeli_official</div>
+    <div class="insta-grid-main"><div class="insta-cell ic1"></div><div class="insta-cell ic2"></div><div class="insta-cell ic1"></div><div class="insta-cell ic2"></div><div class="insta-cell ic1"></div><div class="insta-cell ic2"></div></div>
+  </div>
+  <div id="insta-producer" class="ipanel" style="display:none">
+    <div class="insta-handle"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="#bbb"/></svg>@producer</div>
+    <div class="insta-grid-main"><div class="insta-cell ic3"></div><div class="insta-cell ic4"></div><div class="insta-cell ic3"></div><div class="insta-cell ic4"></div><div class="insta-cell ic3"></div><div class="insta-cell ic4"></div></div>
+  </div>
+  <div id="insta-staff" class="ipanel" style="display:none">
+    <div class="insta-handle"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="#bbb"/></svg>@styledeli_staff</div>
+    <div class="insta-grid-main"><div class="insta-cell ic2"></div><div class="insta-cell ic1"></div><div class="insta-cell ic2"></div><div class="insta-cell ic1"></div><div class="insta-cell ic2"></div><div class="insta-cell ic1"></div></div>
+  </div>
+  <div id="insta-blk" class="ipanel" style="display:none">
+    <div class="insta-handle"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="#bbb"/></svg>@blk001_official</div>
+    <div class="insta-grid-main"><div class="insta-cell" style="background:#2a2a2a"></div><div class="insta-cell" style="background:#333"></div><div class="insta-cell" style="background:#2a2a2a"></div><div class="insta-cell" style="background:#333"></div><div class="insta-cell" style="background:#2a2a2a"></div><div class="insta-cell" style="background:#333"></div></div>
+  </div>
+  <div id="insta-marjour" class="ipanel" style="display:none">
+    <div class="insta-handle"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="#bbb"/></svg>@marjour_official</div>
+    <div class="insta-grid-main"><div class="insta-cell ic5"></div><div class="insta-cell ic4"></div><div class="insta-cell ic5"></div><div class="insta-cell ic4"></div><div class="insta-cell ic5"></div><div class="insta-cell ic4"></div></div>
+  </div>
+
+  <!-- OUR BRANDS（後方へ） -->
+  <div class="sh"><span class="sh-t">OUR BRANDS</span></div>
+  <div class="brand-banners">
+    <div class="brand-banner bb-blk"><span class="bb-name">BLK001</span></div>
+    <div class="brand-banner bb-mar"><span class="bb-name">MARJOUR</span></div>
+    <div class="brand-banner bb-deli"><span class="bb-name">DELI by SD</span></div>
+    <div class="brand-banner bb-dre"><span class="bb-name">DRESSDEN</span></div>
+  </div>
+
+  <!-- Blog -->
+  <div class="sh"><span class="sh-t">BLOG</span><span class="sh-more">すべて見る</span></div>
+  <div class="blog-list">
+    <div class="blog-item"><span class="blog-date">2025.04.28</span><span class="blog-ttl">GW前に揃えたい春アイテム5選</span></div>
+    <div class="blog-item"><span class="blog-date">2025.04.20</span><span class="blog-ttl">初夏に向けた素材の選び方</span></div>
+    <div class="blog-item"><span class="blog-date">2025.04.14</span><span class="blog-ttl">ネイビーとベージュの着回し術</span></div>
+  </div>
+
+  <!-- Feature -->
+  <div class="sh"><span class="sh-t">FEATURE</span><span class="sh-more">すべて見る</span></div>
+  <div class="feature-list">
+    <div class="feature-item"><div class="feature-thumb"><span>IMG</span></div><div class="feature-ttl">気温差に強い、春服まとめました</div><div class="feature-arr">›</div></div>
+    <div class="feature-item"><div class="feature-thumb"><span>IMG</span></div><div class="feature-ttl">"ちゃんとして見える"ラク服</div><div class="feature-arr">›</div></div>
+    <div class="feature-item"><div class="feature-thumb"><span>IMG</span></div><div class="feature-ttl">新年度、春のおすすめコーデ</div><div class="feature-arr">›</div></div>
+  </div>
+
+  <!-- Media -->
+  <div class="sh"><span class="sh-t">MEDIA</span><span class="sh-more">すべて見る</span></div>
+  <div class="media-section">
+    <div class="media-entry"><div class="media-cat">MAGAZINE</div><div class="media-name">〇〇 magazine</div><div class="media-desc">2025年5月号に掲載いただきました</div></div>
+    <div class="media-entry"><div class="media-cat">TV</div><div class="media-name">△△テレビ</div><div class="media-desc">「春の新作特集」にてご紹介いただきました</div></div>
+    <div class="media-entry"><div class="media-cat">WEB</div><div class="media-name">□□ web media</div><div class="media-desc">春コーデ特集にて掲載いただきました</div></div>
+  </div>
+
+  <!-- Information -->
+  <div class="sh" style="padding-bottom:8px"><span class="sh-t">INFORMATION</span></div>
+  <div class="info-block"><div class="info-date">2025.04.28</div><div class="info-ttl">GW期間中の発送スケジュールについて</div></div>
+  <div class="info-block"><div class="info-date">2025.04.20</div><div class="info-ttl">新作ポイントアップキャンペーン開催中</div></div>
+  <div class="info-block" style="border-bottom:none"><div class="info-date">2025.04.10</div><div class="info-ttl">LINE連携で10%OFFクーポン配布中</div></div>
+
+  <!-- Newsletter -->
+  <div class="nl">
+    <div class="nl-ttl">メールマガジン</div>
+    <div class="nl-sub">新作・キャンペーン情報を<br>いち早くお届けします</div>
+    <input class="nl-input" placeholder="メールアドレスを入力" />
+    <button class="nl-btn">登録する</button>
+  </div>
+
+  <!-- Footer -->
+  <div class="ftr">
+    <div><a href="#">ショッピングガイド</a><a href="#">よくある質問</a><a href="#">お問い合わせ</a><a href="#">会員ステージについて</a></div>
+    <div class="ftr-copy">© STYLE DELI All Rights Reserved.</div>
+  </div>
+
+</div>
+
+<script>
+function switchTab(id) {
+  ['new','rear'].forEach(t => {
+    document.getElementById('tab-'+t).classList.remove('active');
+    document.getElementById('panel-'+t).style.display = 'none';
+    document.getElementById('link-'+t).style.display = 'none';
+  });
+  document.getElementById('tab-'+id).classList.add('active');
+  document.getElementById('panel-'+id).style.display = id==='new' ? 'grid' : 'block';
+  document.getElementById('link-'+id).style.display = 'block';
+}
+function switchInsta(el, id) {
+  document.querySelectorAll('.itab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.ipanel').forEach(p => p.style.display = 'none');
+  document.getElementById('insta-'+id).style.display = 'block';
+}
+</script>
+</body>
+</html>
