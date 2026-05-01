@@ -3,145 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STYLE DELI – モックアップ一覧</title>
+<title>STYLE DELI – モックアップ</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Helvetica Neue',Arial,sans-serif;background:#f0eeeb;min-height:100vh;padding:60px 24px}
-.wrap{max-width:680px;margin:0 auto}
-
-/* タイトル */
-.site-title{font-size:11px;letter-spacing:.3em;color:#bbb;font-weight:400;margin-bottom:6px}
-.page-title{font-size:28px;font-weight:300;letter-spacing:.1em;color:#2a2a2a;margin-bottom:6px}
-.page-sub{font-size:12px;color:#aaa;font-weight:300;letter-spacing:.06em;line-height:1.7;margin-bottom:48px;padding-bottom:24px;border-bottom:1px solid #ddd}
-
-/* セクション */
-.section{margin-bottom:40px}
-.section-label{font-size:9px;letter-spacing:.28em;color:#aaa;font-weight:400;margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.section-label::after{content:'';flex:1;height:1px;background:#e0ddd9}
-
-/* カード */
-.cards{display:flex;flex-direction:column;gap:8px}
-.card{display:flex;align-items:center;justify-content:space-between;background:#fff;border:0.5px solid #e0ddd9;padding:16px 20px;text-decoration:none;transition:border-color .15s}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:#f0eeeb;min-height:100vh;padding:60px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.wrap{width:100%;max-width:480px}
+.logo{font-size:11px;letter-spacing:.32em;font-weight:300;color:#bbb;margin-bottom:6px;text-align:center}
+.title{font-size:22px;font-weight:300;letter-spacing:.1em;color:#2a2a2a;margin-bottom:32px;text-align:center}
+.cards{display:flex;flex-direction:column;gap:6px}
+.card{display:flex;align-items:center;justify-content:space-between;background:#fff;border:0.5px solid #e0ddd9;padding:18px 20px;text-decoration:none}
 .card:hover{border-color:#2a2a2a}
-.card-left{display:flex;flex-direction:column;gap:3px}
-.card-title{font-size:14px;font-weight:300;color:#2a2a2a;letter-spacing:.04em}
-.card-desc{font-size:10px;color:#aaa;font-weight:300;letter-spacing:.04em}
-.card-tag{display:inline-block;font-size:8px;letter-spacing:.12em;color:#8a6030;background:#f5ede0;border:0.5px solid #d8c090;padding:1px 7px;border-radius:2px;margin-top:2px;align-self:flex-start}
+.card-num{font-size:9px;letter-spacing:.1em;color:#ccc;margin-right:14px;flex-shrink:0}
+.card-title{font-size:14px;font-weight:300;color:#2a2a2a;letter-spacing:.04em;flex:1}
 .card-arr{font-size:16px;color:#ccc;font-weight:200;flex-shrink:0}
-
-/* 注記 */
-.note{font-size:10px;color:#bbb;line-height:1.8;padding:16px 20px;background:#f9f8f6;border:0.5px solid #e8e5e0;margin-top:8px}
-.note strong{color:#2a2a2a;font-weight:400}
-
-/* フッター */
-.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e0ddd9;text-align:center}
-.footer-logo{font-size:12px;letter-spacing:.32em;font-weight:300;color:#2a2a2a;margin-bottom:6px}
-.footer-copy{font-size:9px;color:#bbb;letter-spacing:.06em}
+.footer{margin-top:32px;font-size:9px;color:#ccc;letter-spacing:.06em;text-align:center}
 </style>
 </head>
 <body>
 <div class="wrap">
-
-  <div class="site-title">STYLE DELI</div>
-  <div class="page-title">モックアップ一覧</div>
-  <div class="page-sub">
-    FutureShop → Shopify 移行プロジェクト<br>
-    デザインモックアップ / Prestige テーマ ベース / 375px モバイル
+  <div class="logo">STYLE DELI</div>
+  <div class="title">モックアップ</div>
+  <div class="cards">
+    <a class="card" href="styledeli_B_v5.html">
+      <span class="card-num">01</span>
+      <span class="card-title">トップページ</span>
+      <span class="card-arr">›</span>
+    </a>
+    <a class="card" href="styledeli_product_list_v2.html">
+      <span class="card-num">02</span>
+      <span class="card-title">商品一覧ページ</span>
+      <span class="card-arr">›</span>
+    </a>
+    <a class="card" href="styledeli_filter_modal.html">
+      <span class="card-num">03</span>
+      <span class="card-title">絞り込みモーダル</span>
+      <span class="card-arr">›</span>
+    </a>
+    <a class="card" href="styledeli_product_detail_v2.html">
+      <span class="card-num">04</span>
+      <span class="card-title">商品詳細ページ</span>
+      <span class="card-arr">›</span>
+    </a>
+    <a class="card" href="styledeli_styling_lab.html">
+      <span class="card-num">05</span>
+      <span class="card-title">STYLING LAB</span>
+      <span class="card-arr">›</span>
+    </a>
   </div>
-
-  <!-- TOPページ -->
-  <div class="section">
-    <div class="section-label">TOP ページ</div>
-    <div class="cards">
-      <a class="card" href="styledeli_v2_with_images.html">
-        <div class="card-left">
-          <div class="card-title">TOPページ 3パターン比較</div>
-          <div class="card-desc">A: Editorial / B: Quiet Luxury / C: Soft Modern</div>
-          <div class="card-tag">現行サイト画像入り</div>
-        </div>
-        <div class="card-arr">›</div>
-      </a>
-      <a class="card" href="styledeli_B_v5.html">
-        <div class="card-left">
-          <div class="card-title">TOPページ B案 v5（売上重視・最終版）</div>
-          <div class="card-desc">Quiet Luxury / ランキング優先 / CV改善版</div>
-          <div class="card-tag">最終版</div>
-        </div>
-        <div class="card-arr">›</div>
-      </a>
-    </div>
-  </div>
-
-  <!-- 商品一覧 -->
-  <div class="section">
-    <div class="section-label">商品一覧ページ</div>
-    <div class="cards">
-      <a class="card" href="styledeli_product_list_v2.html">
-        <div class="card-left">
-          <div class="card-title">商品一覧ページ v2</div>
-          <div class="card-desc">2列 / 1列 切り替え / 絞り込みタグ / アイコン改善版</div>
-          <div class="card-tag">最終版</div>
-        </div>
-        <div class="card-arr">›</div>
-      </a>
-      <a class="card" href="styledeli_filter_modal.html">
-        <div class="card-left">
-          <div class="card-title">絞り込みモーダル</div>
-          <div class="card-desc">初期状態 / 選択後 の2パターン / Shopify Search & Discovery 対応</div>
-        </div>
-        <div class="card-arr">›</div>
-      </a>
-    </div>
-  </div>
-
-  <!-- 商品詳細 -->
-  <div class="section">
-    <div class="section-label">商品詳細ページ</div>
-    <div class="cards">
-      <a class="card" href="styledeli_product_detail_v2.html">
-        <div class="card-left">
-          <div class="card-title">商品詳細ページ v2</div>
-          <div class="card-desc">センターロゴ / ホットスポット / P・TALLサイズ / バーチャサイズ枠</div>
-          <div class="card-tag">最終版</div>
-        </div>
-        <div class="card-arr">›</div>
-      </a>
-    </div>
-    <div class="note">
-      <strong>実装メモ：</strong>バーチャサイズはアプリ（Virtusize）のボタンが自動挿入されます。ホットスポットはPrestigeの標準機能で対応可能です。
-    </div>
-  </div>
-
-  <!-- STYLING LAB -->
-  <div class="section">
-    <div class="section-label">STYLING LAB</div>
-    <div class="cards">
-      <a class="card" href="styledeli_styling_lab.html">
-        <div class="card-left">
-          <div class="card-title">STYLING LAB 一覧 + コーデ詳細</div>
-          <div class="card-desc">一覧（3列グリッド）/ 詳細・画像版 / 詳細・動画版</div>
-        </div>
-        <div class="card-arr">›</div>
-      </a>
-      <a class="card" href="styledeli_coord_detail_3patterns.html">
-        <div class="card-left">
-          <div class="card-title">コーデ詳細ページ 3パターン比較</div>
-          <div class="card-desc">A: Editorial / B: Commerce first / C: Story</div>
-          <div class="card-tag">セット購入UIあり</div>
-        </div>
-        <div class="card-arr">›</div>
-      </a>
-    </div>
-    <div class="note">
-      <strong>セット購入について：</strong>2点以上カートに揃った場合に自動で10%OFFが適用されます。Shopify Functions + Storefront APIで実装予定です。
-    </div>
-  </div>
-
-  <div class="footer">
-    <div class="footer-logo">STYLE DELI</div>
-    <div class="footer-copy">デザインモックアップ / 社内確認用</div>
-  </div>
-
+  <div class="footer">社内確認用 / STYLE DELI Shopify移行プロジェクト</div>
 </div>
 </body>
 </html>
