@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1300">
+<title>STYLE DELI – コーデ詳細 3パターン</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:#e8e5e0;padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:24px}
+h1{font-size:11px;letter-spacing:.2em;color:#999;font-weight:400;margin-bottom:4px;text-align:center}
+p.sub{font-size:10px;color:#bbb;margin-bottom:0;letter-spacing:.06em;text-align:center}
+.wrapper{display:flex;gap:28px;align-items:flex-start;justify-content:center}
+.col{display:flex;flex-direction:column;align-items:center;gap:8px}
+.col-label{font-size:11px;font-weight:500;letter-spacing:.12em;color:#555;text-align:center}
+.col-sub{font-size:10px;color:#aaa;letter-spacing:.06em;text-align:center}
+.phone{width:375px;overflow:hidden;border-radius:14px;border:1px solid #c8c4be;box-shadow:0 8px 32px rgba(0,0,0,.12);background:#faf9f7;color:#2a2a2a}
+
+/* ── 共通ヘッダー ── */
+.hdr{background:#faf9f7;padding:0 16px;height:54px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-bottom:1px solid #ece9e4}
+.hdr-ham{display:flex;flex-direction:column;gap:5px;justify-self:start}
+.hdr-ham span{display:block;width:18px;height:1px;background:#2a2a2a}
+.hdr-logo{font-size:12px;letter-spacing:.36em;font-weight:300;text-align:center}
+.hdr-icons{display:flex;align-items:center;gap:14px;justify-self:end}
+.icon{display:flex;align-items:center}
+
+/* パンくず */
+.bc{display:flex;gap:5px;padding:9px 16px;border-bottom:1px solid #ece9e4}
+.bc span{font-size:9px;color:#bbb;letter-spacing:.06em}
+.bc span.cur{color:#2a2a2a}
+
+/* フッター */
+.ftr{background:#2a2a2a;padding:18px 16px;text-align:center}
+.ftr a{font-size:9px;color:#555;letter-spacing:.08em;text-decoration:none;display:inline-block;margin:3px 7px;font-weight:300}
+.ftr-copy{font-size:9px;color:#444;letter-spacing:.06em;margin-top:8px;font-weight:300}
+
+/* セット合計・ボタン共通 */
+.set-total{margin:0 16px 10px;padding:10px 12px;background:#f5f3ef;display:flex;justify-content:space-between;align-items:center}
+.set-total-label{font-size:10px;color:#aaa;font-weight:300;letter-spacing:.08em}
+.set-total-orig{font-size:10px;color:#bbb;text-decoration:line-through;font-weight:300}
+.set-total-sale{font-size:16px;font-weight:300;color:#2a2a2a}
+.set-total-tax{font-size:9px;color:#aaa}
+.set-total-off{font-size:9px;color:#8a6030;background:#f5ede0;padding:1px 6px;border-radius:2px;display:inline-block;margin-top:2px}
+.set-cart-btn{display:flex;align-items:center;justify-content:center;gap:7px;width:calc(100% - 32px);margin:0 16px 6px;background:#2a2a2a;color:#faf9f7;font-size:11px;letter-spacing:.14em;padding:14px;border:none;cursor:pointer}
+.set-note{margin:0 16px 16px;font-size:9px;color:#bbb;line-height:1.7;letter-spacing:.03em}
+
+/* ══════════════════════════════
+   A: Editorial（雑誌的）
+══════════════════════════════ */
+.a-main{position:relative;width:375px;aspect-ratio:4/5;background:#ddd9ed;display:flex;align-items:center;justify-content:center}
+.a-main span{font-size:10px;color:#c0bab3;letter-spacing:.06em}
+.a-video-badge{position:absolute;top:12px;left:12px;background:rgba(42,42,42,.55);color:#fff;font-size:8px;letter-spacing:.12em;padding:3px 8px;border-radius:2px}
+.a-ctrl{position:absolute;bottom:12px;right:12px;display:flex;gap:6px}
+.a-ctrl-btn{width:28px;height:28px;background:rgba(250,249,247,.7);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px}
+
+/* タイトルエリア */
+.a-title-area{padding:20px 20px 14px;border-bottom:1px solid #ece9e4}
+.a-eyebrow{font-size:8px;letter-spacing:.24em;color:#bbb;margin-bottom:6px}
+.a-title{font-size:20px;font-weight:300;line-height:1.3;color:#2a2a2a;margin-bottom:6px}
+.a-copy{font-size:11px;font-weight:300;color:#aaa;line-height:1.7}
+
+/* サムネ */
+.a-thumbs{display:flex;gap:4px;padding:10px 16px;border-bottom:1px solid #ece9e4;overflow-x:auto}
+.a-thumbs::-webkit-scrollbar{display:none}
+.a-thumb{width:52px;height:65px;background:#e4dfd8;flex-shrink:0;border:1px solid transparent;display:flex;align-items:center;justify-content:center;font-size:7px;color:#bbb}
+.a-thumb.active{border-color:#2a2a2a}
+
+/* セット購入（A：シンプル・余白重視） */
+.a-set-hdr{padding:20px 20px 0}
+.a-set-label{font-size:9px;letter-spacing:.26em;color:#aaa;margin-bottom:6px}
+.a-set-desc{font-size:11px;font-weight:300;color:#2a2a2a;margin-bottom:12px}
+.a-discount{display:inline-flex;align-items:center;gap:6px;border:0.5px solid #d8c090;padding:5px 10px;margin-bottom:14px}
+.a-discount-text{font-size:10px;font-weight:300;color:#8a6030;letter-spacing:.06em}
+
+/* アイテム（A：画像大きめ・テキスト控えめ） */
+.a-items{display:flex;flex-direction:column;gap:0;padding:0 16px}
+.a-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #ece9e4;align-items:center}
+.a-item:last-child{border-bottom:none}
+.a-item-img{width:64px;height:80px;background:#e4dfd8;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:7px;color:#bbb}
+.a-item-info{flex:1}
+.a-item-name{font-size:12px;font-weight:300;color:#2a2a2a;line-height:1.45;margin-bottom:3px}
+.a-item-detail{font-size:9px;color:#bbb;letter-spacing:.04em;margin-bottom:5px}
+.a-item-price-row{display:flex;align-items:baseline;gap:5px}
+.a-item-orig{font-size:10px;color:#bbb;text-decoration:line-through;font-weight:300}
+.a-item-sale{font-size:12px;color:#8a6030;font-weight:300}
+.a-item-btn{font-size:8px;color:#bbb;letter-spacing:.1em;border-bottom:1px solid #ddd;padding-bottom:1px;cursor:pointer;white-space:nowrap;flex-shrink:0}
+
+/* 関連 */
+.a-related-scroll{display:flex;gap:6px;overflow-x:auto;padding:0 16px 16px}
+.a-related-scroll::-webkit-scrollbar{display:none}
+.a-related{flex-shrink:0;width:110px;aspect-ratio:4/5;background:#e4dfd8;display:flex;align-items:center;justify-content:center;font-size:7px;color:#bbb}
+
+/* ══════════════════════════════
+   B: Commerce first（買わせる）
+══════════════════════════════ */
+/* お得バー（最上部） */
+.b-deal-bar{background:#2a2a2a;padding:8px 16px;display:flex;align-items:center;justify-content:center;gap:8px}
+.b-deal-txt{font-size:10px;color:#e8e4dc;letter-spacing:.08em}
+.b-deal-badge{font-size:9px;color:#c8a870;letter-spacing:.1em;border:0.5px solid #c8a870;padding:1px 7px}
+
+.b-main{position:relative;width:375px;aspect-ratio:4/5;background:#ddd9ed;display:flex;align-items:center;justify-content:center}
+.b-main span{font-size:10px;color:#c0bab3;letter-spacing:.06em}
+.b-video-badge{position:absolute;top:12px;left:12px;background:rgba(42,42,42,.55);color:#fff;font-size:8px;letter-spacing:.12em;padding:3px 8px;border-radius:2px}
+
+/* サムネ横並び */
+.b-thumbs{display:flex;gap:4px;padding:8px 16px;border-bottom:1px solid #ece9e4;overflow-x:auto}
+.b-thumbs::-webkit-scrollbar{display:none}
+.b-thumb{width:52px;height:65px;background:#e4dfd8;flex-shrink:0;border:1px solid transparent;display:flex;align-items:center;justify-content:center;font-size:7px;color:#bbb}
+.b-thumb.active{border-color:#2a2a2a}
+
+/* セット購入（B：割引を前面に・コンパクト） */
+.b-set-wrap{background:#fdf8f0;border-top:2px solid #c8a870;border-bottom:1px solid #e8d4b0;padding:14px 16px}
+.b-set-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.b-set-label{font-size:9px;letter-spacing:.2em;color:#8a6030}
+.b-set-badge{background:#c8901a;color:#fff;font-size:9px;letter-spacing:.1em;padding:3px 9px}
+
+/* アイテム（B：横幅コンパクト・価格大きめ） */
+.b-items{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.b-item{display:flex;gap:10px;align-items:center;background:#fff;padding:8px 10px;border:0.5px solid #ece9e4}
+.b-item-img{width:48px;height:60px;background:#e4dfd8;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:7px;color:#bbb}
+.b-item-info{flex:1;min-width:0}
+.b-item-name{font-size:11px;font-weight:300;color:#2a2a2a;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b-item-detail{font-size:9px;color:#bbb;margin-bottom:4px}
+.b-item-price-row{display:flex;align-items:baseline;gap:4px}
+.b-item-orig{font-size:9px;color:#bbb;text-decoration:line-through}
+.b-item-sale{font-size:12px;color:#8a6030;font-weight:300}
+.b-item-btn{font-size:8px;color:#aaa;border:0.5px solid #ddd;padding:4px 7px;cursor:pointer;white-space:nowrap;flex-shrink:0;background:#faf9f7}
+
+/* 合計（B：強調） */
+.b-total{background:#fff;border:0.5px solid #e8d4b0;padding:10px 12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.b-total-label{font-size:10px;color:#8a6030;font-weight:300;letter-spacing:.08em}
+.b-total-right{text-align:right}
+.b-total-orig{font-size:10px;color:#bbb;text-decoration:line-through;font-weight:300}
+.b-total-sale{font-size:18px;font-weight:300;color:#2a2a2a}
+.b-total-tax{font-size:9px;color:#aaa}
+.b-total-off{font-size:10px;color:#8a6030;font-weight:400}
+
+/* ボタン（B：大きめ・目立つ） */
+.b-cart-btn{width:100%;background:#c8901a;color:#fff;font-size:12px;letter-spacing:.16em;padding:16px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:6px}
+.b-single-link{text-align:center;font-size:9px;color:#bbb;letter-spacing:.1em;padding-bottom:2px}
+
+/* 商品名・説明（B：下部） */
+.b-info{padding:14px 16px;border-top:1px solid #ece9e4;border-bottom:1px solid #ece9e4}
+.b-info-label{font-size:9px;letter-spacing:.22em;color:#aaa;margin-bottom:4px}
+.b-info-text{font-size:11px;font-weight:300;color:#2a2a2a;line-height:1.7}
+
+.b-related-scroll{display:flex;gap:6px;overflow-x:auto;padding:0 16px 16px}
+.b-related-scroll::-webkit-scrollbar{display:none}
+.b-related{flex-shrink:0;width:110px;aspect-ratio:4/5;background:#e4dfd8;display:flex;align-items:center;justify-content:center;font-size:7px;color:#bbb}
+
+/* ══════════════════════════════
+   C: Story（世界観重視）
+══════════════════════════════ */
+/* フルスクリーンメインビジュアル */
+.c-main{position:relative;width:375px;aspect-ratio:3/4;background:#2a2733;display:flex;align-items:flex-end;overflow:hidden}
+.c-main-bg{position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,.1) 50%, transparent 100%)}
+.c-main-content{position:relative;z-index:1;padding:20px 20px 24px;width:100%}
+.c-eyebrow{font-size:8px;letter-spacing:.28em;color:rgba(255,255,255,.6);margin-bottom:6px}
+.c-title{font-size:22px;font-weight:300;color:#fff;line-height:1.3;margin-bottom:6px;letter-spacing:.04em}
+.c-copy{font-size:11px;color:rgba(255,255,255,.75);font-weight:300;line-height:1.7;margin-bottom:14px}
+.c-video-ctrl{display:flex;gap:6px}
+.c-ctrl-btn{background:rgba(255,255,255,.2);border:0.5px solid rgba(255,255,255,.3);color:#fff;font-size:8px;letter-spacing:.12em;padding:5px 10px;cursor:pointer}
+
+/* サムネイル（C：下部横並び） */
+.c-thumbs{display:flex;gap:4px;padding:10px 16px;border-bottom:1px solid #ece9e4;overflow-x:auto}
+.c-thumbs::-webkit-scrollbar{display:none}
+.c-thumb{width:52px;height:65px;background:#e4dfd8;flex-shrink:0;border:1px solid transparent;display:flex;align-items:center;justify-content:center;font-size:7px;color:#bbb}
+.c-thumb.active{border-color:#2a2a2a}
+
+/* 世界観テキスト */
+.c-story{padding:18px 20px;border-bottom:1px solid #ece9e4}
+.c-story-label{font-size:8px;letter-spacing:.24em;color:#bbb;margin-bottom:8px}
+.c-story-text{font-size:12px;font-weight:300;color:#2a2a2a;line-height:1.9;letter-spacing:.03em}
+
+/* セット購入（C：世界観に溶け込む） */
+.c-set-hdr{padding:18px 20px 0}
+.c-set-label{font-size:9px;letter-spacing:.26em;color:#aaa;margin-bottom:6px}
+.c-set-desc{font-size:11px;font-weight:300;color:#2a2a2a;margin-bottom:10px;line-height:1.6}
+.c-discount{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#f5ede0;border-left:2px solid #c8a870;margin:0 16px 14px}
+.c-discount-text{font-size:10px;font-weight:300;color:#8a6030;letter-spacing:.06em}
+
+/* アイテム（C：写真重視・縦長） */
+.c-items{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px 14px}
+.c-item{display:flex;flex-direction:column}
+.c-item-img{width:100%;aspect-ratio:3/4;background:#e4dfd8;display:flex;align-items:center;justify-content:center;margin-bottom:7px;font-size:7px;color:#bbb}
+.c-item-name{font-size:10px;font-weight:300;color:#2a2a2a;line-height:1.4;margin-bottom:2px}
+.c-item-detail{font-size:8px;color:#bbb;letter-spacing:.04em;margin-bottom:4px}
+.c-item-price-row{display:flex;align-items:baseline;gap:4px;margin-bottom:5px}
+.c-item-orig{font-size:9px;color:#bbb;text-decoration:line-through;font-weight:300}
+.c-item-sale{font-size:11px;color:#8a6030;font-weight:300}
+.c-item-btn{font-size:8px;color:#aaa;letter-spacing:.1em;border-bottom:1px solid #ddd;padding-bottom:1px;cursor:pointer;display:inline-block}
+
+/* 合計（C：シンプル） */
+.c-total{margin:0 16px 10px;display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid #ece9e4;border-bottom:1px solid #ece9e4}
+.c-total-label{font-size:10px;color:#aaa;font-weight:300;letter-spacing:.08em}
+.c-total-right{text-align:right}
+.c-total-orig{font-size:10px;color:#bbb;text-decoration:line-through;font-weight:300}
+.c-total-sale{font-size:16px;font-weight:300;color:#2a2a2a}
+.c-total-off{font-size:9px;color:#8a6030;margin-top:1px}
+
+/* ボタン（C：細め・上品） */
+.c-cart-btn{display:flex;align-items:center;justify-content:center;gap:7px;width:calc(100% - 32px);margin:0 16px 6px;background:#2a2a2a;color:#faf9f7;font-size:11px;letter-spacing:.16em;padding:14px;border:none;cursor:pointer}
+.c-single-link{text-align:center;font-size:9px;color:#bbb;letter-spacing:.1em;padding:0 16px 14px;display:block}
+
+/* 関連 */
+.c-sh{display:flex;justify-content:space-between;align-items:baseline;padding:18px 16px 12px;border-top:1px solid #ece9e4}
+.c-sh-t{font-size:9px;letter-spacing:.28em;color:#aaa}
+.c-sh-more{font-size:9px;color:#bbb;border-bottom:1px solid #ddd;padding-bottom:1px}
+.c-related-scroll{display:flex;gap:6px;overflow-x:auto;padding:0 16px 16px}
+.c-related-scroll::-webkit-scrollbar{display:none}
+.c-related{flex-shrink:0;width:110px;aspect-ratio:4/5;background:#e4dfd8;display:flex;align-items:center;justify-content:center;font-size:7px;color:#bbb}
+</style>
+</head>
+<body>
+
+<h1>STYLE DELI — STYLING LAB コーデ詳細 3パターン</h1>
+<p class="sub">375px / コーデ詳細ページ / セット購入UIあり</p>
+
+<div class="wrapper">
+
+<!-- ══ A: Editorial ══ -->
+<div class="col">
+  <div class="col-label">A · Editorial</div>
+  <div class="col-sub">雑誌的・余白重視・世界観優先</div>
+  <div class="phone">
+
+    <div class="hdr">
+      <div class="hdr-ham"><span></span><span></span><span></span></div>
+      <div class="hdr-logo">STYLE DELI</div>
+      <div class="hdr-icons">
+        <div class="icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#2a2a2a" stroke-width="1.2" stroke-linecap="round"><circle cx="7.5" cy="7.5" r="5"/><line x1="11.5" y1="11.5" x2="16" y2="16"/></svg></div>
+        <div class="icon" style="position:relative"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#2a2a2a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h12l-1.5 9h-9L3 3z"/><circle cx="6.5" cy="15.5" r="1" fill="#2a2a2a" stroke="none"/><circle cx="12.5" cy="15.5" r="1" fill="#2a2a2a" stroke="none"/></svg><div style="position:absolute;top:-4px;right:-5px;background:#2a2a2a;color:#faf9f7;font-size:7px;width:13px;height:13px;border-radius:50%;display:flex;align-items:center;justify-content:center">2</div></div>
+      </div>
+    </div>
+
+    <div class="bc"><span>HOME</span><span>›</span><span>STYLING LAB</span><span>›</span><span class="cur">コーデ #744</span></div>
+
+    <div class="a-main">
+      <span>AI コーデ動画（4:5）</span>
+      <div class="a-video-badge">▶ AUTO PLAY</div>
+      <div class="a-ctrl"><div class="a-ctrl-btn">🔇</div></div>
+    </div>
+
+    <div class="a-thumbs">
+      <div class="a-thumb active"><span>▶</span></div>
+      <div class="a-thumb"><span>IMG</span></div>
+      <div class="a-thumb"><span>IMG</span></div>
+    </div>
+
+    <!-- タイトル・コピー -->
+    <div class="a-title-area">
+      <div class="a-eyebrow">STYLING LAB No.744</div>
+      <div class="a-title">春のオフィスカジュアル、<br>きれいめに仕上げる</div>
+      <div class="a-copy">ゆったりとしたシルエットでも、<br>きちんとして見えるバランスのコーデ。</div>
+    </div>
+
+    <!-- セット購入 -->
+    <div style="padding:18px 0 0">
+      <div class="a-set-hdr">
+        <div class="a-set-label">COORDINATE ITEMS</div>
+        <div class="a-set-desc">このコーデをまとめて購入できます</div>
+        <div class="a-discount">
+          <span style="font-size:10px;color:#c8a870">✦</span>
+          <div class="a-discount-text">セット購入で全アイテム 10% OFF</div>
+        </div>
+      </div>
+      <div class="a-items">
+        <div class="a-item">
+          <div class="a-item-img">IMG</div>
+          <div class="a-item-info">
+            <div class="a-item-name">クロップドイージーワイドデニム</div>
+            <div class="a-item-detail">F / ライトブルー</div>
+            <div class="a-item-price-row"><span class="a-item-orig">¥13,800</span><span class="a-item-sale">¥12,420</span></div>
+          </div>
+          <span class="a-item-btn">単品で見る</span>
+        </div>
+        <div class="a-item">
+          <div class="a-item-img">IMG</div>
+          <div class="a-item-info">
+            <div class="a-item-name">メッシュジップカーディガン</div>
+            <div class="a-item-detail">F / ホワイト</div>
+            <div class="a-item-price-row"><span class="a-item-orig">¥9,800</span><span class="a-item-sale">¥8,820</span></div>
+          </div>
+          <span class="a-item-btn">単品で見る</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="set-total">
+      <div class="set-total-label">セット合計</div>
+      <div style="text-align:right">
+        <div class="set-total-orig">¥23,600</div>
+        <div><span class="set-total-sale">¥21,240</span><span class="set-total-tax"> 税込</span></div>
+        <div class="set-total-off">→ ¥2,360 お得</div>
+      </div>
+    </div>
+    <button class="set-cart-btn">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#faf9f7" stroke-width="1.2"><path d="M2 2h12l-1.5 9h-9L2 2z"/><circle cx="5.5" cy="14" r="1" fill="#faf9f7" stroke="none"/><circle cx="11.5" cy="14" r="1" fill="#faf9f7" stroke="none"/></svg>
+      まとめてカートに入れる（10% OFF）
+    </button>
+    <div class="set-note">
+      ※ 全アイテムがカートに揃った場合のみ10%OFFが適用されます<br>
+      ※ 1点でも削除すると割引は自動解除されます
+    </div>
+
+    <!-- 関連 -->
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:18px 16px 12px;border-top:1px solid #ece9e4"><span style="font-size:9px;letter-spacing:.28em;color:#aaa">NEW STYLING</span><span style="font-size:9px;color:#bbb;border-bottom:1px solid #ddd;padding-bottom:1px">すべて見る</span></div>
+    <div class="a-related-scroll">
+      <div class="a-related">IMG</div><div class="a-related" style="background:#d8d4e4">VIDEO</div><div class="a-related">IMG</div><div class="a-related">IMG</div>
+    </div>
+
+    <div class="ftr"><div><a href="#">ショッピングガイド</a><a href="#">お問い合わせ</a></div><div class="ftr-copy">© STYLE DELI All Rights Reserved.</div></div>
+  </div>
+</div>
+
+<!-- ══ B: Commerce first ══ -->
+<div class="col">
+  <div class="col-label">B · Commerce first</div>
+  <div class="col-sub">割引訴求・購買率重視・わかりやすさ優先</div>
+  <div class="phone">
+
+    <div class="hdr">
+      <div class="hdr-ham"><span></span><span></span><span></span></div>
+      <div class="hdr-logo">STYLE DELI</div>
+      <div class="hdr-icons">
+        <div class="icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#2a2a2a" stroke-width="1.2" stroke-linecap="round"><circle cx="7.5" cy="7.5" r="5"/><line x1="11.5" y1="11.5" x2="16" y2="16"/></svg></div>
+        <div class="icon" style="position:relative"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#2a2a2a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h12l-1.5 9h-9L3 3z"/><circle cx="6.5" cy="15.5" r="1" fill="#2a2a2a" stroke="none"/><circle cx="12.5" cy="15.5" r="1" fill="#2a2a2a" stroke="none"/></svg><div style="position:absolute;top:-4px;right:-5px;background:#2a2a2a;color:#faf9f7;font-size:7px;width:13px;height:13px;border-radius:50%;display:flex;align-items:center;justify-content:center">2</div></div>
+      </div>
+    </div>
+
+    <!-- お得バー -->
+    <div class="b-deal-bar">
+      <span class="b-deal-txt">このコーデ、セットで買うと</span>
+      <span class="b-deal-badge">10% OFF</span>
+    </div>
+
+    <div class="bc"><span>HOME</span><span>›</span><span>STYLING LAB</span><span>›</span><span class="cur">コーデ #744</span></div>
+
+    <div class="b-main">
+      <span>AI コーデ動画（4:5）</span>
+      <div class="b-video-badge">▶ AUTO PLAY</div>
+    </div>
+
+    <div class="b-thumbs">
+      <div class="b-thumb active"><span>▶</span></div>
+      <div class="b-thumb"><span>IMG</span></div>
+      <div class="b-thumb"><span>IMG</span></div>
+    </div>
+
+    <!-- セット購入（B） -->
+    <div class="b-set-wrap">
+      <div class="b-set-top">
+        <div style="font-size:9px;letter-spacing:.2em;color:#8a6030">COORDINATE ITEMS</div>
+        <div class="b-set-badge">セットで 10% OFF</div>
+      </div>
+      <div class="b-items">
+        <div class="b-item">
+          <div class="b-item-img">IMG</div>
+          <div class="b-item-info">
+            <div class="b-item-name">クロップドイージーワイドデニム</div>
+            <div class="b-item-detail">F / ライトブルー</div>
+            <div class="b-item-price-row"><span class="b-item-orig">¥13,800</span><span class="b-item-sale">¥12,420</span></div>
+          </div>
+          <button class="b-item-btn">単品で<br>見る</button>
+        </div>
+        <div class="b-item">
+          <div class="b-item-img">IMG</div>
+          <div class="b-item-info">
+            <div class="b-item-name">メッシュジップカーディガン</div>
+            <div class="b-item-detail">F / ホワイト</div>
+            <div class="b-item-price-row"><span class="b-item-orig">¥9,800</span><span class="b-item-sale">¥8,820</span></div>
+          </div>
+          <button class="b-item-btn">単品で<br>見る</button>
+        </div>
+      </div>
+      <div class="b-total">
+        <div class="b-total-label">セット合計</div>
+        <div class="b-total-right">
+          <div class="b-total-orig">¥23,600</div>
+          <div><span class="b-total-sale">¥21,240</span><span class="b-total-tax"> 税込</span></div>
+          <div class="b-total-off">▶ ¥2,360 お得！</div>
+        </div>
+      </div>
+      <button class="b-cart-btn">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.2"><path d="M2 2h12l-1.5 9h-9L2 2z"/><circle cx="5.5" cy="14" r="1" fill="#fff" stroke="none"/><circle cx="11.5" cy="14" r="1" fill="#fff" stroke="none"/></svg>
+        まとめてカートに入れる（10% OFF）
+      </button>
+      <div class="b-single-link">単品でカートに入れる場合は各商品をタップ</div>
+    </div>
+    <div style="padding:8px 16px 10px;font-size:9px;color:#bbb;line-height:1.7;border-bottom:1px solid #ece9e4">
+      ※ 全アイテムがカートに揃った場合のみ10%OFFが適用されます<br>
+      ※ 1点でも削除すると割引は自動解除されます
+    </div>
+
+    <!-- コーデ説明（B：下部） -->
+    <div class="b-info">
+      <div class="b-info-label">ABOUT THIS COORDINATE</div>
+      <div class="b-info-text">ゆったりとしたシルエットでも、きちんとして見えるバランスのコーデ。春のオフィスカジュアルに。</div>
+    </div>
+
+    <!-- 関連 -->
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 16px 12px;"><span style="font-size:9px;letter-spacing:.28em;color:#aaa">NEW STYLING</span><span style="font-size:9px;color:#bbb;border-bottom:1px solid #ddd;padding-bottom:1px">すべて見る</span></div>
+    <div class="b-related-scroll">
+      <div class="b-related">IMG</div><div class="b-related" style="background:#d8d4e4">VIDEO</div><div class="b-related">IMG</div><div class="b-related">IMG</div>
+    </div>
+
+    <div class="ftr"><div><a href="#">ショッピングガイド</a><a href="#">お問い合わせ</a></div><div class="ftr-copy">© STYLE DELI All Rights Reserved.</div></div>
+  </div>
+</div>
+
+<!-- ══ C: Story ══ -->
+<div class="col">
+  <div class="col-label">C · Story</div>
+  <div class="col-sub">世界観・コピー重視・ブランド共感優先</div>
+  <div class="phone">
+
+    <div class="hdr">
+      <div class="hdr-ham"><span></span><span></span><span></span></div>
+      <div class="hdr-logo">STYLE DELI</div>
+      <div class="hdr-icons">
+        <div class="icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#2a2a2a" stroke-width="1.2" stroke-linecap="round"><circle cx="7.5" cy="7.5" r="5"/><line x1="11.5" y1="11.5" x2="16" y2="16"/></svg></div>
+        <div class="icon" style="position:relative"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#2a2a2a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h12l-1.5 9h-9L3 3z"/><circle cx="6.5" cy="15.5" r="1" fill="#2a2a2a" stroke="none"/><circle cx="12.5" cy="15.5" r="1" fill="#2a2a2a" stroke="none"/></svg><div style="position:absolute;top:-4px;right:-5px;background:#2a2a2a;color:#faf9f7;font-size:7px;width:13px;height:13px;border-radius:50%;display:flex;align-items:center;justify-content:center">2</div></div>
+      </div>
+    </div>
+
+    <!-- フルスクリーンビジュアル -->
+    <div class="c-main">
+      <div class="c-main-bg"></div>
+      <div class="c-main-content">
+        <div class="c-eyebrow">STYLING LAB No.744</div>
+        <div class="c-title">春のオフィスカジュアル、<br>きれいめに仕上げる</div>
+        <div class="c-copy">ゆったりとしたシルエットでも、<br>きちんとして見えるバランスのコーデ。</div>
+        <div class="c-video-ctrl">
+          <div class="c-ctrl-btn">🔇 ミュート</div>
+          <div class="c-ctrl-btn">一時停止</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-thumbs">
+      <div class="c-thumb active"><span>▶</span></div>
+      <div class="c-thumb"><span>IMG</span></div>
+      <div class="c-thumb"><span>IMG</span></div>
+    </div>
+
+    <!-- ストーリーテキスト -->
+    <div class="c-story">
+      <div class="c-story-label">ABOUT</div>
+      <div class="c-story-text">気温が不安定な春の朝に、さっと手に取れるコーデ。カーディガンの抜け感とデニムのラフさが、大人のバランス感を演出します。</div>
+    </div>
+
+    <!-- セット購入（C） -->
+    <div class="c-set-hdr">
+      <div class="c-set-label">COORDINATE ITEMS</div>
+      <div class="c-set-desc">このコーデをまとめて購入できます</div>
+    </div>
+    <div class="c-discount">
+      <span style="font-size:10px;color:#c8a870">✦</span>
+      <div class="c-discount-text">セット購入で全アイテム 10% OFF</div>
+    </div>
+
+    <!-- アイテム（C：2列グリッド） -->
+    <div class="c-items">
+      <div class="c-item">
+        <div class="c-item-img">IMG</div>
+        <div class="c-item-name">クロップドイージーワイドデニム</div>
+        <div class="c-item-detail">F / ライトブルー</div>
+        <div class="c-item-price-row"><span class="c-item-orig">¥13,800</span><span class="c-item-sale">¥12,420</span></div>
+        <span class="c-item-btn">単品で見る</span>
+      </div>
+      <div class="c-item">
+        <div class="c-item-img">IMG</div>
+        <div class="c-item-name">メッシュジップカーディガン</div>
+        <div class="c-item-detail">F / ホワイト</div>
+        <div class="c-item-price-row"><span class="c-item-orig">¥9,800</span><span class="c-item-sale">¥8,820</span></div>
+        <span class="c-item-btn">単品で見る</span>
+      </div>
+    </div>
+
+    <div class="c-total">
+      <div class="c-total-label">セット合計</div>
+      <div class="c-total-right">
+        <div class="c-total-orig">¥23,600</div>
+        <div><span class="c-total-sale">¥21,240</span><span style="font-size:9px;color:#aaa"> 税込</span></div>
+        <div class="c-total-off">→ ¥2,360 お得</div>
+      </div>
+    </div>
+    <button class="c-cart-btn">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#faf9f7" stroke-width="1.2"><path d="M2 2h12l-1.5 9h-9L2 2z"/><circle cx="5.5" cy="14" r="1" fill="#faf9f7" stroke="none"/><circle cx="11.5" cy="14" r="1" fill="#faf9f7" stroke="none"/></svg>
+      まとめてカートに入れる（10% OFF）
+    </button>
+    <span class="c-single-link">単品でカートに入れる場合は各商品をタップ</span>
+    <div style="margin:0 16px 16px;font-size:9px;color:#bbb;line-height:1.7;border-top:1px solid #ece9e4;padding-top:10px">
+      ※ 全アイテムがカートに揃った場合のみ10%OFFが適用されます<br>
+      ※ 1点でも削除すると割引は自動解除されます
+    </div>
+
+    <!-- 関連 -->
+    <div class="c-sh"><span class="c-sh-t">NEW STYLING</span><span class="c-sh-more">すべて見る</span></div>
+    <div class="c-related-scroll">
+      <div class="c-related">IMG</div><div class="c-related" style="background:#d8d4e4">VIDEO</div><div class="c-related">IMG</div><div class="c-related">IMG</div>
+    </div>
+
+    <div class="ftr"><div><a href="#">ショッピングガイド</a><a href="#">お問い合わせ</a></div><div class="ftr-copy">© STYLE DELI All Rights Reserved.</div></div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
