@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=900">
+<title>STYLE DELI – 商品詳細ページ モックアップ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:#e8e5e0;padding:32px 24px;display:flex;flex-direction:column;align-items:center}
+h1{font-size:11px;letter-spacing:.2em;color:#999;font-weight:400;margin-bottom:4px;text-align:center}
+p.sub{font-size:10px;color:#bbb;margin-bottom:28px;letter-spacing:.06em;text-align:center}
+.phone{width:375px;overflow:hidden;border-radius:14px;border:1px solid #c8c4be;box-shadow:0 8px 32px rgba(0,0,0,.12);background:#faf9f7;color:#2a2a2a;font-family:'Helvetica Neue',Arial,sans-serif}
+
+/* header */
+.hdr{background:#faf9f7;padding:0 16px;height:54px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-bottom:1px solid #ece9e4;position:sticky;top:0;z-index:10}
+.hdr-back{font-size:18px;color:#2a2a2a;font-weight:200;cursor:pointer;padding:4px 8px 4px 0}
+.hdr-logo{font-size:12px;letter-spacing:.36em;font-weight:300;text-align:center;justify-self:center}
+.hdr-icons{display:flex;align-items:center;gap:14px;justify-self:end}
+.icon{display:flex;align-items:center;cursor:pointer}
+
+/* パンくず */
+.breadcrumb{display:flex;gap:6px;padding:10px 16px;align-items:center;border-bottom:1px solid #ece9e4}
+.bc-item{font-size:9px;color:#bbb;letter-spacing:.06em}
+.bc-sep{font-size:9px;color:#ddd}
+.bc-item.current{color:#2a2a2a}
+
+/* メイン商品画像 */
+.main-img{width:375px;height:470px;background:#e4dfd8;display:flex;align-items:center;justify-content:center;position:relative}
+.main-img-ph{font-size:9px;color:#c0bab3;letter-spacing:.06em}
+.img-counter{position:absolute;bottom:12px;right:14px;background:rgba(42,42,42,.5);color:#fff;font-size:9px;padding:3px 8px;border-radius:8px;letter-spacing:.04em}
+/* サムネイル */
+.thumbs{display:flex;gap:4px;padding:8px 16px;overflow-x:auto;border-bottom:1px solid #ece9e4}
+.thumbs::-webkit-scrollbar{display:none}
+.thumb{width:56px;height:70px;background:#e4dfd8;flex-shrink:0;border:1px solid transparent}
+.thumb.active{border-color:#2a2a2a}
+.thumb-add{width:56px;height:70px;background:#ede9e4;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:#bbb;letter-spacing:.04em}
+
+/* アイコンエリア */
+.icons-area{display:flex;gap:6px;padding:12px 16px;flex-wrap:wrap;border-bottom:1px solid #ece9e4}
+.tag-icon{display:inline-flex;align-items:center;gap:3px;font-size:9px;letter-spacing:.1em;padding:3px 9px;border-radius:2px}
+.tag-point{background:#f5ede0;color:#8a6030;border:0.5px solid #d8c090}
+.tag-rear{background:#f0f0ee;color:#5a5a52;border:0.5px solid #c8c4b8}
+.tag-free{background:#f0f0ee;color:#5a5a52;border:0.5px solid #c8c4b8}
+.tag-pre{background:#f0f0ee;color:#5a5a52;border:0.5px solid #c8c4b8}
+.tag-sale{background:#fae8e8;color:#8a3a3a;border:0.5px solid #d8b0b0}
+
+/* 商品名エリア */
+.prod-header{padding:14px 16px 0}
+.prod-name{font-size:16px;font-weight:300;line-height:1.4;color:#2a2a2a;margin-bottom:4px}
+.prod-num{font-size:10px;color:#bbb;letter-spacing:.1em;margin-bottom:10px}
+
+/* ポイントアップ */
+.point-up{margin:0 16px 10px;background:#fdf8f0;border:0.5px solid #e8d4b0;padding:8px 12px;display:flex;align-items:center;gap:8px}
+.point-up-badge{background:#c8901a;color:#fff;font-size:8px;letter-spacing:.1em;padding:2px 7px;border-radius:1px;white-space:nowrap}
+.point-up-text{font-size:10px;color:#8a6030;font-weight:300}
+.point-up-time{font-size:8px;color:#b0905a;margin-top:2px}
+
+/* 価格 */
+.price-area{padding:0 16px 10px}
+.price-row{display:flex;align-items:baseline;gap:8px}
+.price{font-size:22px;font-weight:300;color:#2a2a2a;letter-spacing:.02em}
+.price-tax{font-size:10px;color:#aaa;font-weight:300}
+.price-original{font-size:14px;color:#bbb;font-weight:300;text-decoration:line-through}
+.price-sale{font-size:22px;font-weight:300;color:#8a3030}
+.price-off{font-size:10px;color:#8a3030;background:#f5e8e8;padding:2px 6px;border-radius:2px}
+
+/* 販売期間 */
+.period{margin:0 16px 12px;padding:8px 12px;background:#f5f2ec;border-left:2px solid #d4c8b4;display:flex;align-items:center;justify-content:space-between}
+.period-label{font-size:8px;letter-spacing:.14em;color:#aaa;margin-bottom:2px}
+.period-date{font-size:11px;font-weight:300;color:#2a2a2a}
+.coming-soon{font-size:8px;letter-spacing:.14em;color:#6a5a4a;background:#f5ede0;padding:2px 8px;border-radius:2px}
+
+/* カラー選択 */
+.select-area{padding:0 16px 12px}
+.select-label{font-size:9px;letter-spacing:.2em;color:#aaa;margin-bottom:8px}
+.colors{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.color-dot{width:28px;height:28px;border-radius:50%;cursor:pointer;position:relative}
+.color-dot.active::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:1px solid #2a2a2a}
+.color-name{font-size:10px;color:#aaa;font-weight:300;margin-top:-10px;margin-bottom:12px}
+
+/* サイズ選択 */
+.sizes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+.size-btn{min-width:52px;padding:8px 10px;border:0.5px solid #ddd;font-size:11px;font-weight:300;color:#2a2a2a;text-align:center;cursor:pointer;background:#fff}
+.size-btn.active{border-color:#2a2a2a;background:#2a2a2a;color:#faf9f7}
+.size-btn.sold{color:#ccc;border-color:#eee;background:#faf9f7;text-decoration:line-through}
+/* バーチャサイズ */
+.vsize-link{display:flex;align-items:center;gap:5px;margin-bottom:14px;cursor:pointer}
+.vsize-icon{width:16px;height:16px;border:1px solid #aaa;border-radius:2px;display:flex;align-items:center;justify-content:center}
+.vsize-icon svg{opacity:.6}
+.vsize-text{font-size:10px;color:#aaa;letter-spacing:.08em;border-bottom:1px solid #ddd;padding-bottom:1px}
+
+/* カートボタンエリア */
+.cart-area{padding:0 16px 16px;display:flex;flex-direction:column;gap:8px}
+.btn-cart{width:100%;background:#2a2a2a;color:#faf9f7;font-size:12px;letter-spacing:.18em;padding:16px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-wishlist{width:100%;background:transparent;color:#2a2a2a;font-size:11px;letter-spacing:.12em;padding:13px;border:0.5px solid #2a2a2a;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.btn-notify{width:100%;background:#f5f2ec;color:#2a2a2a;font-size:11px;letter-spacing:.12em;padding:13px;border:0.5px solid #ccc;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+
+/* セクション区切り */
+.sec{border-top:1px solid #ece9e4}
+.sec-hdr{display:flex;justify-content:space-between;align-items:center;padding:16px 16px 12px;cursor:pointer}
+.sec-t{font-size:9px;letter-spacing:.26em;color:#aaa;font-weight:400}
+.sec-arr{font-size:16px;color:#ccc;font-weight:200}
+.sec-body{padding:0 16px 16px}
+
+/* 商品説明 */
+.desc-text{font-size:12px;font-weight:300;color:#2a2a2a;line-height:1.9;letter-spacing:.03em}
+.desc-more{font-size:10px;color:#bbb;letter-spacing:.1em;border-bottom:1px solid #ddd;padding-bottom:1px;display:inline-block;margin-top:10px}
+
+/* 採寸テーブル */
+.measure-table{width:100%;border-collapse:collapse;font-size:11px}
+.measure-table th{font-size:8px;letter-spacing:.14em;color:#aaa;font-weight:400;padding:8px 6px;border-bottom:1px solid #ece9e4;text-align:center}
+.measure-table td{padding:9px 6px;border-bottom:1px solid #f4f4f4;text-align:center;font-weight:300;color:#2a2a2a}
+.measure-table tr:last-child td{border-bottom:none}
+.measure-table td:first-child{text-align:left;color:#aaa;font-size:10px}
+
+/* 素材・生産国・洗濯 */
+.detail-list{display:flex;flex-direction:column;gap:0}
+.detail-row{display:flex;gap:0;padding:10px 0;border-bottom:1px solid #f4f4f4}
+.detail-row:last-child{border-bottom:none}
+.detail-key{font-size:10px;color:#aaa;font-weight:300;letter-spacing:.08em;min-width:80px;flex-shrink:0}
+.detail-val{font-size:11px;font-weight:300;color:#2a2a2a;line-height:1.6}
+
+/* 身長別着用 */
+.height-tabs{display:flex;border-bottom:1px solid #ece9e4;margin:0 16px 12px}
+.height-tab{flex:1;text-align:center;padding:9px 0;font-size:9px;letter-spacing:.14em;color:#bbb;border-bottom:1.5px solid transparent;margin-bottom:-1px;cursor:pointer}
+.height-tab.active{color:#2a2a2a;border-bottom-color:#2a2a2a}
+.height-scroll{display:flex;gap:8px;overflow-x:auto;padding:0 16px 4px}
+.height-scroll::-webkit-scrollbar{display:none}
+.height-card{flex-shrink:0;width:120px}
+.height-img{width:120px;height:150px;background:#e4dfd8;display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+.height-img span{font-size:7px;color:#bbb}
+.height-info{font-size:9px;color:#aaa;line-height:1.5}
+
+/* 詳細画像 */
+.detail-imgs{display:flex;flex-direction:column;gap:3px;padding:0 16px 4px}
+.detail-img{width:100%;background:#e8e4de;display:flex;align-items:center;justify-content:center}
+.detail-img.tall{height:280px}
+.detail-img.wide{height:180px}
+.detail-img span{font-size:9px;color:#c0bab3}
+
+/* コーディネートアイテム */
+.coord-scroll{display:flex;gap:10px;overflow-x:auto;padding:0 16px 4px}
+.coord-scroll::-webkit-scrollbar{display:none}
+.coord-card{flex-shrink:0;width:110px}
+.coord-img-sq{width:110px;height:110px;background:#e4dfd8;display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+.coord-img-sq span{font-size:7px;color:#bbb}
+.coord-name{font-size:10px;font-weight:300;color:#2a2a2a;margin-bottom:2px}
+.coord-price{font-size:10px;color:#aaa;font-weight:300}
+
+/* STYLING LAB / STAFF WEARING グリッド */
+.content-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding:0 16px}
+.content-cell{aspect-ratio:4/5;background:#e4dfd8;display:flex;align-items:center;justify-content:center}
+.content-cell span{font-size:7px;color:#bbb}
+.more-btn{display:block;margin:12px 16px 0;text-align:center;padding:11px;border:0.5px solid #ccc;font-size:9px;letter-spacing:.18em;color:#aaa}
+
+/* 閲覧履歴・おすすめ */
+.prod-scroll{display:flex;gap:10px;overflow-x:auto;padding:0 16px 4px}
+.prod-scroll::-webkit-scrollbar{display:none}
+.prod-card{flex-shrink:0;width:120px}
+.prod-card-img{width:120px;height:150px;background:#e4dfd8;display:flex;align-items:center;justify-content:center;margin-bottom:7px}
+.prod-card-img span{font-size:7px;color:#bbb}
+.prod-card-name{font-size:10px;font-weight:300;color:#2a2a2a;margin-bottom:2px;line-height:1.4}
+.prod-card-price{font-size:10px;color:#aaa;font-weight:300}
+
+/* sticky cart bar */
+.sticky-cart{position:sticky;bottom:0;background:#faf9f7;border-top:1px solid #ece9e4;padding:10px 16px;display:flex;gap:8px;align-items:center;z-index:10}
+.sticky-price{font-size:14px;font-weight:300;color:#2a2a2a;flex:1}
+.sticky-btn{background:#2a2a2a;color:#faf9f7;font-size:10px;letter-spacing:.14em;padding:12px 20px;border:none;white-space:nowrap}
+.sticky-heart{width:42px;height:42px;border:0.5px solid #ddd;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* footer */
+.ftr{background:#2a2a2a;padding:20px 16px;text-align:center}
+.ftr a{font-size:9px;color:#555;letter-spacing:.08em;text-decoration:none;display:inline-block;margin:3px 8px;font-weight:300}
+.ftr-copy{font-size:9px;color:#444;letter-spacing:.06em;margin-top:10px;font-weight:300}
+
+/* annotation */
+.ann{display:inline-block;background:#fff3cd;border:0.5px solid #ffc;font-size:8px;color:#886600;padding:1px 6px;border-radius:2px;margin-left:4px;vertical-align:middle}
+</style>
+</head>
+<body>
+
+<h1>STYLE DELI — 商品詳細ページ モックアップ</h1>
+<p class="sub">375px / Quiet Luxury B / Prestige ベース</p>
+
+<div class="phone">
+
+  <!-- Header -->
+  <div class="hdr">
+    <div class="hdr-back">‹</div>
+    <div class="hdr-logo">STYLE DELI</div>
+    <div class="hdr-icons">
+      <div class="icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#2a2a2a" stroke-width="1.2" stroke-linecap="round"><circle cx="7.5" cy="7.5" r="5"/><line x1="11.5" y1="11.5" x2="16" y2="16"/></svg>
+      </div>
+      <div class="icon" style="position:relative">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#2a2a2a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h12l-1.5 9h-9L3 3z"/><circle cx="6.5" cy="15.5" r="1" fill="#2a2a2a" stroke="none"/><circle cx="12.5" cy="15.5" r="1" fill="#2a2a2a" stroke="none"/></svg>
+        <div style="position:absolute;top:-4px;right:-5px;background:#2a2a2a;color:#faf9f7;font-size:7px;width:13px;height:13px;border-radius:50%;display:flex;align-items:center;justify-content:center">2</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- パンくず -->
+  <div class="breadcrumb">
+    <span class="bc-item">HOME</span><span class="bc-sep">›</span>
+    <span class="bc-item">ボトムス</span><span class="bc-sep">›</span>
+    <span class="bc-item current">プリーツカットソーワイドパンツ</span>
+  </div>
+
+  <!-- メイン商品画像 -->
+  <div class="main-img">
+    <span class="main-img-ph">MAIN IMAGE (4:5)</span>
+    <div class="img-counter">1 / 8</div>
+  </div>
+
+  <!-- サムネイル -->
+  <div class="thumbs">
+    <div class="thumb active"></div>
+    <div class="thumb"></div>
+    <div class="thumb"></div>
+    <div class="thumb"></div>
+    <div class="thumb"></div>
+    <div class="thumb-add">+3</div>
+  </div>
+
+  <!-- アイコンエリア -->
+  <div class="icons-area">
+    <span class="tag-icon tag-point">🔺 NEW 10%ポイントUP <span class="ann">期間限定・自動消去</span></span>
+    <span class="tag-icon tag-rear">↩ 再入荷</span>
+    <span class="tag-icon tag-free">✦ 送料無料</span>
+  </div>
+
+  <!-- 商品名・番号 -->
+  <div class="prod-header">
+    <div class="prod-name">プリーツカットソーワイドパンツ</div>
+    <div class="prod-num">NO. SD-235681</div>
+  </div>
+
+  <!-- ポイントアップ -->
+  <div class="point-up">
+    <div class="point-up-badge">NEW × 10倍</div>
+    <div>
+      <div class="point-up-text">新作ポイント10倍対象商品</div>
+      <div class="point-up-time">終了まで 02:14:38 <span class="ann">期間終了で自動非表示</span></div>
+    </div>
+  </div>
+
+  <!-- 価格 -->
+  <div class="price-area">
+    <div class="price-row">
+      <span class="price-original">¥14,500</span>
+      <span class="price-sale">¥11,600</span>
+      <span class="price-tax">税込</span>
+      <span class="price-off">20% OFF</span>
+    </div>
+  </div>
+
+  <!-- 販売期間 -->
+  <div class="period">
+    <div>
+      <div class="period-label">販売期間</div>
+      <div class="period-date">2026 / 04 / 30 19:00 〜</div>
+    </div>
+    <div class="coming-soon">COMING SOON</div>
+  </div>
+
+  <!-- カラー選択 -->
+  <div class="select-area">
+    <div class="select-label">COLOR</div>
+    <div class="colors">
+      <div class="color-dot active" style="background:#d4cec8"></div>
+      <div class="color-dot" style="background:#2a2a2a"></div>
+      <div class="color-dot" style="background:#8a9a8a"></div>
+      <div class="color-dot" style="background:#c8b4a0"></div>
+    </div>
+    <div class="color-name">ライトグレー</div>
+
+    <!-- サイズ選択 -->
+    <div class="select-label">SIZE</div>
+    <div class="sizes">
+      <div class="size-btn sold">FREE</div>
+      <div class="size-btn active">01</div>
+      <div class="size-btn">02</div>
+      <div class="size-btn sold">03</div>
+    </div>
+
+    <!-- バーチャサイズ：アプリボタンがここに自動挿入される -->
+    <div style="border:1px dashed #ccc;padding:10px 12px;display:flex;align-items:center;gap:8px;margin-bottom:14px;background:#f9f8f6">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#aaa" stroke-width="1"><rect x="1" y="4" width="12" height="6"/><line x1="4" y1="4" x2="4" y2="2"/><line x1="7" y1="4" x2="7" y2="2.5"/><line x1="10" y1="4" x2="10" y2="2"/></svg>
+      <span style="font-size:9px;color:#aaa;letter-spacing:.1em">バーチャサイズ ボタン（アプリ自動挿入）</span>
+    </div>
+  </div>
+
+  <!-- カートボタン -->
+  <div class="cart-area">
+    <button class="btn-cart">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#faf9f7" stroke-width="1.2"><path d="M2 2h12l-1.5 8h-9L2 2z"/><circle cx="5.5" cy="14" r="1" fill="#faf9f7" stroke="none"/><circle cx="11.5" cy="14" r="1" fill="#faf9f7" stroke="none"/></svg>
+      カートに入れる
+    </button>
+    <button class="btn-wishlist">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#2a2a2a" stroke-width="1.1"><path d="M7 12s-6-3.8-6-7.5A3.5 3.5 0 0 1 7 2.3 3.5 3.5 0 0 1 13 4.5C13 8.2 7 12 7 12z"/></svg>
+      お気に入りに追加
+    </button>
+    <!-- 売り切れ時: 再入荷お知らせ -->
+    <button class="btn-notify" style="display:none">
+      🔔 再入荷をお知らせする <span class="ann">売り切れ時のみ表示</span>
+    </button>
+  </div>
+
+  <!-- 商品説明 -->
+  <div class="sec">
+    <div class="sec-hdr"><span class="sec-t">DESCRIPTION</span><span class="sec-arr">∨</span></div>
+    <div class="sec-body">
+      <div class="desc-text">
+        プリーツデザインが美しいカットソー素材のワイドパンツ。<br>
+        やわらかく落ち感のある生地が、動くたびに上品にドレープを生み出します。<br><br>
+        ウエストはゴム仕様で一日中快適な穿き心地。カットソー素材ならではの軽さとストレスフリーなフィット感で、長時間の外出にも最適です。<br><br>
+        シンプルなトップスと合わせるだけで、きちんとした印象に仕上がる万能アイテム。
+      </div>
+      <span class="desc-more">続きを読む</span>
+    </div>
+  </div>
+
+  <!-- バーチャサイズ（商品説明下） -->
+  <div class="sec">
+    <div class="sec-hdr" style="padding-bottom:0"><span class="sec-t">VIRTUAL SIZE</span></div>
+    <div style="margin:0 16px 14px;border:1px dashed #ccc;padding:10px 12px;display:flex;align-items:center;gap:8px;background:#f9f8f6">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#aaa" stroke-width="1"><rect x="1" y="4" width="12" height="6"/><line x1="4" y1="4" x2="4" y2="2"/><line x1="7" y1="4" x2="7" y2="2.5"/><line x1="10" y1="4" x2="10" y2="2"/></svg>
+      <span style="font-size:9px;color:#aaa;letter-spacing:.1em">バーチャサイズ ボタン（アプリ自動挿入）</span>
+    </div>
+  </div>
+
+  <!-- 採寸 -->
+  <div class="sec">
+    <div class="sec-hdr"><span class="sec-t">MEASUREMENTS</span><span class="sec-arr">∨</span></div>
+    <div class="sec-body">
+      <table class="measure-table">
+        <thead>
+          <tr>
+            <th></th><th>FREE</th><th>01</th><th>02</th><th>03</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>ウエスト</td><td>58-78</td><td>60-80</td><td>62-82</td><td>64-84</td></tr>
+          <tr><td>ヒップ</td><td>94</td><td>96</td><td>100</td><td>104</td></tr>
+          <tr><td>股上</td><td>30</td><td>31</td><td>32</td><td>33</td></tr>
+          <tr><td>股下</td><td>68</td><td>69</td><td>70</td><td>71</td></tr>
+          <tr><td>丈</td><td>98</td><td>100</td><td>102</td><td>104</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 素材・生産国・洗濯 -->
+  <div class="sec">
+    <div class="sec-hdr"><span class="sec-t">DETAILS</span><span class="sec-arr">∨</span></div>
+    <div class="sec-body">
+      <div class="detail-list">
+        <div class="detail-row"><span class="detail-key">素材</span><span class="detail-val">ポリエステル 95% / ポリウレタン 5%</span></div>
+        <div class="detail-row"><span class="detail-key">生産国</span><span class="detail-val">中国</span></div>
+        <div class="detail-row"><span class="detail-key">洗濯表示</span><span class="detail-val">洗濯機可（ネット使用）/ 乾燥機不可 / 陰干し</span></div>
+        <div class="detail-row"><span class="detail-key">お手入れ</span><span class="detail-val">やさしく手洗いまたはネットに入れて洗濯機の弱水流コースで。アイロンをかける場合は当て布をご使用ください。</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 着丈の近いアイテム着用 -->
+  <div class="sec">
+    <div class="sec-hdr">
+      <div>
+        <div class="sec-t">SIZE REFERENCE</div>
+        <div style="font-size:9px;color:#bbb;margin-top:3px;font-weight:300">着丈の近いアイテムの身長別着用イメージ</div>
+      </div>
+      <span class="sec-arr">›</span>
+    </div>
+  </div>
+
+  <!-- 身長別着用写真 -->
+  <div class="sec">
+    <div class="sec-hdr"><span class="sec-t">STAFF STYLING BY HEIGHT</span><span class="sec-arr">∨</span></div>
+    <!-- P size / TALL size の2タブ。どちらかのみの場合はタブを1つだけ表示 -->
+    <div style="display:flex;gap:24px;padding:0 16px 14px">
+      <div style="text-align:center;cursor:pointer;border-bottom:1.5px solid #2a2a2a;padding-bottom:8px">
+        <div style="font-size:9px;letter-spacing:.16em;color:#2a2a2a">P SIZE</div>
+        <div style="font-size:8px;color:#aaa;margin-top:2px">〜155cm</div>
+      </div>
+      <div style="text-align:center;cursor:pointer;padding-bottom:8px">
+        <div style="font-size:9px;letter-spacing:.16em;color:#bbb">TALL SIZE</div>
+        <div style="font-size:8px;color:#ccc;margin-top:2px">165cm〜</div>
+      </div>
+    </div>
+    <div class="height-scroll">
+      <div class="height-card">
+        <div class="height-img"><span>IMAGE</span></div>
+        <div class="height-info">153cm / 01サイズ<br>スタッフ 田中</div>
+      </div>
+    </div>
+    <div style="font-size:9px;color:#ccc;letter-spacing:.06em;padding:8px 16px 4px">※ TALLサイズの着用スタッフがいない場合はタブ非表示</div>
+  </div>
+
+  <!-- 詳細画像 -->
+  <div class="sec">
+    <div class="sec-hdr"><span class="sec-t">DETAIL IMAGES</span><span class="sec-arr">∨</span></div>
+    <div class="detail-imgs">
+      <div class="detail-img tall"><span>詳細画像 1</span></div>
+      <div class="detail-img wide"><span>詳細画像 2（素材クローズアップ）</span></div>
+      <div class="detail-img tall"><span>詳細画像 3</span></div>
+    </div>
+  </div>
+
+  <!-- コーディネートアイテム: Prestige ホットスポット機能 -->
+  <div class="sec">
+    <div class="sec-hdr"><span class="sec-t">COORDINATE ITEMS</span><span class="sec-arr">∨</span></div>
+    <div style="position:relative;margin:0 16px 16px">
+      <!-- モデルコーデ写真 -->
+      <div style="width:100%;aspect-ratio:4/5;background:#e4dfd8;display:flex;align-items:center;justify-content:center">
+        <span style="font-size:9px;color:#c0bab3;letter-spacing:.06em">コーデ着用写真</span>
+      </div>
+      <!-- ホットスポットピン × 3 -->
+      <div style="position:absolute;top:22%;left:28%;background:#faf9f7;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.18);cursor:pointer">
+        <span style="font-size:8px;font-weight:500;color:#2a2a2a">＋</span>
+      </div>
+      <div style="position:absolute;top:52%;left:55%;background:#faf9f7;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.18);cursor:pointer">
+        <span style="font-size:8px;font-weight:500;color:#2a2a2a">＋</span>
+      </div>
+      <div style="position:absolute;top:72%;left:38%;background:#faf9f7;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.18);cursor:pointer">
+        <span style="font-size:8px;font-weight:500;color:#2a2a2a">＋</span>
+      </div>
+      <!-- ポップアップ例（1つ目が開いている状態） -->
+      <div style="position:absolute;top:28%;left:34%;background:#faf9f7;border:0.5px solid #ece9e4;padding:8px 10px;width:150px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
+        <div style="display:flex;gap:8px;align-items:center">
+          <div style="width:40px;height:50px;background:#e4dfd8;flex-shrink:0"></div>
+          <div>
+            <div style="font-size:9px;font-weight:300;color:#2a2a2a;margin-bottom:2px;line-height:1.4">リネンブレンドシャツ</div>
+            <div style="font-size:9px;color:#aaa;font-weight:300">¥12,800</div>
+            <div style="font-size:8px;color:#aaa;letter-spacing:.08em;border-bottom:1px solid #ddd;padding-bottom:1px;display:inline-block;margin-top:4px">詳細を見る</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:9px;color:#bbb;letter-spacing:.08em;text-align:center;padding-bottom:14px">＋ をタップすると商品詳細が表示されます（Prestige ホットスポット機能）</div>
+  </div>
+
+  <!-- STYLING LAB -->
+  <div class="sec">
+    <div class="sec-hdr"><span class="sec-t">STYLING LAB</span><span class="sec-arr">∨</span></div>
+    <div class="content-grid">
+      <div class="content-cell"><span>IMG</span></div>
+      <div class="content-cell"><span>IMG</span></div>
+      <div class="content-cell"><span>IMG</span></div>
+      <div class="content-cell"><span>IMG</span></div>
+      <div class="content-cell"><span>IMG</span></div>
+      <div class="content-cell"><span>IMG</span></div>
+    </div>
+    <div class="more-btn">もっと見る <span class="ann">9件以上で表示</span></div>
+  </div>
+
+  <!-- STAFF WEARING -->
+  <div class="sec">
+    <div class="sec-hdr"><span class="sec-t">STAFF WEARING</span><span class="sec-arr">∨</span></div>
+    <div class="content-grid">
+      <div class="content-cell"><span>IMG</span></div>
+      <div class="content-cell"><span>IMG</span></div>
+      <div class="content-cell"><span>IMG</span></div>
+      <div class="content-cell"><span>IMG</span></div>
+      <div class="content-cell"><span>IMG</span></div>
+      <div class="content-cell"><span>IMG</span></div>
+      <div class="content-cell"><span>IMG</span></div>
+      <div class="content-cell"><span>IMG</span></div>
+      <div class="content-cell"><span>IMG</span></div>
+    </div>
+    <div class="more-btn">もっと見る <span class="ann">9件以上で表示</span></div>
+  </div>
+
+  <!-- 閲覧履歴 -->
+  <div class="sec">
+    <div class="sec-hdr"><span class="sec-t">RECENTLY VIEWED</span><span class="sec-arr">∨</span></div>
+    <div class="prod-scroll" style="padding-bottom:12px">
+      <div class="prod-card"><div class="prod-card-img"><span>IMG</span></div><div class="prod-card-name">ドレープワンピース</div><div class="prod-card-price">¥18,900</div></div>
+      <div class="prod-card"><div class="prod-card-img"><span>IMG</span></div><div class="prod-card-name">リネンブレンドシャツ</div><div class="prod-card-price">¥12,800</div></div>
+      <div class="prod-card"><div class="prod-card-img"><span>IMG</span></div><div class="prod-card-name">テーラードジャケット</div><div class="prod-card-price">¥22,000</div></div>
+    </div>
+  </div>
+
+  <!-- おすすめ商品 -->
+  <div class="sec">
+    <div class="sec-hdr"><span class="sec-t">YOU MAY ALSO LIKE</span><span class="sec-arr">∨</span></div>
+    <div class="prod-scroll" style="padding-bottom:12px">
+      <div class="prod-card"><div class="prod-card-img"><span>IMG</span></div><div class="prod-card-name">ワイドテーパードパンツ</div><div class="prod-card-price">¥13,800</div></div>
+      <div class="prod-card"><div class="prod-card-img"><span>IMG</span></div><div class="prod-card-name">フルレングスパンツ</div><div class="prod-card-price">¥15,200</div></div>
+      <div class="prod-card"><div class="prod-card-img"><span>IMG</span></div><div class="prod-card-name">サテンセットアップパンツ</div><div class="prod-card-price">¥16,500</div></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="ftr">
+    <div><a href="#">ショッピングガイド</a><a href="#">よくある質問</a><a href="#">お問い合わせ</a></div>
+    <div class="ftr-copy">© STYLE DELI All Rights Reserved.</div>
+  </div>
+
+  <!-- Sticky Cart Bar -->
+  <div class="sticky-cart">
+    <div>
+      <div style="font-size:9px;color:#aaa;margin-bottom:2px">ライトグレー / 02</div>
+      <div class="sticky-price">¥11,600 <span style="font-size:10px;color:#aaa;font-weight:300">税込</span></div>
+    </div>
+    <div class="sticky-heart">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#2a2a2a" stroke-width="1.1"><path d="M8 13s-6-3.8-6-7.5A3.5 3.5 0 0 1 8 3.2 3.5 3.5 0 0 1 14 5.5C14 9.2 8 13 8 13z"/></svg>
+    </div>
+    <button class="sticky-btn">カートに入れる</button>
+  </div>
+
+</div>
+</body>
+</html>

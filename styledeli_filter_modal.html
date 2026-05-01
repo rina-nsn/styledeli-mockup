@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=900">
+<title>STYLE DELI – 絞り込みモーダル モックアップ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:#e8e5e0;padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:32px}
+h1{font-size:11px;letter-spacing:.2em;color:#999;font-weight:400;margin-bottom:4px;text-align:center}
+p.sub{font-size:10px;color:#bbb;margin-bottom:0;letter-spacing:.06em;text-align:center}
+.col-label{font-size:11px;font-weight:500;letter-spacing:.12em;color:#555;text-align:center;margin-bottom:8px}
+.phone{width:375px;overflow:hidden;border-radius:14px;border:1px solid #c8c4be;box-shadow:0 8px 32px rgba(0,0,0,.12);background:#faf9f7;color:#2a2a2a;position:relative}
+
+/* ── 背景（一覧ページ） ── */
+.bg-list{width:375px;background:#faf9f7;filter:brightness(.6)}
+.bg-hdr{background:#faf9f7;padding:0 16px;height:54px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-bottom:1px solid #ece9e4}
+.bg-logo{font-size:12px;letter-spacing:.36em;font-weight:300;text-align:center;color:#2a2a2a}
+.bg-toolbar{display:flex;border-top:1px solid #ece9e4;border-bottom:1px solid #ece9e4}
+.bg-toolbar-btn{flex:1;padding:10px 6px;font-size:9px;letter-spacing:.14em;color:#2a2a2a;text-align:center;border-right:1px solid #ece9e4}
+.bg-toolbar-btn:last-child{flex:0;padding:10px 14px;border-right:none}
+.bg-prods{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
+.bg-prod{background:#e4dfd8}
+.bg-prod-img{width:100%;aspect-ratio:4/5}
+.bg-prod-info{padding:6px 0 8px}
+.bg-name{height:8px;background:#d8d4ce;border-radius:2px;margin-bottom:4px}
+.bg-price{height:8px;background:#e0dcd8;border-radius:2px;width:60%}
+
+/* ── モーダル本体 ── */
+.modal{position:absolute;top:0;left:0;right:0;background:#faf9f7;border-radius:0;display:flex;flex-direction:column;max-height:100%}
+
+/* モーダルヘッダー */
+.modal-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #ece9e4;flex-shrink:0}
+.modal-title{font-size:13px;font-weight:300;letter-spacing:.16em;color:#2a2a2a}
+.modal-close{width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:#aaa;font-weight:200}
+
+/* スクロールエリア */
+.modal-body{overflow-y:auto;flex:1}
+.modal-body::-webkit-scrollbar{display:none}
+
+/* 人気キーワード */
+.kw-section{padding:16px 20px 14px;border-bottom:1px solid #ece9e4}
+.section-label{font-size:9px;letter-spacing:.24em;color:#aaa;font-weight:400;margin-bottom:10px}
+.kw-tags{display:flex;flex-wrap:wrap;gap:7px}
+.kw-tag{font-size:10px;font-weight:300;color:#2a2a2a;border:0.5px solid #c8c4b8;padding:5px 12px;border-radius:20px;cursor:pointer;letter-spacing:.06em}
+.kw-tag.active{background:#2a2a2a;color:#faf9f7;border-color:#2a2a2a}
+
+/* 在庫状況 */
+.stock-section{padding:14px 20px;border-bottom:1px solid #ece9e4;display:flex;align-items:center;justify-content:space-between}
+.stock-label{font-size:9px;letter-spacing:.24em;color:#aaa;font-weight:400}
+.stock-row{display:flex;align-items:center;gap:10px;margin-top:0}
+.stock-name{font-size:12px;font-weight:300;color:#2a2a2a}
+.stock-count{font-size:10px;color:#bbb}
+/* トグル */
+.toggle{width:38px;height:22px;background:#2a2a2a;border-radius:11px;position:relative;flex-shrink:0}
+.toggle-dot{width:16px;height:16px;background:#fff;border-radius:50%;position:absolute;top:3px;right:3px}
+.toggle.off{background:#ddd}
+.toggle.off .toggle-dot{right:auto;left:3px}
+
+/* アコーディオンセクション共通 */
+.acc-section{border-bottom:1px solid #ece9e4}
+.acc-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;cursor:pointer}
+.acc-title{font-size:9px;letter-spacing:.24em;color:#aaa;font-weight:400}
+.acc-selected{font-size:9px;color:#2a2a2a;letter-spacing:.06em}
+.acc-arr{font-size:14px;color:#ccc;font-weight:200}
+.acc-body{padding:0 20px 14px}
+
+/* ブランド */
+.brand-options{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.brand-opt{display:flex;align-items:center;gap:8px;padding:8px 10px;border:0.5px solid #ece9e4;cursor:pointer}
+.brand-opt.active{border-color:#2a2a2a;background:#f5f3ef}
+.brand-cb{width:14px;height:14px;border:0.5px solid #ccc;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.brand-cb.checked{background:#2a2a2a;border-color:#2a2a2a}
+.brand-cb.checked::after{content:'';display:block;width:6px;height:4px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+.brand-name{font-size:10px;font-weight:300;color:#2a2a2a;letter-spacing:.06em}
+.brand-count{font-size:9px;color:#bbb;margin-left:auto}
+
+/* カテゴリ */
+.cat-options{display:flex;flex-direction:column;gap:0}
+.cat-opt{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid #f4f4f4;cursor:pointer}
+.cat-opt:last-child{border-bottom:none}
+.cat-left{display:flex;align-items:center;gap:8px}
+.cat-cb{width:14px;height:14px;border:0.5px solid #ccc;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.cat-cb.checked{background:#2a2a2a;border-color:#2a2a2a}
+.cat-cb.checked::after{content:'';display:block;width:6px;height:4px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+.cat-name{font-size:12px;font-weight:300;color:#2a2a2a}
+.cat-right{display:flex;align-items:center;gap:6px}
+.cat-count{font-size:10px;color:#bbb}
+.cat-arr{font-size:12px;color:#ccc}
+
+/* カラー */
+.color-options{display:flex;flex-wrap:wrap;gap:10px}
+.color-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
+.color-circle{width:26px;height:26px;border-radius:50%;border:0.5px solid rgba(0,0,0,.1)}
+.color-circle.active{outline:2px solid #2a2a2a;outline-offset:2px}
+.color-label{font-size:8px;color:#aaa;letter-spacing:.04em}
+
+/* サイズ */
+.size-options{display:flex;flex-wrap:wrap;gap:6px}
+.size-btn{min-width:46px;padding:7px 10px;border:0.5px solid #ddd;font-size:11px;font-weight:300;color:#2a2a2a;text-align:center;cursor:pointer;background:#fff}
+.size-btn.active{border-color:#2a2a2a;background:#2a2a2a;color:#faf9f7}
+.size-btn.none{color:#ccc;border-color:#eee;background:#faf9f7}
+
+/* お手入れ */
+.care-options{display:flex;flex-direction:column;gap:0}
+.care-opt{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid #f4f4f4;cursor:pointer}
+.care-opt:last-child{border-bottom:none}
+.care-left{display:flex;align-items:center;gap:8px}
+.care-name{font-size:12px;font-weight:300;color:#2a2a2a}
+.care-count{font-size:10px;color:#bbb}
+
+/* 価格 */
+.price-inputs{display:flex;align-items:center;gap:8px}
+.price-input{flex:1;border:0;border-bottom:1px solid #ccc;background:transparent;font-size:13px;font-weight:300;padding:6px 0;outline:none;color:#2a2a2a;text-align:center}
+.price-sep{font-size:12px;color:#bbb;flex-shrink:0}
+.price-unit{font-size:9px;color:#bbb;margin-top:8px;letter-spacing:.06em}
+
+/* モーダルフッター */
+.modal-ftr{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-top:1px solid #ece9e4;background:#faf9f7;flex-shrink:0}
+.ftr-reset{font-size:10px;color:#bbb;letter-spacing:.1em;border-bottom:1px solid #ddd;padding-bottom:1px;cursor:pointer}
+.ftr-apply{background:#2a2a2a;color:#faf9f7;font-size:11px;letter-spacing:.16em;padding:13px 28px;border:none;cursor:pointer}
+</style>
+</head>
+<body>
+
+<h1>STYLE DELI — 絞り込みモーダル モックアップ</h1>
+<p class="sub">375px / Quiet Luxury B / Prestige ベース</p>
+
+<!-- ══ 絞り込みなし（初期状態） ══ -->
+<div>
+<div class="col-label">初期状態（絞り込みなし）</div>
+<div class="phone" style="height:700px">
+
+  <!-- 背景：一覧ページ（暗くなっている） -->
+  <div class="bg-list">
+    <div class="bg-hdr">
+      <div></div>
+      <div class="bg-logo">STYLE DELI</div>
+      <div></div>
+    </div>
+    <div class="bg-toolbar">
+      <div class="bg-toolbar-btn">絞り込み</div>
+      <div class="bg-toolbar-btn">新着順 ∨</div>
+      <div class="bg-toolbar-btn">▦ □</div>
+    </div>
+    <div class="bg-prods">
+      <div class="bg-prod"><div class="bg-prod-img"></div><div class="bg-prod-info"><div class="bg-name"></div><div class="bg-price"></div></div></div>
+      <div class="bg-prod"><div class="bg-prod-img"></div><div class="bg-prod-info"><div class="bg-name"></div><div class="bg-price"></div></div></div>
+      <div class="bg-prod"><div class="bg-prod-img"></div><div class="bg-prod-info"><div class="bg-name"></div><div class="bg-price"></div></div></div>
+      <div class="bg-prod"><div class="bg-prod-img"></div><div class="bg-prod-info"><div class="bg-name"></div><div class="bg-price"></div></div></div>
+    </div>
+  </div>
+
+  <!-- モーダル -->
+  <div class="modal" style="height:700px">
+    <div class="modal-hdr">
+      <div class="modal-title">絞り込み</div>
+      <div class="modal-close">×</div>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- 人気キーワード -->
+      <div class="kw-section">
+        <div class="section-label"># 人気キーワード</div>
+        <div class="kw-tags">
+          <div class="kw-tag">体型カバー</div>
+          <div class="kw-tag">洗える</div>
+          <div class="kw-tag">セットアップ</div>
+          <div class="kw-tag">送料無料</div>
+          <div class="kw-tag">メイドインジャパン</div>
+          <div class="kw-tag">大人カジュアル</div>
+        </div>
+      </div>
+
+      <!-- 在庫状況 -->
+      <div class="stock-section">
+        <div>
+          <div class="section-label">在庫状況</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:8px">
+            <div class="toggle off"><div class="toggle-dot"></div></div>
+            <span class="stock-name">在庫ありのみ表示</span>
+            <span class="stock-count">(42)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ブランド -->
+      <div class="acc-section">
+        <div class="acc-hdr">
+          <span class="acc-title">ブランド</span>
+          <span class="acc-arr">∨</span>
+        </div>
+        <div class="acc-body">
+          <div class="brand-options">
+            <div class="brand-opt"><div class="brand-cb"></div><span class="brand-name">BLK001</span><span class="brand-count">(18)</span></div>
+            <div class="brand-opt"><div class="brand-cb"></div><span class="brand-name">MARJOUR</span><span class="brand-count">(24)</span></div>
+            <div class="brand-opt"><div class="brand-cb"></div><span class="brand-name">DELI by SD</span><span class="brand-count">(12)</span></div>
+            <div class="brand-opt"><div class="brand-cb"></div><span class="brand-name">DRESSDEN</span><span class="brand-count">(7)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- カテゴリ -->
+      <div class="acc-section">
+        <div class="acc-hdr">
+          <span class="acc-title">カテゴリ</span>
+          <span class="acc-arr">∨</span>
+        </div>
+        <div class="acc-body">
+          <div class="cat-options">
+            <div class="cat-opt"><div class="cat-left"><div class="cat-cb"></div><span class="cat-name">トップス</span></div><div class="cat-right"><span class="cat-count">(24)</span><span class="cat-arr">›</span></div></div>
+            <div class="cat-opt"><div class="cat-left"><div class="cat-cb"></div><span class="cat-name">ワンピース</span></div><div class="cat-right"><span class="cat-count">(18)</span><span class="cat-arr">›</span></div></div>
+            <div class="cat-opt"><div class="cat-left"><div class="cat-cb"></div><span class="cat-name">ボトムス</span></div><div class="cat-right"><span class="cat-count">(12)</span><span class="cat-arr">›</span></div></div>
+            <div class="cat-opt"><div class="cat-left"><div class="cat-cb"></div><span class="cat-name">セットアップ</span></div><div class="cat-right"><span class="cat-count">(6)</span><span class="cat-arr">›</span></div></div>
+            <div class="cat-opt"><div class="cat-left"><div class="cat-cb"></div><span class="cat-name">アウター</span></div><div class="cat-right"><span class="cat-count">(5)</span><span class="cat-arr">›</span></div></div>
+            <div class="cat-opt"><div class="cat-left"><div class="cat-cb"></div><span class="cat-name">バッグ・アクセサリー</span></div><div class="cat-right"><span class="cat-count">(8)</span><span class="cat-arr">›</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- カラー -->
+      <div class="acc-section">
+        <div class="acc-hdr">
+          <span class="acc-title">カラー</span>
+          <span class="acc-arr">∨</span>
+        </div>
+        <div class="acc-body">
+          <div class="color-options">
+            <div class="color-item"><div class="color-circle" style="background:#fff;border-color:#ddd"></div><div class="color-label">ホワイト</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#c0bcb8"></div><div class="color-label">グレー</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#2a2a2a"></div><div class="color-label">ブラック</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#8a6a50"></div><div class="color-label">ブラウン</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#d4c4a8"></div><div class="color-label">ベージュ</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#8a9a8a"></div><div class="color-label">グリーン</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#8a9ab8"></div><div class="color-label">ブルー</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#a898c0"></div><div class="color-label">パープル</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#d8c070"></div><div class="color-label">イエロー</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#d8a0a8"></div><div class="color-label">ピンク</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#b83a3a"></div><div class="color-label">レッド</div></div>
+            <div class="color-item"><div class="color-circle" style="background:linear-gradient(135deg,#e8e4e0,#b8b4b0)"></div><div class="color-label">シルバー</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- サイズ -->
+      <div class="acc-section">
+        <div class="acc-hdr">
+          <span class="acc-title">サイズ</span>
+          <span class="acc-arr">∨</span>
+        </div>
+        <div class="acc-body">
+          <div class="size-options">
+            <div class="size-btn">FREE</div>
+            <div class="size-btn">XS</div>
+            <div class="size-btn">S</div>
+            <div class="size-btn">M</div>
+            <div class="size-btn">L</div>
+            <div class="size-btn">LL</div>
+            <div class="size-btn">01</div>
+            <div class="size-btn">02</div>
+            <div class="size-btn">03</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- お手入れ -->
+      <div class="acc-section">
+        <div class="acc-hdr">
+          <span class="acc-title">お手入れ</span>
+          <span class="acc-arr">∨</span>
+        </div>
+        <div class="acc-body">
+          <div class="care-options">
+            <div class="care-opt"><div class="cat-left"><div class="cat-cb"></div><span class="care-name">洗濯機で洗える</span></div><span class="care-count">(38)</span></div>
+            <div class="care-opt"><div class="cat-left"><div class="cat-cb"></div><span class="care-name">手洗い可</span></div><span class="care-count">(18)</span></div>
+            <div class="care-opt"><div class="cat-left"><div class="cat-cb"></div><span class="care-name">ドライクリーニングのみ</span></div><span class="care-count">(6)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 価格 -->
+      <div class="acc-section">
+        <div class="acc-hdr">
+          <span class="acc-title">価格（税込）</span>
+          <span class="acc-arr">∨</span>
+        </div>
+        <div class="acc-body">
+          <div class="price-inputs">
+            <input class="price-input" placeholder="¥ 下限" type="text">
+            <span class="price-sep">〜</span>
+            <input class="price-input" placeholder="¥ 上限" type="text">
+          </div>
+        </div>
+      </div>
+
+      <div style="height:80px"></div><!-- フッター分の余白 -->
+    </div>
+
+    <!-- 固定フッター -->
+    <div class="modal-ftr">
+      <div class="ftr-reset">リセット</div>
+      <button class="ftr-apply">61件を表示</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══ 絞り込み選択後 ══ -->
+<div>
+<div class="col-label">選択後（ブラック・02・在庫あり）</div>
+<div class="phone" style="height:700px">
+
+  <div class="bg-list">
+    <div class="bg-hdr">
+      <div></div>
+      <div class="bg-logo">STYLE DELI</div>
+      <div></div>
+    </div>
+    <div class="bg-toolbar">
+      <div class="bg-toolbar-btn">絞り込み</div>
+      <div class="bg-toolbar-btn">新着順 ∨</div>
+      <div class="bg-toolbar-btn">▦ □</div>
+    </div>
+    <div class="bg-prods">
+      <div class="bg-prod"><div class="bg-prod-img"></div><div class="bg-prod-info"><div class="bg-name"></div><div class="bg-price"></div></div></div>
+      <div class="bg-prod"><div class="bg-prod-img"></div><div class="bg-prod-info"><div class="bg-name"></div><div class="bg-price"></div></div></div>
+    </div>
+  </div>
+
+  <div class="modal" style="height:700px">
+    <div class="modal-hdr">
+      <div class="modal-title">絞り込み</div>
+      <div class="modal-close">×</div>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- 人気キーワード -->
+      <div class="kw-section">
+        <div class="section-label"># 人気キーワード</div>
+        <div class="kw-tags">
+          <div class="kw-tag active">体型カバー</div>
+          <div class="kw-tag">洗える</div>
+          <div class="kw-tag">セットアップ</div>
+          <div class="kw-tag">送料無料</div>
+          <div class="kw-tag">メイドインジャパン</div>
+          <div class="kw-tag">大人カジュアル</div>
+        </div>
+      </div>
+
+      <!-- 在庫状況（ON） -->
+      <div class="stock-section">
+        <div>
+          <div class="section-label">在庫状況</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:8px">
+            <div class="toggle"><div class="toggle-dot"></div></div>
+            <span class="stock-name">在庫ありのみ表示</span>
+            <span class="stock-count">(42)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ブランド（折りたたみ） -->
+      <div class="acc-section">
+        <div class="acc-hdr">
+          <span class="acc-title">ブランド</span>
+          <span class="acc-arr">∧</span>
+        </div>
+      </div>
+
+      <!-- カテゴリ（折りたたみ） -->
+      <div class="acc-section">
+        <div class="acc-hdr">
+          <span class="acc-title">カテゴリ</span>
+          <span class="acc-arr">∧</span>
+        </div>
+      </div>
+
+      <!-- カラー（選択あり） -->
+      <div class="acc-section">
+        <div class="acc-hdr">
+          <span class="acc-title">カラー</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="acc-selected">ブラック</span>
+            <span class="acc-arr">∨</span>
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="color-options">
+            <div class="color-item"><div class="color-circle" style="background:#fff;border-color:#ddd"></div><div class="color-label">ホワイト</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#c0bcb8"></div><div class="color-label">グレー</div></div>
+            <div class="color-item"><div class="color-circle active" style="background:#2a2a2a"></div><div class="color-label">ブラック</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#8a6a50"></div><div class="color-label">ブラウン</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#d4c4a8"></div><div class="color-label">ベージュ</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#8a9a8a"></div><div class="color-label">グリーン</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#8a9ab8"></div><div class="color-label">ブルー</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#a898c0"></div><div class="color-label">パープル</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#d8c070"></div><div class="color-label">イエロー</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#d8a0a8"></div><div class="color-label">ピンク</div></div>
+            <div class="color-item"><div class="color-circle" style="background:#b83a3a"></div><div class="color-label">レッド</div></div>
+            <div class="color-item"><div class="color-circle" style="background:linear-gradient(135deg,#e8e4e0,#b8b4b0)"></div><div class="color-label">シルバー</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- サイズ（選択あり） -->
+      <div class="acc-section">
+        <div class="acc-hdr">
+          <span class="acc-title">サイズ</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="acc-selected">02</span>
+            <span class="acc-arr">∨</span>
+          </div>
+        </div>
+        <div class="acc-body">
+          <div class="size-options">
+            <div class="size-btn none">FREE</div>
+            <div class="size-btn none">XS</div>
+            <div class="size-btn">S</div>
+            <div class="size-btn">M</div>
+            <div class="size-btn none">L</div>
+            <div class="size-btn">LL</div>
+            <div class="size-btn">01</div>
+            <div class="size-btn active">02</div>
+            <div class="size-btn">03</div>
+          </div>
+          <div style="font-size:9px;color:#bbb;margin-top:8px;letter-spacing:.04em">グレーは在庫なし</div>
+        </div>
+      </div>
+
+      <!-- お手入れ（折りたたみ） -->
+      <div class="acc-section">
+        <div class="acc-hdr">
+          <span class="acc-title">お手入れ</span>
+          <span class="acc-arr">∧</span>
+        </div>
+      </div>
+
+      <!-- 価格（折りたたみ） -->
+      <div class="acc-section">
+        <div class="acc-hdr">
+          <span class="acc-title">価格（税込）</span>
+          <span class="acc-arr">∧</span>
+        </div>
+      </div>
+
+      <div style="height:80px"></div>
+    </div>
+
+    <!-- 固定フッター（件数が絞られている） -->
+    <div class="modal-ftr">
+      <div class="ftr-reset">リセット</div>
+      <button class="ftr-apply">14件を表示</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=900">
+<title>STYLE DELI – 商品一覧ページ v2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:#e8e5e0;padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:32px}
+h1{font-size:11px;letter-spacing:.2em;color:#999;font-weight:400;margin-bottom:4px;text-align:center}
+p.sub{font-size:10px;color:#bbb;margin-bottom:0;letter-spacing:.06em;text-align:center}
+.col-label{font-size:11px;font-weight:500;letter-spacing:.12em;color:#555;text-align:center;margin-bottom:8px}
+.phone{width:375px;overflow:hidden;border-radius:14px;border:1px solid #c8c4be;box-shadow:0 8px 32px rgba(0,0,0,.12);background:#faf9f7;color:#2a2a2a}
+
+/* ── header ── */
+.hdr{background:#faf9f7;padding:0 16px;height:54px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-bottom:1px solid #ece9e4;position:sticky;top:0;z-index:10}
+.hdr-ham{display:flex;flex-direction:column;gap:5px;cursor:pointer;justify-self:start}
+.hdr-ham span{display:block;width:18px;height:1px;background:#2a2a2a}
+.hdr-logo{font-size:12px;letter-spacing:.36em;font-weight:300;text-align:center}
+.hdr-icons{display:flex;align-items:center;gap:14px;justify-self:end}
+.icon{display:flex;align-items:center;cursor:pointer}
+
+/* ── カテゴリタイトル ── */
+.cat-title{padding:18px 16px 8px;display:flex;align-items:baseline;justify-content:space-between}
+.cat-name{font-size:16px;font-weight:300;letter-spacing:.1em;color:#2a2a2a}
+.cat-count{font-size:10px;color:#bbb;font-weight:300;letter-spacing:.06em}
+
+/* ── 絞り込み中タグ ── */
+.filter-tags{display:flex;gap:6px;padding:0 16px 12px;overflow-x:auto}
+.filter-tags::-webkit-scrollbar{display:none}
+.filter-tag{display:inline-flex;align-items:center;gap:4px;font-size:9px;letter-spacing:.1em;color:#2a2a2a;border:0.5px solid #2a2a2a;padding:4px 10px;white-space:nowrap;flex-shrink:0}
+.filter-tag-x{font-size:11px;color:#aaa;margin-left:2px}
+.filter-clear{font-size:9px;color:#bbb;letter-spacing:.1em;border-bottom:1px solid #ddd;padding-bottom:1px;white-space:nowrap;flex-shrink:0;align-self:center}
+
+/* ── ツールバー ── */
+.toolbar{display:flex;align-items:center;border-top:1px solid #ece9e4;border-bottom:1px solid #ece9e4;background:#faf9f7;position:sticky;top:54px;z-index:9}
+.toolbar-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;padding:10px 6px;font-size:9px;letter-spacing:.14em;color:#2a2a2a;cursor:pointer;border-right:1px solid #ece9e4}
+.toolbar-btn:last-child{border-right:none;flex:0;padding:10px 14px;gap:6px}
+
+/* ── アイコン（小さく・細く・グレー系統一） ── */
+.prod-badges{position:absolute;top:7px;left:7px;display:flex;flex-direction:column;gap:3px}
+.badge{font-size:7px;letter-spacing:.1em;padding:2px 5px;display:inline-block;font-weight:400;line-height:1.4}
+/* ポイントUP: ゴールド枠で微差 */
+.badge-point{background:#faf9f7;color:#8a6a30;border:0.5px solid #c8a870}
+/* その他: グレー系で統一 */
+.badge-rear{background:#faf9f7;color:#6a6a62;border:0.5px solid #c8c4b8}
+.badge-pre{background:#faf9f7;color:#6a6a62;border:0.5px solid #c8c4b8}
+.badge-free{background:#faf9f7;color:#6a6a62;border:0.5px solid #c8c4b8}
+.badge-sale{background:#faf9f7;color:#8a3030;border:0.5px solid #c8a0a0}
+
+/* ── お気に入り ── */
+.prod-heart{position:absolute;top:7px;right:7px;width:24px;height:24px;background:rgba(250,249,247,.85);display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:50%}
+
+/* ── カラーチップ ── */
+.color-chip{width:11px;height:11px;border-radius:50%;flex-shrink:0;border:0.5px solid rgba(0,0,0,.08)}
+.color-chip.active{outline:1.5px solid #2a2a2a;outline-offset:1.5px}
+.color-more{font-size:8px;color:#bbb;letter-spacing:.04em}
+
+/* ══════════════════
+   2列グリッド
+══════════════════ */
+.prods-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 12px 4px;background:#faf9f7}
+.prod-cell{background:#faf9f7}
+.prod-img-wrap{position:relative;width:100%;aspect-ratio:4/5;background:#e4dfd8;overflow:hidden;margin-bottom:7px}
+.prod-img-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:7px;color:#c0bab3;letter-spacing:.04em}
+.prod-colors{display:flex;gap:4px;align-items:center;margin-bottom:5px}
+.prod-name{font-size:11px;font-weight:300;color:#2a2a2a;line-height:1.5;margin-bottom:4px}
+.prod-price-row{display:flex;align-items:baseline;gap:5px;flex-wrap:wrap}
+.prod-price{font-size:12px;font-weight:300;color:#2a2a2a}
+.prod-price-tax{font-size:9px;color:#bbb;font-weight:300}
+.prod-price-orig{font-size:10px;font-weight:300;color:#bbb;text-decoration:line-through}
+.prod-price-sale{font-size:12px;font-weight:300;color:#8a3030}
+
+/* ══════════════════
+   1列リスト（全幅画像・情報は下）
+══════════════════ */
+.prods-1{display:flex;flex-direction:column;gap:16px;padding:14px 16px 4px;background:#faf9f7}
+.prod-cell-1{background:#faf9f7}
+.prod-img-wrap-1{position:relative;width:100%;aspect-ratio:4/5;background:#e4dfd8;overflow:hidden;margin-bottom:9px}
+.prod-info-1{padding:0}
+.prod-colors-1{display:flex;gap:4px;margin-bottom:5px;align-items:center}
+.prod-name-1{font-size:13px;font-weight:300;color:#2a2a2a;line-height:1.55;margin-bottom:5px}
+.prod-price-1{font-size:14px;font-weight:300;color:#2a2a2a}
+/* 1列の仕切り線 */
+.prod-divider{height:1px;background:#ece9e4;margin:4px 0 16px}
+
+/* ── ページャー ── */
+.pager{display:flex;align-items:center;justify-content:center;gap:4px;padding:20px 16px}
+.page-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:300;color:#2a2a2a;cursor:pointer;border:0.5px solid transparent}
+.page-btn.active{border-color:#2a2a2a;background:#2a2a2a;color:#faf9f7}
+.page-btn.arr{color:#aaa;font-size:16px;font-weight:200;border:none}
+.page-btn.disabled{color:#ddd;cursor:default}
+
+/* ── 閲覧履歴 ── */
+.sh{display:flex;justify-content:space-between;align-items:baseline;padding:22px 16px 12px;border-top:1px solid #ece9e4}
+.sh-t{font-size:9px;letter-spacing:.28em;color:#aaa}
+.hist-scroll{display:flex;gap:10px;overflow-x:auto;padding:0 16px 16px}
+.hist-scroll::-webkit-scrollbar{display:none}
+.hist-card{flex-shrink:0;width:100px}
+.hist-img{width:100px;height:125px;background:#e4dfd8;margin-bottom:6px}
+.hist-name{font-size:10px;font-weight:300;color:#2a2a2a;margin-bottom:2px;line-height:1.4}
+.hist-price{font-size:10px;color:#aaa;font-weight:300}
+
+/* ── footer ── */
+.ftr{background:#2a2a2a;padding:20px 16px;text-align:center}
+.ftr a{font-size:9px;color:#555;letter-spacing:.08em;text-decoration:none;display:inline-block;margin:3px 8px;font-weight:300}
+.ftr-copy{font-size:9px;color:#444;letter-spacing:.06em;margin-top:10px;font-weight:300}
+</style>
+</head>
+<body>
+
+<h1>STYLE DELI — 商品一覧ページ v2</h1>
+<p class="sub">375px / Quiet Luxury B / Prestige ベース</p>
+
+<!-- ══ 2列表示 ══ -->
+<div>
+<div class="col-label">2列表示（デフォルト）</div>
+<div class="phone">
+
+  <div class="hdr">
+    <div class="hdr-ham"><span></span><span></span><span></span></div>
+    <div class="hdr-logo">STYLE DELI</div>
+    <div class="hdr-icons">
+      <div class="icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#2a2a2a" stroke-width="1.2" stroke-linecap="round"><circle cx="7.5" cy="7.5" r="5"/><line x1="11.5" y1="11.5" x2="16" y2="16"/></svg></div>
+      <div class="icon" style="position:relative">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#2a2a2a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h12l-1.5 9h-9L3 3z"/><circle cx="6.5" cy="15.5" r="1" fill="#2a2a2a" stroke="none"/><circle cx="12.5" cy="15.5" r="1" fill="#2a2a2a" stroke="none"/></svg>
+        <div style="position:absolute;top:-4px;right:-5px;background:#2a2a2a;color:#faf9f7;font-size:7px;width:13px;height:13px;border-radius:50%;display:flex;align-items:center;justify-content:center">2</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cat-title">
+    <div class="cat-name">NEW ARRIVALS</div>
+    <div class="cat-count">61点</div>
+  </div>
+
+  <div class="filter-tags">
+    <div class="filter-tag">カラー：ブラック <span class="filter-tag-x">×</span></div>
+    <div class="filter-tag">サイズ：02 <span class="filter-tag-x">×</span></div>
+    <div class="filter-clear">すべて解除</div>
+  </div>
+
+  <div class="toolbar">
+    <div class="toolbar-btn">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2a2a2a" stroke-width="1"><line x1="1" y1="3" x2="11" y2="3"/><line x1="3" y1="6" x2="9" y2="6"/><line x1="5" y1="9" x2="7" y2="9"/></svg>
+      絞り込み
+    </div>
+    <div class="toolbar-btn" style="border-right:1px solid #ece9e4">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2a2a2a" stroke-width="1"><line x1="1" y1="2" x2="11" y2="2"/><line x1="1" y1="5" x2="8" y2="5"/><line x1="1" y1="8" x2="5" y2="8"/></svg>
+      新着順
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" stroke="#aaa" stroke-width="1"><path d="M2 3l2 2 2-2"/></svg>
+    </div>
+    <div class="toolbar-btn">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#2a2a2a" stroke-width="1.3"><rect x="1" y="1" width="6" height="14" rx="0.5"/><rect x="9" y="1" width="6" height="14" rx="0.5"/></svg>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#bbb" stroke-width="1.3"><rect x="1" y="1" width="14" height="14" rx="0.5"/></svg>
+    </div>
+  </div>
+
+  <div class="prods-2">
+
+    <!-- ① ポイントアップ + 再入荷 / 商品名1行 / 通常価格 -->
+    <div class="prod-cell">
+      <div class="prod-img-wrap">
+        <div class="prod-img-ph">4:5</div>
+        <div class="prod-badges">
+          <span class="badge badge-point">POINT ×10</span>
+          <span class="badge badge-rear">REARRIVAL</span>
+        </div>
+        <div class="prod-heart"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2a2a2a" stroke-width="1"><path d="M6 10.5s-5-3.2-5-6.5A2.7 2.7 0 0 1 6 2 2.7 2.7 0 0 1 11 4C11 7.3 6 10.5 6 10.5z"/></svg></div>
+      </div>
+      <div class="prod-colors"><div class="color-chip active" style="background:#d4cec8"></div><div class="color-chip" style="background:#2a2a2a"></div><div class="color-chip" style="background:#8a9a8a"></div><span class="color-more">+1</span></div>
+      <div class="prod-name">プリーツワイドパンツ</div>
+      <div class="prod-price-row"><span class="prod-price">¥14,500</span><span class="prod-price-tax">税込</span></div>
+    </div>
+
+    <!-- ② セール / 商品名2行 / セール価格 -->
+    <div class="prod-cell">
+      <div class="prod-img-wrap">
+        <div class="prod-img-ph">4:5</div>
+        <div class="prod-badges">
+          <span class="badge badge-sale">SALE</span>
+        </div>
+        <div class="prod-heart"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2a2a2a" stroke-width="1"><path d="M6 10.5s-5-3.2-5-6.5A2.7 2.7 0 0 1 6 2 2.7 2.7 0 0 1 11 4C11 7.3 6 10.5 6 10.5z"/></svg></div>
+      </div>
+      <div class="prod-colors"><div class="color-chip active" style="background:#c8b4a0"></div><div class="color-chip" style="background:#2a2a2a"></div></div>
+      <div class="prod-name">リネンブレンドオーバーサイズシャツ</div>
+      <div class="prod-price-row"><span class="prod-price-orig">¥12,800</span><span class="prod-price-sale">¥9,600</span></div>
+    </div>
+
+    <!-- ③ 予約 + 送料無料 / 商品名2行 / 通常価格 -->
+    <div class="prod-cell">
+      <div class="prod-img-wrap">
+        <div class="prod-img-ph">4:5</div>
+        <div class="prod-badges">
+          <span class="badge badge-pre">PREORDER</span>
+          <span class="badge badge-free">送料無料</span>
+        </div>
+        <div class="prod-heart"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2a2a2a" stroke-width="1"><path d="M6 10.5s-5-3.2-5-6.5A2.7 2.7 0 0 1 6 2 2.7 2.7 0 0 1 11 4C11 7.3 6 10.5 6 10.5z"/></svg></div>
+      </div>
+      <div class="prod-colors"><div class="color-chip active" style="background:#8a9a8a"></div><div class="color-chip" style="background:#d4cec8"></div><div class="color-chip" style="background:#c8b4a0"></div></div>
+      <div class="prod-name">ウールブレンドテーラードジャケット</div>
+      <div class="prod-price-row"><span class="prod-price">¥22,000</span><span class="prod-price-tax">税込</span></div>
+    </div>
+
+    <!-- ④ アイコンなし / 商品名1行 / 通常価格 -->
+    <div class="prod-cell">
+      <div class="prod-img-wrap">
+        <div class="prod-img-ph">4:5</div>
+        <div class="prod-heart"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2a2a2a" stroke-width="1"><path d="M6 10.5s-5-3.2-5-6.5A2.7 2.7 0 0 1 6 2 2.7 2.7 0 0 1 11 4C11 7.3 6 10.5 6 10.5z"/></svg></div>
+      </div>
+      <div class="prod-colors"><div class="color-chip active" style="background:#2a2a2a"></div></div>
+      <div class="prod-name">ドレープワンピース</div>
+      <div class="prod-price-row"><span class="prod-price">¥18,900</span><span class="prod-price-tax">税込</span></div>
+    </div>
+
+    <!-- ⑤ ポイントアップのみ / 商品名1行 -->
+    <div class="prod-cell">
+      <div class="prod-img-wrap">
+        <div class="prod-img-ph">4:5</div>
+        <div class="prod-badges"><span class="badge badge-point">POINT ×10</span></div>
+        <div class="prod-heart"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2a2a2a" stroke-width="1"><path d="M6 10.5s-5-3.2-5-6.5A2.7 2.7 0 0 1 6 2 2.7 2.7 0 0 1 11 4C11 7.3 6 10.5 6 10.5z"/></svg></div>
+      </div>
+      <div class="prod-colors"><div class="color-chip active" style="background:#d4cec8"></div><div class="color-chip" style="background:#8a9a8a"></div></div>
+      <div class="prod-name">ハイウエストパンツ</div>
+      <div class="prod-price-row"><span class="prod-price">¥14,500</span><span class="prod-price-tax">税込</span></div>
+    </div>
+
+    <!-- ⑥ 再入荷 + セール / 商品名2行 -->
+    <div class="prod-cell">
+      <div class="prod-img-wrap">
+        <div class="prod-img-ph">4:5</div>
+        <div class="prod-badges">
+          <span class="badge badge-rear">REARRIVAL</span>
+          <span class="badge badge-sale">SALE</span>
+        </div>
+        <div class="prod-heart"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2a2a2a" stroke-width="1"><path d="M6 10.5s-5-3.2-5-6.5A2.7 2.7 0 0 1 6 2 2.7 2.7 0 0 1 11 4C11 7.3 6 10.5 6 10.5z"/></svg></div>
+      </div>
+      <div class="prod-colors"><div class="color-chip active" style="background:#c8b4a0"></div><div class="color-chip" style="background:#2a2a2a"></div><div class="color-chip" style="background:#d4cec8"></div><span class="color-more">+2</span></div>
+      <div class="prod-name">シルクライクサテンブラウス</div>
+      <div class="prod-price-row"><span class="prod-price-orig">¥16,500</span><span class="prod-price-sale">¥12,400</span></div>
+    </div>
+
+  </div>
+
+  <div class="pager">
+    <div class="page-btn arr disabled">‹</div>
+    <div class="page-btn active">1</div>
+    <div class="page-btn">2</div>
+    <div class="page-btn">3</div>
+    <div style="font-size:11px;color:#ccc;padding:0 4px">...</div>
+    <div class="page-btn">7</div>
+    <div class="page-btn arr">›</div>
+  </div>
+
+  <div class="sh"><span class="sh-t">RECENTLY VIEWED</span></div>
+  <div class="hist-scroll">
+    <div class="hist-card"><div class="hist-img"></div><div class="hist-name">テーラードジャケット</div><div class="hist-price">¥22,000</div></div>
+    <div class="hist-card"><div class="hist-img"></div><div class="hist-name">ドレープワンピース</div><div class="hist-price">¥18,900</div></div>
+    <div class="hist-card"><div class="hist-img"></div><div class="hist-name">リネンシャツ</div><div class="hist-price">¥12,800</div></div>
+    <div class="hist-card"><div class="hist-img"></div><div class="hist-name">ハイウエストパンツ</div><div class="hist-price">¥14,500</div></div>
+  </div>
+
+  <div class="ftr">
+    <div><a href="#">ショッピングガイド</a><a href="#">よくある質問</a><a href="#">お問い合わせ</a></div>
+    <div class="ftr-copy">© STYLE DELI All Rights Reserved.</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══ 1列表示 ══ -->
+<div>
+<div class="col-label">1列表示（切り替え後）</div>
+<div class="phone">
+
+  <div class="hdr">
+    <div class="hdr-ham"><span></span><span></span><span></span></div>
+    <div class="hdr-logo">STYLE DELI</div>
+    <div class="hdr-icons">
+      <div class="icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#2a2a2a" stroke-width="1.2" stroke-linecap="round"><circle cx="7.5" cy="7.5" r="5"/><line x1="11.5" y1="11.5" x2="16" y2="16"/></svg></div>
+      <div class="icon" style="position:relative">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#2a2a2a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h12l-1.5 9h-9L3 3z"/><circle cx="6.5" cy="15.5" r="1" fill="#2a2a2a" stroke="none"/><circle cx="12.5" cy="15.5" r="1" fill="#2a2a2a" stroke="none"/></svg>
+        <div style="position:absolute;top:-4px;right:-5px;background:#2a2a2a;color:#faf9f7;font-size:7px;width:13px;height:13px;border-radius:50%;display:flex;align-items:center;justify-content:center">2</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cat-title">
+    <div class="cat-name">NEW ARRIVALS</div>
+    <div class="cat-count">61点</div>
+  </div>
+
+  <div class="toolbar">
+    <div class="toolbar-btn">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2a2a2a" stroke-width="1"><line x1="1" y1="3" x2="11" y2="3"/><line x1="3" y1="6" x2="9" y2="6"/><line x1="5" y1="9" x2="7" y2="9"/></svg>
+      絞り込み
+    </div>
+    <div class="toolbar-btn" style="border-right:1px solid #ece9e4">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2a2a2a" stroke-width="1"><line x1="1" y1="2" x2="11" y2="2"/><line x1="1" y1="5" x2="8" y2="5"/><line x1="1" y1="8" x2="5" y2="8"/></svg>
+      新着順
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" stroke="#aaa" stroke-width="1"><path d="M2 3l2 2 2-2"/></svg>
+    </div>
+    <div class="toolbar-btn">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#bbb" stroke-width="1.3"><rect x="1" y="1" width="6" height="14" rx="0.5"/><rect x="9" y="1" width="6" height="14" rx="0.5"/></svg>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#2a2a2a" stroke-width="1.3"><rect x="1" y="1" width="14" height="14" rx="0.5"/></svg>
+    </div>
+  </div>
+
+  <div class="prods-1">
+
+    <!-- ① ポイントアップ + 再入荷 / 商品名1行 -->
+    <div class="prod-cell-1">
+      <div class="prod-img-wrap-1">
+        <div class="prod-img-ph" style="font-size:9px;color:#c0bab3;position:absolute;inset:0;display:flex;align-items:center;justify-content:center">4:5 IMAGE</div>
+        <div class="prod-badges">
+          <span class="badge badge-point">POINT ×10</span>
+          <span class="badge badge-rear">REARRIVAL</span>
+        </div>
+        <div class="prod-heart"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2a2a2a" stroke-width="1"><path d="M6 10.5s-5-3.2-5-6.5A2.7 2.7 0 0 1 6 2 2.7 2.7 0 0 1 11 4C11 7.3 6 10.5 6 10.5z"/></svg></div>
+      </div>
+      <div class="prod-info-1">
+        <div class="prod-colors-1"><div class="color-chip active" style="background:#d4cec8"></div><div class="color-chip" style="background:#2a2a2a"></div><div class="color-chip" style="background:#8a9a8a"></div><span class="color-more">+1</span></div>
+        <div class="prod-name-1">プリーツカットソーワイドパンツ</div>
+        <div class="prod-price-row"><span class="prod-price-1">¥14,500</span><span class="prod-price-tax">税込</span></div>
+      </div>
+    </div>
+    <div class="prod-divider"></div>
+
+    <!-- ② セール / 商品名2行 -->
+    <div class="prod-cell-1">
+      <div class="prod-img-wrap-1">
+        <div class="prod-img-ph" style="font-size:9px;color:#c0bab3;position:absolute;inset:0;display:flex;align-items:center;justify-content:center">4:5 IMAGE</div>
+        <div class="prod-badges"><span class="badge badge-sale">SALE</span></div>
+        <div class="prod-heart"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2a2a2a" stroke-width="1"><path d="M6 10.5s-5-3.2-5-6.5A2.7 2.7 0 0 1 6 2 2.7 2.7 0 0 1 11 4C11 7.3 6 10.5 6 10.5z"/></svg></div>
+      </div>
+      <div class="prod-info-1">
+        <div class="prod-colors-1"><div class="color-chip active" style="background:#c8b4a0"></div><div class="color-chip" style="background:#2a2a2a"></div></div>
+        <div class="prod-name-1">リネンブレンドオーバーサイズシャツ（長い商品名が2行になるケース）</div>
+        <div class="prod-price-row"><span class="prod-price-orig">¥12,800</span><span class="prod-price-sale">¥9,600</span><span class="prod-price-tax">税込</span></div>
+      </div>
+    </div>
+    <div class="prod-divider"></div>
+
+    <!-- ③ アイコンなし / 通常価格 -->
+    <div class="prod-cell-1">
+      <div class="prod-img-wrap-1">
+        <div class="prod-img-ph" style="font-size:9px;color:#c0bab3;position:absolute;inset:0;display:flex;align-items:center;justify-content:center">4:5 IMAGE</div>
+        <div class="prod-heart"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2a2a2a" stroke-width="1"><path d="M6 10.5s-5-3.2-5-6.5A2.7 2.7 0 0 1 6 2 2.7 2.7 0 0 1 11 4C11 7.3 6 10.5 6 10.5z"/></svg></div>
+      </div>
+      <div class="prod-info-1">
+        <div class="prod-colors-1"><div class="color-chip active" style="background:#2a2a2a"></div><div class="color-chip" style="background:#8a9a8a"></div></div>
+        <div class="prod-name-1">ウールブレンドテーラードジャケット</div>
+        <div class="prod-price-row"><span class="prod-price-1">¥22,000</span><span class="prod-price-tax">税込</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pager">
+    <div class="page-btn arr disabled">‹</div>
+    <div class="page-btn active">1</div>
+    <div class="page-btn">2</div>
+    <div class="page-btn">3</div>
+    <div style="font-size:11px;color:#ccc;padding:0 4px">...</div>
+    <div class="page-btn">7</div>
+    <div class="page-btn arr">›</div>
+  </div>
+
+  <div class="sh"><span class="sh-t">RECENTLY VIEWED</span></div>
+  <div class="hist-scroll">
+    <div class="hist-card"><div class="hist-img"></div><div class="hist-name">テーラードジャケット</div><div class="hist-price">¥22,000</div></div>
+    <div class="hist-card"><div class="hist-img"></div><div class="hist-name">ドレープワンピース</div><div class="hist-price">¥18,900</div></div>
+    <div class="hist-card"><div class="hist-img"></div><div class="hist-name">リネンシャツ</div><div class="hist-price">¥12,800</div></div>
+  </div>
+
+  <div class="ftr">
+    <div><a href="#">ショッピングガイド</a><a href="#">よくある質問</a><a href="#">お問い合わせ</a></div>
+    <div class="ftr-copy">© STYLE DELI All Rights Reserved.</div>
+  </div>
+
+</div>
+</div>
+
+</body>
+</html>
