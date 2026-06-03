@@ -1,0 +1,238 @@
+/* =============================================================
+   STYLE DELI — Design Tokens（整理版 / 2層化）
+   Source: モックアップ B v5 (375px) を実測 → 14px基準で再スケール
+   Theme : Shopify "Prestige" (Maestrooo)
+   構成  : PRIMITIVE層（raw hex はここだけ） + SEMANTIC層（用途名で参照）
+           + BRAND層（アクセント差分のみ）
+   方針  : 用途トークン名（--color-* 等）は変更しない＝テーマ無改修
+
+   ── 今回の整理メモ ─────────────────────────────
+   ・raw hex を PRIMITIVE 層へ集約。用途トークンは var() で参照のみ。
+   ・重複(完全一致)を統合:
+       #2a2a2a … ink / scrim / outlet-bg / accent-ink(SD) → --gray-900
+       #1a1a1a … ink-strong / blk001 accent              → --gray-950
+       #faf9f7 … bg / accent-ink(白) / outlet-ink          → --beige-50
+       #ece9e4 … surface / hairline                        → --beige-200
+       #ffffff … surface-white / overlay-on-image          → --white
+   ・近似色(※将来統合候補)を統合:
+       panel #f5f2ec        → beige-100（bg-subtle と統合）
+       neutral-border #c8c4b8 → beige-500（border-strong と統合）
+       hint #aaaaaa         → gray-300（ink-tertiary と統合）
+       hairline-2 #e4dfd8   → beige-300（surface-alt と統合）
+   ・point-strong: #c8901a → #b98f40（マスタード→抑えめのアンティークゴールド）
+   ・accent-ink(SD): ink 参照に統合
+   ───────────────────────────────────────────── */
+
+:root {
+
+  /* =============================================================
+     PRIMITIVE 層 — 生の色値はここだけに置く
+     ============================================================= */
+
+  /* --- Neutral / Ink（やや暖色寄りグレー〜黒） --- */
+  --gray-950: #1a1a1a;
+  --gray-900: #2a2a2a;
+  --gray-600: #5a5a52;
+  --gray-500: #7a7570;
+  --gray-450: #8a8580;
+  --gray-400: #9a9490;
+  --gray-300: #bbbbbb;
+  --gray-100: #f0f0ee;        /* 中立バッジ背景（寒色寄りの淡灰） */
+  --gray-900-rgb: 42,42,42;   /* overlay 用（rgba 合成） */
+
+  /* --- Warm surface / border（ウォームオフホワイト〜罫線） --- */
+  --beige-50:  #faf9f7;
+  --beige-100: #f5f3ef;   /* ← panel #f5f2ec を統合 */
+  --beige-200: #ece9e4;   /* ← hairline #ece9e4 と同値・統合 */
+  --beige-300: #e8e4dc;
+  --beige-400: #dddddd;   /* 罫線（暗端はほぼ中立グレー） */
+  --beige-500: #c8c4be;   /* ← neutral-border #c8c4b8 を統合 */
+
+  /* --- Gold（暖色アクセント＝accent + point 系） --- */
+  --gold-50:  #fdf8f0;
+  --gold-200: #d8c090;
+  --gold-400: #c0a882;    /* STYLE DELI ブランドゴールド */
+  --gold-600: #b98f40;    /* 強調・バッジ地色（旧 #c8901a を抑えめに） */
+  --gold-800: #8a6330;
+
+  /* --- Red（SALE） --- */
+  --red-100: #f5e8e8;
+  --red-300: #d0a8a8;
+  --red-700: #8a3030;
+
+  /* --- Blue（予約 preorder） --- */
+  --blue-100: #eceef3;
+  --blue-300: #b8c0d0;
+  --blue-600: #4a5870;
+
+  /* --- Taupe（画像プレースホルダ） --- */
+  --taupe-200: #e5e0d6;
+  --taupe-400: #d2cabd;
+  --taupe-500: #b9b1a4;
+
+  /* --- ブランド / ユーティリティ --- */
+  --olive-700: #60601f;   /* marjour accent（暫定） */
+  --brown-800: #584840;   /* marjour CTA（component 側で使用想定） */
+  --pinterest: #e60023;
+  --white:     #ffffff;
+  --white-rgb: 255,255,255;
+  --black-rgb: 0,0,0;
+
+
+  /* =============================================================
+     SEMANTIC 層 — 用途名（名前は据え置き）。PRIMITIVE を参照
+     ============================================================= */
+
+  /* === COLOR : Ink（文字） === */
+  --color-ink:            var(--gray-900);
+  --color-ink-strong:     var(--gray-950);
+  --color-ink-secondary:  var(--gray-500);
+  --color-ink-muted:      var(--gray-400);
+  --color-ink-tertiary:   var(--gray-300);
+
+  /* === COLOR : Background / Surface === */
+  --color-bg:             var(--beige-50);
+  --color-bg-subtle:      var(--beige-100);
+  --color-surface:        var(--beige-200);
+  --color-surface-alt:    var(--beige-300);
+
+  /* === COLOR : Border === */
+  --color-border:         var(--beige-400);
+  --color-border-strong:  var(--beige-500);
+
+  /* === COLOR : Overlay / Shadow === */
+  --overlay-scrim:        rgba(var(--gray-900-rgb), .75);
+  --overlay-scrim-soft:   rgba(var(--gray-900-rgb), .2);
+  --overlay-on-image:     rgba(var(--white-rgb), .5);
+  --shadow-card:          0 8px 32px rgba(var(--black-rgb), .12);
+
+  /* === COLOR : Status（商品/一覧ページ） === */
+  --color-sale:           var(--red-700);
+  --color-sale-bg:        var(--red-100);
+  --color-sale-border:    var(--red-300);
+  --color-point:          var(--gold-800);  /* ポイントUP文字 */
+  --color-point-strong:   var(--gold-600);  /* バッジ地色（詳細ページ） */
+  --color-point-bg:       var(--gold-50);   /* 帯背景 */
+  --color-point-border:   var(--gold-200);
+
+  /* === COLOR : PDP 追加（2026-06-02・PDPプロト実測） === */
+  --color-label:          var(--gray-600);  /* セクション/アコーディオン見出し */
+  --color-caption:        var(--gray-450);  /* 画像キャプション・サブ注記 */
+  --color-hint:           var(--gray-300);  /* 弱い注記/プレースホルダ（ink-tertiary と統合） */
+  --color-surface-white:  var(--white);     /* 白カード面 */
+  --color-panel:          var(--beige-100); /* 注記パネル背景（旧 #f5f2ec を統合） */
+  --color-hairline:       var(--beige-200); /* PDPヘアライン（surface と同値・統合） */
+  --color-hairline-2:     var(--beige-300); /* surface-alt と統合 */
+
+  /* === COLOR : バッジ === */
+  --color-preorder:         var(--blue-600);
+  --color-preorder-bg:      var(--blue-100);
+  --color-preorder-border:  var(--blue-300);
+  --color-neutral-bg:       var(--gray-100);   /* 再入荷/送料無料など */
+  --color-neutral-border:   var(--beige-500);  /* 旧 #c8c4b8 を border-strong に統合 */
+  --color-outlet-bg:        var(--gray-900);
+  --color-outlet-ink:       var(--beige-50);
+  --color-pinterest:        var(--pinterest);  /* コーデ保存（Pinterest連携時のみ） */
+
+  /* === COLOR : 画像プレースホルダ（本番は実画像に置換） === */
+  --color-ph-1:   var(--taupe-200);
+  --color-ph-2:   var(--taupe-400);
+  --color-ph-ink: var(--taupe-500);
+
+  /* === TYPOGRAPHY : Font family ===
+     和文＝オールゴシック（Zen Kaku Gothic New 一本）。見出しも同書体。
+     英字の装飾ラベル（DESCRIPTION 等）のみ Cormorant Garamond を使用。
+     ※Webフォント本体の読み込みは theme.liquid の <head>（Google Fonts: 400/500/700）。
+       tokens.css は family 宣言のみ。 */
+  --font-body:       "Zen Kaku Gothic New", -apple-system,
+                     "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+  --font-heading:    var(--font-body);            /* オールゴシック＝本文と同書体 */
+  --font-latin-deco: "Cormorant Garamond", serif; /* 英字の装飾ラベルのみ */
+
+  /* === TYPOGRAPHY : Weight（読み込みは 400 / 500 / 700 のみ） === */
+  --fw-regular: 400;   /* 本文 */
+  --fw-medium:  500;   /* 商品名・価格・小見出し（既定の強さ） */
+  --fw-bold:    700;   /* 強調（局所的に） */
+
+  /* === TYPOGRAPHY : Size（14px基準） === */
+  --fs-2xs:  11px;
+  --fs-xs:   12px;
+  --fs-sm:   13px;
+  --fs-base: 14px;
+  --fs-md:   16px;
+  --fs-lg:   20px;
+  --fs-xl:   24px;
+  --fs-hero: 52px;
+
+  /* === TYPOGRAPHY : Line-height === */
+  --lh-tight:   1.2;
+  --lh-snug:    1.5;
+  --lh-relaxed: 1.7;
+
+  /* === TYPOGRAPHY : Letter-spacing（字間） === */
+  --tracking-tight:   0;
+  --tracking-normal:  0.03em;
+  --tracking-wide:    0.1em;
+  --tracking-wider:   0.2em;
+  --tracking-widest:  0.3em;
+  --tracking-label:   0.12em;  /* 和文ラベル */
+  --tracking-eyebrow: 0.22em;  /* 英字アコーディオン見出し */
+  --tracking-heading: 0.28em;  /* 英字セクション見出し */
+
+  /* === SPACING（4pxグリッド） === */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-7:  28px;
+  --space-8:  32px;
+  --space-10: 40px;
+
+  /* === RADIUS === */
+  --radius-sm:    3px;
+  --radius-md:    7px;
+  --radius-lg:    14px;
+  --radius-round: 50%;
+  --radius-pill:  999px;
+
+  /* === LAYOUT === */
+  --container-mobile: 375px;
+  --pdp-max:       1280px;  /* PDP全体最大幅 */
+  --section-max:   1080px;  /* 全幅セクション内側最大 */
+  --buybox-w:      440px;   /* PC右カラム幅 */
+  --gap-pdp:       56px;    /* 左ギャラリー / 右購入の間隔 */
+  --header-offset: 92px;    /* sticky オフセット（ヘッダー高） */
+}
+
+/* =============================================================
+   BRAND 層 — ブランド差分（アクセント中心）
+   視覚ブランド3つ: styledeli / blk001 / marjour
+   deli-by / dressden は STYLE DELI を継承
+   ============================================================= */
+
+/* 既定 = STYLE DELI（deli-by / dressden も継承） */
+:root,
+[data-brand="styledeli"],
+[data-brand="deli-by"],
+[data-brand="dressden"] {
+  --color-accent:     var(--gold-400);
+  --color-accent-ink: var(--color-ink);   /* 統合: 旧 #2a2a2a → ink を参照 */
+}
+
+/* BLK001 — モノクロ（黒基調） */
+[data-brand="blk001"] {
+  --color-accent:     var(--gray-950);    /* #1a1a1a */
+  --color-accent-ink: var(--beige-50);    /* 黒地に白文字 #faf9f7 */
+}
+
+/* MARJOUR — 公式サイト準拠 / 暫定値（renewal確定でアップデート） */
+[data-brand="marjour"] {
+  --color-accent:     var(--olive-700);   /* ダークオリーブ */
+  --color-accent-ink: var(--beige-50);
+  /* ニュートラルを寒色版にする場合（任意）:
+     --color-bg:      #f6f6f4;
+     --color-surface: #ebebe8;
+     CTA/ボタンは var(--brown-800) を component 側で適用想定 */
+}
