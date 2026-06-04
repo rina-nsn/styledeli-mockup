@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DELI by STYLE DELI ｜ 新ロゴ ご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Tenor+Sans&family=Jost:wght@300;400&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1b18; --ink-soft:#46443e; --muted:#928c80;
+    --line:rgba(28,27,24,0.13); --line-soft:rgba(28,27,24,0.08);
+    --paper:#f4f1ea; --card:#fbfaf6;
+    --serif-ja:'Shippori Mincho', serif; --sans-ja:'Zen Kaku Gothic New', sans-serif;
+    --logo:'Tenor Sans',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans-ja);font-weight:300;line-height:1.85;letter-spacing:0.02em;display:flex;justify-content:center;}
+  .wrap{width:100%;max-width:430px;padding:2.4rem 20px 3.6rem;}
+
+  .eyebrow{font-family:'Jost',sans-serif;font-weight:300;font-size:9.5px;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;align-items:center;padding-bottom:1.1rem;border-bottom:0.5px solid var(--line);}
+
+  .hero{padding:2.2rem 0 1.9rem;}
+  .hero .pl{font-family:'Playfair Display',serif;font-weight:500;font-size:27px;letter-spacing:0.05em;color:var(--ink);}
+  .hero .pl em{font-style:italic;font-weight:400;}
+  .hero h1{font-family:var(--serif-ja);font-weight:600;font-size:21px;line-height:1.5;letter-spacing:0.07em;color:var(--ink);margin-top:0.6rem;}
+  .hero p{margin-top:1.2rem;font-size:13.5px;line-height:1.95;color:var(--ink-soft);font-weight:300;}
+
+  .aim{padding:1.9rem 0;border-top:0.5px solid var(--line);border-bottom:0.5px solid var(--line);}
+  .sec-label{font-family:'Jost',sans-serif;font-weight:300;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:0.8rem;}
+  .aim h2{font-family:var(--serif-ja);font-weight:600;font-size:19px;letter-spacing:0.06em;line-height:1.5;margin-bottom:0.9rem;}
+  .aim p{font-size:13px;line-height:1.95;color:var(--ink-soft);font-weight:300;}
+  .aim .note{margin-top:1rem;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.14em;color:var(--muted);}
+
+  .family{margin-top:2.6rem;}
+  .family-head{margin-bottom:1.3rem;}
+  .family-head h2{font-family:var(--serif-ja);font-weight:600;font-size:19px;letter-spacing:0.06em;line-height:1.45;}
+  .family-head p{margin-top:0.6rem;font-size:12.5px;color:var(--ink-soft);font-weight:300;line-height:1.9;}
+
+  .sp{background:var(--card);border:0.5px solid var(--line);border-radius:3px;padding:1.3rem 1.2rem 1.2rem;margin-bottom:0.9rem;}
+  .sp .lbl{font-family:'Jost',sans-serif;font-weight:300;font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--muted);}
+  .sp .stage{min-height:104px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--ink);padding:1.2rem 0.2rem 0.6rem;}
+
+  .attr{color:var(--ink-soft);}
+  .A-stack .d{font-family:'Playfair Display',serif;font-weight:500;font-size:44px;letter-spacing:0.06em;line-height:1;}
+  .A-stack .b{font-family:var(--logo);font-weight:400;font-size:11px;letter-spacing:0.3em;padding-left:0.3em;margin-top:0.85rem;}
+  .A-row{display:inline-flex;align-items:baseline;gap:11px;flex-wrap:wrap;justify-content:center;}
+  .A-row .d{font-family:'Playfair Display',serif;font-weight:500;font-size:32px;letter-spacing:0.05em;}
+  .A-row .b{font-family:var(--logo);font-weight:400;font-size:12px;letter-spacing:0.26em;padding-left:0.26em;}
+
+  .B-stack .d{font-family:var(--logo);font-weight:400;font-size:28px;letter-spacing:0.3em;padding-left:0.3em;line-height:1;}
+  .B-stack .b{font-family:var(--logo);font-weight:400;font-size:11px;letter-spacing:0.28em;padding-left:0.28em;margin-top:0.85rem;color:var(--ink-soft);}
+  .B-row{display:inline-flex;align-items:baseline;gap:10px;flex-wrap:wrap;justify-content:center;}
+  .B-row .d{font-family:var(--logo);font-weight:400;font-size:22px;letter-spacing:0.28em;padding-left:0.28em;}
+  .B-row .b{font-family:var(--logo);font-weight:400;font-size:11.5px;letter-spacing:0.24em;padding-left:0.24em;color:var(--muted);}
+
+  .ctx{margin-top:2.6rem;}
+  .ctx h2{font-family:var(--serif-ja);font-weight:600;font-size:18px;letter-spacing:0.07em;margin-bottom:1.2rem;}
+  .ctx .cap{font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin:0.55rem 0 1.5rem;text-align:center;}
+
+  .mbar{display:flex;align-items:center;justify-content:space-between;padding:0.95rem 1rem;background:var(--card);border:0.5px solid var(--line);border-radius:3px;color:var(--ink-soft);}
+  .mbar .ico{display:flex;width:30px;}
+  .mbar .ico.r{justify-content:flex-end;}
+  .mbar .blogo{flex:1;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px;}
+  .mbar .blogo .d{font-family:'Playfair Display',serif;font-weight:500;font-size:18px;letter-spacing:0.05em;color:var(--ink);line-height:1;}
+  .mbar .blogo .b{font-family:var(--logo);font-weight:400;font-size:8px;letter-spacing:0.28em;padding-left:0.28em;color:var(--ink-soft);}
+
+  .tags{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;background:rgba(28,27,24,0.025);border:0.5px solid var(--line-soft);border-radius:3px;padding:1.8rem 1rem;}
+  .tag{width:142px;background:#fff;border:0.5px solid var(--line);border-radius:3px 3px 5px 5px;padding:2.2rem 0.8rem 1.4rem;text-align:center;position:relative;}
+  .tag:before{content:'';position:absolute;top:12px;left:50%;transform:translateX(-50%);width:8px;height:8px;border:0.5px solid var(--muted);border-radius:50%;}
+  .tag .tg-cap{font-family:'Jost',sans-serif;font-size:8.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-top:1.2rem;display:block;}
+  .tag .da{font-family:'Playfair Display',serif;font-weight:500;font-size:25px;letter-spacing:0.05em;color:var(--ink);line-height:1;}
+  .tag .ba{font-family:var(--logo);font-weight:400;font-size:8.5px;letter-spacing:0.24em;padding-left:0.24em;color:var(--ink-soft);margin-top:0.65rem;}
+  .tag .db{font-family:var(--logo);font-weight:400;font-size:15px;letter-spacing:0.26em;padding-left:0.26em;color:var(--ink);line-height:1;}
+  .tag .bb{font-family:var(--logo);font-weight:400;font-size:8px;letter-spacing:0.22em;padding-left:0.22em;color:var(--ink-soft);margin-top:0.65rem;}
+
+  .foot{margin-top:2.8rem;padding-top:1.8rem;border-top:0.5px solid var(--line);}
+  .foot h2{font-family:var(--serif-ja);font-weight:600;font-size:17px;letter-spacing:0.06em;margin-bottom:0.8rem;}
+  .foot ol{list-style:none;counter-reset:s;}
+  .foot li{position:relative;padding:0.5rem 0 0.5rem 2.2rem;font-size:12.5px;color:var(--ink-soft);font-weight:300;border-bottom:0.5px solid var(--line-soft);line-height:1.7;}
+  .foot li:before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0.6rem;font-family:'Jost',sans-serif;font-size:10px;color:var(--muted);}
+  .sign{margin-top:2rem;font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);text-align:right;}
+
+  .reveal{opacity:0;transform:translateY(12px);animation:rise 0.85s cubic-bezier(.2,.7,.2,1) forwards;}
+  @keyframes rise{to{opacity:1;transform:none;}}
+  @media(prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none;}}
+  @media print{body{background:#fff;}.reveal{animation:none;opacity:1;transform:none;}.sp,.mbar,.tag,.tags{break-inside:avoid;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+
+  /* === 使用イメージ：襟ネーム・下げ札（C-3 / Tenor Sans） === */
+  .ctx-sub{font-size:12.5px;line-height:1.95;color:var(--ink-soft);font-weight:300;margin:-0.3rem 0 1.9rem;}
+  .ctx-sub em{font-style:normal;font-family:var(--logo);letter-spacing:0.04em;color:var(--ink);}
+  .goods{margin-bottom:2.4rem;}
+  .gl{font-family:'Jost',sans-serif;font-weight:300;font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:0.95rem;}
+  .gcap{font-size:11px;line-height:1.85;color:var(--muted);font-weight:300;margin-top:0.9rem;}
+
+  /* 襟ネーム（織りネーム） */
+  .neck-stage{background:rgba(28,27,24,0.025);border:0.5px solid var(--line-soft);border-radius:3px;padding:2.6rem 1rem;display:flex;justify-content:center;}
+  .neck{position:relative;display:inline-flex;align-items:stretch;background:repeating-linear-gradient(90deg,#efe9dc 0 1px,#f6f1e7 1px 2px);box-shadow:0 1px 4px rgba(28,27,24,0.13);}
+  .neck .st{width:9px;background:rgba(28,27,24,0.045);}
+  .neck .st-l{border-right:1px dashed rgba(28,27,24,0.30);}
+  .neck .st-r{border-left:1px dashed rgba(28,27,24,0.30);}
+  .neck-in{padding:0.95rem 1.9rem;text-align:center;}
+  .nd{font-family:var(--logo);font-weight:400;font-size:21px;letter-spacing:0.3em;padding-left:0.3em;color:#26241f;line-height:1;}
+  .nb{font-family:var(--logo);font-weight:400;font-size:8px;letter-spacing:0.26em;padding-left:0.26em;color:#5b574d;margin-top:0.55rem;}
+
+  /* 下げ札（スイングタグ） */
+  .swing-stage{background:rgba(28,27,24,0.025);border:0.5px solid var(--line-soft);border-radius:3px;padding:2.8rem 1rem 2.1rem;display:flex;gap:20px;justify-content:center;}
+  .swing{position:relative;width:128px;background:#fcfbf7;border:0.5px solid var(--line);border-radius:2px 2px 5px 5px;padding:1.75rem 0.9rem 1.05rem;box-shadow:0 2px 7px rgba(28,27,24,0.11);}
+  .hole{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:var(--paper);box-shadow:inset 0 0 0 1.5px rgba(28,27,24,0.26);z-index:2;}
+  .string{position:absolute;top:-16px;left:50%;transform:translateX(-50%);}
+  /* 下げ札・表 */
+  .sd{font-family:var(--logo);font-weight:400;font-size:23px;letter-spacing:0.28em;padding-left:0.28em;text-align:center;color:var(--ink);line-height:1;margin-top:0.45rem;}
+  .sb{font-family:var(--logo);font-weight:400;font-size:8px;letter-spacing:0.24em;padding-left:0.24em;text-align:center;color:var(--ink-soft);margin-top:0.6rem;}
+  .sw-line{height:0.5px;background:var(--line);margin:1rem 0.4rem 0.75rem;}
+  .sw-tag{font-family:var(--serif-ja);font-weight:500;font-size:8.5px;line-height:1.65;letter-spacing:0.05em;color:var(--muted);text-align:center;}
+  /* 下げ札・裏 */
+  .sbk-logo{font-family:var(--logo);font-weight:400;font-size:12px;letter-spacing:0.2em;padding-left:0.2em;text-align:center;color:var(--ink);padding-bottom:0.7rem;border-bottom:0.5px solid var(--line);margin-bottom:0.75rem;line-height:1;}
+  .sbk-logo span{display:block;font-size:6.5px;letter-spacing:0.22em;color:var(--muted);margin-top:4px;padding-left:0.22em;}
+  .sbk-row{display:flex;align-items:center;gap:6px;margin-bottom:0.5rem;}
+  .sbk-row span{font-family:'Jost',sans-serif;font-size:7px;letter-spacing:0.13em;color:var(--muted);width:32px;flex-shrink:0;}
+  .sbk-row i{flex:1;height:0.5px;background:var(--line);}
+  .sbk-row.price i{background:var(--ink);height:1px;}
+  .barcode{height:24px;margin-top:0.85rem;background:repeating-linear-gradient(90deg,var(--ink) 0 1px,transparent 1px 3px,var(--ink) 3px 5px,transparent 5px 6px,var(--ink) 6px 8px,transparent 8px 11px,var(--ink) 11px 12px,transparent 12px 14px);opacity:0.76;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow reveal">
+    <span>DELI by STYLE DELI</span>
+    <span>2026.06</span>
+  </div>
+
+  <header class="hero reveal" style="animation-delay:.07s">
+    <div class="pl">DELI <em>by</em> STYLE DELI</div>
+    <h1>新ロゴ ご提案</h1>
+    <p>「STYLE DELI の“目利き力”が選んだ、信頼のセレクト」というラインの世界観を、ロゴから明確に表現します。STYLE DELI 本体は新ロゴ（Tenor Sans／Quiet Luxury）で確定。その書体を土台に、セレクトラインらしい上質さを重ねてご提案いたします。</p>
+  </header>
+
+  <section class="aim reveal" style="animation-delay:.14s">
+    <div class="sec-label">Concept ─ ラインの考え方</div>
+    <h2>目利きが選んだ、信頼のセレクト。</h2>
+    <p>素材・デザイン・仕立て・使いやすさ。STYLE DELI の基準を満たすものだけを選び抜いた “選ばれしセレクト”。その品格を、主役の「DELI」を格上げしつつ、「by STYLE DELI」を本体ロゴと同じ書体（Tenor Sans）で添えることで、親ブランドとの信頼関係ごと伝えます。</p>
+    <div class="note">本体ロゴ書体：STYLE DELI ─ Tenor Sans（確定）</div>
+  </section>
+
+  <!-- DIRECTION 01 -->
+  <section class="family reveal" style="animation-delay:.05s">
+    <div class="family-head">
+      <div class="sec-label">Direction 01</div>
+      <h2>エディトリアル ／ セリフ DELI</h2>
+      <p>主役の「DELI」を高コントラストのセリフで格上げ。「選ばれし上質」という特別感がいちばん伝わる方向です。「by STYLE DELI」は本体と同じ Tenor Sans で揃えています。</p>
+    </div>
+    <div class="sp">
+      <span class="lbl">縦組み</span>
+      <div class="stage A-stack"><div><div class="d">DELI</div><div class="b attr">by STYLE DELI</div></div></div>
+    </div>
+    <div class="sp">
+      <span class="lbl">横組み</span>
+      <div class="stage"><div class="A-row"><span class="d">DELI</span><span class="b attr">by STYLE DELI</span></div></div>
+    </div>
+  </section>
+
+  <!-- DIRECTION 02 -->
+  <section class="family reveal" style="animation-delay:.05s">
+    <div class="family-head">
+      <div class="sec-label">Direction 02</div>
+      <h2>クワイエット ／ 本体と完全統一</h2>
+      <p>「DELI」まで本体と同じ Tenor Sans で組んだ、最もミニマルで一体感のある方向。STYLE DELI 本体と並べたときの統一感は随一です。</p>
+    </div>
+    <div class="sp">
+      <span class="lbl">縦組み</span>
+      <div class="stage B-stack"><div><div class="d">DELI</div><div class="b attr">by STYLE DELI</div></div></div>
+    </div>
+    <div class="sp">
+      <span class="lbl">横組み</span>
+      <div class="stage"><div class="B-row"><span class="d">DELI</span><span class="b attr">by STYLE DELI</span></div></div>
+    </div>
+  </section>
+
+  <!-- IN CONTEXT -->
+  <section class="ctx reveal" style="animation-delay:.05s">
+    <h2>使用イメージ</h2>
+    <p class="ctx-sub">本体ロゴと同じ <em>Tenor Sans</em>（Direction 02 ／ クワイエット）で、襟ネームと下げ札に展開したイメージです。タグ類は本体ブランドと書体を揃え、親子の一体感を持たせています。</p>
+
+    <!-- 襟ネーム -->
+    <div class="goods">
+      <span class="gl">襟ネーム ─ 織りネーム</span>
+      <div class="neck-stage">
+        <div class="neck">
+          <span class="st st-l"></span>
+          <div class="neck-in">
+            <div class="nd">DELI</div>
+            <div class="nb">by STYLE DELI</div>
+          </div>
+          <span class="st st-r"></span>
+        </div>
+      </div>
+      <p class="gcap">首裏に縫い付ける平ネーム。生成りの織り地に黒糸織り（または箔押し）で。左右は折り返して縫製。</p>
+    </div>
+
+    <!-- 下げ札 -->
+    <div class="goods">
+      <span class="gl">下げ札 ─ スイングタグ</span>
+      <div class="swing-stage">
+        <!-- 表 -->
+        <div class="swing">
+          <svg class="string" width="34" height="30" viewBox="0 0 34 30"><path d="M17 27 C 6 23 6 6 17 3 C 28 6 28 23 17 27 Z" fill="none" stroke="#cabfa9" stroke-width="2.4"/></svg>
+          <span class="hole"></span>
+          <div class="sd">DELI</div>
+          <div class="sb">by STYLE DELI</div>
+          <div class="sw-line"></div>
+          <div class="sw-tag">目利きが選んだ、<br>信頼のセレクト。</div>
+        </div>
+        <!-- 裏 -->
+        <div class="swing">
+          <svg class="string" width="34" height="30" viewBox="0 0 34 30"><path d="M17 27 C 6 23 6 6 17 3 C 28 6 28 23 17 27 Z" fill="none" stroke="#cabfa9" stroke-width="2.4"/></svg>
+          <span class="hole"></span>
+          <div class="sbk-logo">DELI<span>by STYLE DELI</span></div>
+          <div class="sbk-row"><span>ITEM</span><i></i></div>
+          <div class="sbk-row"><span>COLOR</span><i></i></div>
+          <div class="sbk-row"><span>SIZE</span><i></i></div>
+          <div class="sbk-row price"><span>PRICE</span><i></i></div>
+          <div class="barcode"></div>
+        </div>
+      </div>
+      <p class="gcap">表：ロゴ面　／　裏：品番・カラー・サイズ・価格の記入欄。厚手のマット紙＋コットン紐で上質に。</p>
+    </div>
+  </section>
+
+  <!-- NEXT -->
+  <footer class="foot reveal" style="animation-delay:.05s">
+    <h2>次のステップ</h2>
+    <ol>
+      <li>ご希望の方向（エディトリアル ／ クワイエット）と、縦組み・横組みをお選びください。</li>
+      <li>選定案を実寸で検証（Web ／ 商品タグ ／ 織りネーム）。</li>
+      <li>白黒・反転バージョン、最小サイズの可読性を確認。</li>
+      <li>最終データ（SVG）として書き出し、各媒体へ展開・実装。</li>
+    </ol>
+    <div class="sign">STYLE DELI Shopify 移行プロジェクト</div>
+  </footer>
+
+</div>
+</body>
+</html>
