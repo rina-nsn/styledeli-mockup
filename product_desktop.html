@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STYLE DELI – PDP (Desktop / A)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:wght@500;600&family=Tenor+Sans&display=swap" rel="stylesheet">
+<style>
+/* === Design Tokens (mockは自己完結のためinline / 本番は外部 tokens.css を参照) === */
+:root{
+  --color-ink:#2a2a2a; --color-label:#5a5a52; --color-ink-secondary:#7a7570; --color-caption:#8a8580; --color-ink-muted:#9a9490; --color-hint:#aaa; --color-ink-tertiary:#bbb; --color-border:#ddd;
+  --color-bg:#faf9f7; --color-surface-white:#fff; --color-panel:#f5f2ec; --color-hairline:#ece9e4; --color-hairline-2:#e4dfd8;
+  --color-ph-1:#e5e0d6; --color-ph-2:#d2cabd; --color-ph-ink:#b9b1a4;
+  --color-sale:#8a3030; --color-sale-bg:#f5e8e8; --color-sale-border:#d8a0a0;
+  --color-point:#8a6030; --color-point-bg:#f5ede0; --color-point-border:#d8c090;
+  --color-preorder:#4a5870; --color-preorder-bg:#eceef3; --color-preorder-border:#b8c0d0;
+  --color-neutral-bg:#f0f0ee; --color-neutral-border:#c8c4b8; --color-pinterest:#e60023;
+  --font-body:'Zen Kaku Gothic New','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;
+  --font-serif-en:'Cormorant Garamond','Times New Roman',serif;
+  --tracking-heading:.28em; --tracking-eyebrow:.22em; --tracking-label:.12em;
+  --pdp-max:1280px; --section-max:1080px; --buybox-w:440px; --gap-pdp:56px; --header-offset:92px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);background:var(--color-bg);color:var(--color-ink);font-size:14px}
+a{color:inherit}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;border-bottom:1px solid var(--color-hairline);position:sticky;top:0;background:var(--color-bg);z-index:50}
+.hdr .logo{font-size:15px;letter-spacing:.34em;font-weight:400}
+.hdr .nav{display:flex;gap:26px;font-size:11px;letter-spacing:var(--tracking-label);color:var(--color-label)}
+.hdr .icons{display:flex;gap:18px}
+.hdr svg{width:18px;height:18px;stroke:var(--color-label);fill:none;stroke-width:1.1}
+.crumb{max-width:var(--pdp-max);margin:0 auto;padding:18px 40px 6px;font-size:10px;letter-spacing:.1em;color:var(--color-hint)}
+.pdp{max-width:var(--pdp-max);margin:0 auto;padding:14px 40px 56px;display:grid;grid-template-columns:1fr var(--buybox-w);gap:var(--gap-pdp);align-items:start}
+/* gallery */
+.gallery{position:sticky;top:var(--header-offset)}
+.gal-inner{display:flex;gap:12px}
+.thumbs{display:flex;flex-direction:column;gap:8px;width:60px;flex-shrink:0;max-height:600px;overflow-y:auto;scrollbar-width:none}
+.thumbs::-webkit-scrollbar{display:none}
+.thumb{aspect-ratio:4/5;background:linear-gradient(135deg,var(--color-ph-1),var(--color-ph-2));display:flex;align-items:center;justify-content:center;color:var(--color-ph-ink);font-size:9px;cursor:pointer;border:1px solid transparent}
+.thumb.active{border-color:var(--color-ink)}
+.main-col{flex:1;min-width:0}
+.main{aspect-ratio:4/5;background:linear-gradient(135deg,var(--color-ph-1),var(--color-ph-2));display:flex;align-items:center;justify-content:center;color:var(--color-ph-ink);font-size:11px;letter-spacing:.1em}
+.main-cap{font-size:10px;color:var(--color-caption);letter-spacing:.04em;margin-top:8px;min-height:14px}
+/* buybox */
+.bb-brand{font-size:11px;letter-spacing:.2em;color:var(--color-caption);margin-bottom:8px}
+.bb-name{font-size:21px;font-weight:500;letter-spacing:.02em;line-height:1.5}
+.bb-code{font-size:10px;color:var(--color-hint);letter-spacing:.08em;margin-top:8px}
+.icons-area{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0}
+.tag-icon{display:inline-flex;align-items:center;gap:3px;font-size:9px;letter-spacing:.1em;padding:3px 9px;border-radius:2px}
+.tag-point{background:var(--color-point-bg);color:var(--color-point);border:.5px solid var(--color-point-border)}
+.tag-sale{background:var(--color-sale-bg);color:var(--color-sale);border:.5px solid var(--color-sale-border)}
+.tag-preorder{background:var(--color-preorder-bg);color:var(--color-preorder);border:.5px solid var(--color-preorder-border)}
+.tag-few{background:var(--color-surface-white);color:var(--color-sale);border:.5px solid #cc8888}
+.tag-rear{background:var(--color-neutral-bg);color:var(--color-label);border:.5px solid var(--color-neutral-border)}
+.tag-outlet{background:var(--color-ink);color:var(--color-bg);border:.5px solid var(--color-ink)}
+.tag-free{background:var(--color-neutral-bg);color:var(--color-label);border:.5px solid var(--color-neutral-border)}
+.ann{display:inline-block;background:#fff3cd;border:.5px solid #ffc;font-size:8px;color:#886600;padding:1px 6px;border-radius:2px;margin-left:4px}
+.point-up{display:flex;align-items:center;gap:8px;background:#fdf8f0;border:.5px solid var(--color-point-border);padding:9px 12px;margin-bottom:14px}
+.point-up .pu-badge{background:#b98f40;color:var(--color-surface-white);font-size:10px;letter-spacing:.08em;padding:2px 8px;border-radius:2px}
+.point-up .pu-text{font-size:11px;color:#8a6330}
+.point-up .pu-count{margin-left:auto;font-size:10px;color:#b08a3a}
+.price-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.price-old{font-size:13px;color:var(--color-ink-tertiary);text-decoration:line-through}
+.price-now{font-size:24px;color:var(--color-sale);font-weight:500}
+.price-tax{font-size:10px;color:var(--color-hint)}
+.price-off{font-size:10px;background:var(--color-sale);color:var(--color-surface-white);padding:2px 7px;letter-spacing:.06em}
+.period{display:flex;align-items:center;justify-content:space-between;background:var(--color-panel);padding:10px 14px;margin:16px 0}
+.period-label{font-size:9px;letter-spacing:.16em;color:var(--color-hint)}
+.period-date{font-size:12px;margin-top:2px}
+.coming-soon{font-size:10px;letter-spacing:.16em;color:#8a6330}
+.select-label{font-size:9px;letter-spacing:.2em;color:var(--color-hint);margin:20px 0 10px;display:flex;justify-content:space-between;align-items:center}
+.select-val{color:var(--color-ink);letter-spacing:.05em}
+.select-link{color:var(--color-hint);letter-spacing:.05em;text-decoration:underline;cursor:pointer}
+.colors{display:flex;gap:12px;flex-wrap:wrap}
+.color-chip{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;width:54px}
+.color-chip .sw{width:54px;height:68px;border-radius:3px;border:1px solid var(--color-hairline-2);background-size:cover;background-position:center top}
+.color-chip.active .sw{border-color:var(--color-ink);box-shadow:0 0 0 1px var(--color-ink)}
+.color-chip .cn{font-size:10px;color:var(--color-ink-secondary);letter-spacing:.03em;text-align:center;line-height:1.3}
+.color-chip.active .cn{color:var(--color-ink);font-weight:500}
+.sizes{display:flex;gap:8px;flex-wrap:wrap}
+.size-btn{min-width:58px;padding:11px 12px;border:.5px solid var(--color-border);font-size:11px;font-weight:400;text-align:center;cursor:pointer;background:var(--color-surface-white)}
+.size-btn.active{border-color:var(--color-ink);background:var(--color-ink);color:var(--color-bg)}
+.size-btn.sold{color:#ccc;border-color:#eee;background:var(--color-bg);text-decoration:line-through}
+.size-btn small{display:block;font-size:8px;color:var(--color-sale);margin-top:2px}
+.vsize{border:1px dashed #ccc;padding:11px 12px;display:flex;align-items:center;gap:8px;margin:18px 0;background:#f9f8f6}
+.vsize span{font-size:9px;color:var(--color-hint);letter-spacing:.1em}
+.vsize svg{stroke:var(--color-hint);fill:none;stroke-width:1}
+.btn-cart{width:100%;background:var(--color-ink);color:var(--color-bg);font-size:12px;letter-spacing:.18em;padding:17px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-wishlist{width:100%;margin-top:8px;background:transparent;color:var(--color-ink);font-size:11px;letter-spacing:var(--tracking-label);padding:14px;border:.5px solid var(--color-ink);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.btn-cart svg{stroke:var(--color-bg);fill:none;stroke-width:1.2}
+.btn-wishlist svg{stroke:var(--color-ink);fill:none;stroke-width:1.1}
+.special-notes{margin:18px 0 4px;font-size:10px;line-height:1.8;color:var(--color-ink-muted)}
+/* accordions in right column */
+.acc{border-top:1px solid var(--color-hairline)}
+.acc:first-of-type{margin-top:22px}
+.acc-hd{display:flex;justify-content:space-between;align-items:center;padding:16px 0;cursor:pointer;font-size:10px;letter-spacing:var(--tracking-eyebrow);color:var(--color-label)}
+.acc-hd .arr{color:var(--color-ink-tertiary);transition:transform .2s;font-size:11px}
+.acc.open .acc-hd .arr{transform:rotate(180deg)}
+.acc-bd{display:none;padding-bottom:20px}
+.acc.open .acc-bd{display:block}
+.desc-text{font-size:12px;font-weight:400;line-height:1.95;letter-spacing:.03em}
+.hashtags{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.hashtags a{font-size:10px;color:var(--color-ink-secondary);text-decoration:none}
+.detail-list{}
+.detail-row{display:flex;padding:9px 0;border-bottom:1px solid #f4f4f4}
+.detail-row:last-child{border-bottom:none}
+.detail-key{font-size:10px;color:var(--color-hint);min-width:72px;flex-shrink:0;letter-spacing:.08em}
+.detail-val{font-size:11px;font-weight:400;line-height:1.6}
+.care-label{font-size:9px;letter-spacing:.2em;color:var(--color-hint);margin:14px 0 8px}
+.care-icons{display:flex;flex-wrap:wrap;gap:8px}
+.care-icons .ci{display:flex;flex-direction:column;align-items:center;gap:3px;width:42px;text-align:center}
+.care-icons .ci svg{width:22px;height:22px;stroke:var(--color-ink-secondary);fill:none;stroke-width:1.1}
+.care-icons .ci span{font-size:7px;color:var(--color-ink-muted);line-height:1.2}
+.measure-table{width:100%;border-collapse:collapse;font-size:11px;font-weight:400}
+.measure-table th,.measure-table td{border:1px solid #eee;padding:7px 6px;text-align:center}
+.measure-table th{background:#f7f5f2;color:var(--color-caption);font-weight:400}
+.measure-table td:first-child,.measure-table th:first-child{text-align:left;color:var(--color-caption)}
+/* full-width visual sections */
+.full{border-top:1px solid var(--color-hairline)}
+.section{max-width:var(--section-max);margin:0 auto;padding:48px 40px}
+.sec-t{font-family:var(--font-serif-en);font-size:13px;letter-spacing:.12em;color:var(--color-label);margin-bottom:6px;font-weight:500}
+.sec-sub{font-size:10px;color:var(--color-ink-tertiary);margin-bottom:22px;letter-spacing:.04em}
+.cz-carousel{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:16px}
+.cz-photo{aspect-ratio:4/5;max-width:230px;background:linear-gradient(135deg,var(--color-ph-1),var(--color-ph-2));display:flex;align-items:center;justify-content:center;color:var(--color-ph-ink);font-size:10px;position:relative}
+.cz-save{position:absolute;top:10px;left:10px;display:flex;align-items:center;gap:3px;background:var(--color-pinterest);color:var(--color-surface-white);font-size:10px;padding:4px 9px;border-radius:999px}
+.cz-save svg{width:11px;height:11px;fill:var(--color-surface-white)}
+.cz-items{margin-top:10px;font-size:11px;line-height:1.8}
+.cz-items a{display:block;text-decoration:none;color:var(--color-ink)}
+.cz-items .nfs{color:var(--color-hint)}
+/* staff styling desktop: info + images row */
+.staff-tabs{display:flex;gap:24px;margin-bottom:16px}
+.staff-tabs .t{text-align:center;cursor:pointer;padding-bottom:8px}
+.staff-tabs .t.on{border-bottom:1.5px solid var(--color-ink)}
+.staff-tabs .t .lbl{font-size:9px;letter-spacing:.16em}
+.staff-tabs .t .cm{font-size:8px;color:var(--color-hint);margin-top:2px}
+.staff-row{display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:start}
+.staff-info .si-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;row-gap:4px}
+.staff-info .si-name{font-size:13px;letter-spacing:.06em;font-weight:500}
+.staff-info .si-meta{font-size:11px;color:var(--color-ink-secondary)}
+.staff-info .si-sub{font-size:11px;color:var(--color-ink-secondary)}
+.staff-info .si-div{font-size:10px;color:var(--color-ink-tertiary)}
+.staff-info .si-size{font-size:11px;color:var(--color-hint);margin-top:5px;letter-spacing:.04em}
+.staff-imgs{display:grid;grid-template-columns:repeat(3,minmax(0,260px));gap:10px}
+.staff-imgs .g{aspect-ratio:4/5;background:linear-gradient(135deg,var(--color-ph-1),var(--color-ph-2));display:flex;align-items:center;justify-content:center;color:var(--color-ph-ink);font-size:10px}
+.sw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.sw-grid .g{aspect-ratio:4/5;background:linear-gradient(135deg,var(--color-ph-1),var(--color-ph-2));display:flex;align-items:center;justify-content:center;color:var(--color-ph-ink);font-size:10px}
+.note{max-width:var(--section-max);margin:0 auto 56px;padding:18px 22px;background:var(--color-panel);border:.5px solid var(--color-hairline-2);font-size:12px;line-height:1.9;color:#6a6a60}
+.note b{color:var(--color-ink);font-weight:500}
+.di-grid{display:grid;grid-template-columns:repeat(3,minmax(0,220px));gap:16px;margin-top:16px}
+.di-grid .g{aspect-ratio:4/5;background:linear-gradient(135deg,var(--color-ph-1),var(--color-ph-2));display:flex;align-items:center;justify-content:center;color:var(--color-ph-ink);font-size:10px}
+.acc-hd .jp{letter-spacing:var(--tracking-label)}
+.info-tabs{margin-top:8px}
+.info-tabs .tabbar{display:flex;border-bottom:1px solid var(--color-hairline)}
+.info-tabs .tab{flex:1;text-align:center;padding:13px 4px;font-size:11px;letter-spacing:var(--tracking-label);color:var(--color-hint);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.info-tabs .tab.on{color:var(--color-ink);border-bottom-color:var(--color-ink);font-weight:500}
+.info-tabs .tab-panel{display:none;padding:18px 0 4px}
+.info-tabs .tab-panel.on{display:block}
+.spec-block{margin-top:18px;padding-top:16px;border-top:.5px solid var(--color-hairline)}
+.spec-h{font-size:10px;letter-spacing:var(--tracking-label);color:var(--color-label);margin-bottom:10px}
+
+/* ===== confirmed PC header ===== */
+.d-anno{background:#2a2a2a;color:#f3efe9;font-size:10.5px;letter-spacing:.16em;text-align:center;padding:9px 16px;display:flex;align-items:center;justify-content:center;gap:18px}
+.d-anno .d-dot{opacity:.4}.d-anno .d-cta{color:#b98f40}
+.d-head{border-bottom:1px solid #ece9e4;background:#faf9f7;padding:0 40px;position:sticky;top:0;z-index:50}
+.d-head-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:84px}
+.d-search{display:flex;align-items:center;gap:8px;color:#5a5a52}
+.d-search .ph{font-size:11px;letter-spacing:.1em;color:#aaa}
+.d-logo{display:flex;justify-content:center;font-family:'Tenor Sans',sans-serif;font-weight:400;font-size:21px;letter-spacing:.34em;padding-left:.34em;color:#2a2a2a;white-space:nowrap}
+.d-head-right{display:flex;align-items:center;gap:20px;justify-self:end;color:#2a2a2a}
+.d-nav{display:flex;justify-content:center;gap:30px;height:46px;align-items:center}
+.d-nav .item{font-size:12px;letter-spacing:.18em;color:#5a5a52;display:flex;align-items:center;gap:5px;cursor:pointer}
+.d-nav .item:hover{color:#2a2a2a}.d-nav .item.outlet{color:#b98f40}
+.d-nav .chev{width:8px;height:8px;opacity:.5}
+/* ===== confirmed PC footer ===== */
+.d-foot{background:#2a2a2a;color:#d9d4cc;margin-top:70px}
+.d-news{border-bottom:1px solid rgba(255,255,255,.08);padding:34px 40px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.d-news .nl-ey{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.22em;color:#efe9e1}
+.d-news .nl-tx{font-size:11px;color:#a8a299;letter-spacing:.06em;margin-top:6px}
+.d-news .nl-form{display:flex;min-width:340px}
+.d-news input{flex:1;background:transparent;border:1px solid rgba(255,255,255,.25);border-right:none;color:#efe9e1;font-size:12px;padding:11px 14px;font-family:inherit}
+.d-news input::placeholder{color:#7c766e}
+.d-news button{background:#efe9e1;color:#2a2a2a;border:none;font-size:11px;letter-spacing:.16em;padding:0 22px;cursor:pointer;font-family:inherit}
+.d-cols{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr 1fr;gap:30px;padding:40px 40px 30px}
+.d-cols .fl{font-family:'Tenor Sans',sans-serif;font-size:18px;letter-spacing:.28em;padding-left:.28em;color:#efe9e1}
+.d-cols .brand-col p{font-size:10.5px;line-height:1.9;color:#9a948c;margin-top:14px;letter-spacing:.04em}
+.d-cols h4{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.18em;color:#b8b2a8;margin-bottom:14px;font-weight:600}
+.d-cols a{display:block;font-size:11px;color:#cfc9c0;letter-spacing:.04em;padding:5px 0;cursor:pointer}
+.d-cols a:hover{color:#fff}.d-cols a.outlet{color:#b98f40}
+.d-foot-bottom{border-top:1px solid rgba(255,255,255,.08);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.d-sns{display:flex;gap:14px;align-items:center;color:#cfc9c0}
+.d-pay{display:flex;gap:7px}.d-pay .chip{font-size:8px;color:#9a948c;border:1px solid rgba(255,255,255,.2);padding:3px 7px;border-radius:2px;letter-spacing:.04em}
+.d-copy{font-size:9.5px;color:#7c766e;letter-spacing:.1em}
+</style>
+</head>
+<body>
+
+<div class="d-anno"><span>新作＆ピックアップ商品 24時間ポイントアップ開催中</span><span class="d-dot">●</span><span>¥15,000以上で送料無料</span><span class="d-cta">詳細 ›</span></div>
+<header class="d-head">
+  <div class="d-head-row">
+    <div class="d-search"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg><span class="ph">アイテムを検索</span></div>
+    <div class="d-logo">STYLE DELI</div>
+    <div class="d-head-right">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 20s-7-4.5-7-9.5A3.6 3.6 0 0 1 12 7a3.6 3.6 0 0 1 7 3.5C19 15.5 12 20 12 20z"/></svg>
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
+    </div>
+  </div>
+  <div class="d-nav">
+    <div class="item">NEW <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg></div>
+    <div class="item">CATEGORY <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg></div>
+    <div class="item">STYLE DELI <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg></div>
+    <div class="item">DELI by STYLE DELI</div><div class="item">BLK001</div><div class="item">MARJOUR</div>
+    <div class="item">STYLING <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4l4 4 4-4"/></svg></div>
+    <div class="item outlet">OUTLET</div>
+  </div>
+</header>
+
+<nav class="crumb">HOME &rsaquo; CLOTHING &rsaquo; ボトムス &rsaquo; プリーツカットソーワイドパンツ</nav>
+
+<div class="pdp">
+  <!-- 左：ギャラリー（長くてOK・読む情報は右にあるため） -->
+  <div class="gallery">
+    <div class="gal-inner">
+      <div class="thumbs" id="thumbs">
+        <div class="thumb active" data-label="商品画像 1" data-cap=""><span>1</span></div>
+        <div class="thumb" data-label="商品画像 2" data-cap="モデル 168cm / FREE 着用"><span>2</span></div>
+        <div class="thumb" data-label="商品画像 3" data-cap=""><span>3</span></div>
+        <div class="thumb" data-label="商品画像 4" data-cap=""><span>4</span></div>
+        <div class="thumb" data-label="商品画像 5" data-cap=""><span>5</span></div>
+        <div class="thumb" data-label="商品画像 6" data-cap=""><span>6</span></div>
+        <div class="thumb" data-label="商品画像 7" data-cap="モデル 174cm / TALL 着用"><span>7</span></div>
+        <div class="thumb" data-label="商品画像 8" data-cap=""><span>8</span></div>
+      </div>
+      <div class="main-col">
+        <div class="main" id="mainImg"><span>商品画像 1</span></div>
+        <div class="main-cap" id="mainCap"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 右：購入ボックス ＋ 読む情報（アコーディオン） -->
+  <div class="buybox">
+    <div class="bb-brand">STYLE DELI</div>
+    <div class="bb-name">プリーツカットソーワイドパンツ</div>
+    <div class="bb-code">NO. SD-235681</div>
+
+    <div class="icons-area">
+      <span class="tag-icon tag-point">🔺 NEW 10%ポイントUP <span class="ann">期間限定・自動消去</span></span>
+      <span class="tag-icon tag-sale">SALE</span>
+      <span class="tag-icon tag-preorder">予約</span>
+      <span class="tag-icon tag-few">残りわずか</span>
+      <span class="tag-icon tag-rear">↩ 再入荷</span>
+      <span class="tag-icon tag-outlet">OUTLET</span>
+      <span class="tag-icon tag-free">✦ 送料無料</span>
+    </div>
+
+    <div class="point-up">
+      <span class="pu-badge">POINT 10x</span>
+      <span class="pu-text">期間限定 10倍ポイント</span>
+      <span class="pu-count">終了まで 02:14:38</span>
+    </div>
+
+    <div class="price-row">
+      <span class="price-old">¥14,500</span>
+      <span class="price-now">¥11,600</span>
+      <span class="price-tax">税込</span>
+      <span class="price-off">20% OFF</span>
+    </div>
+
+    <div class="period">
+      <div>
+        <div class="period-label">販売期間</div>
+        <div class="period-date">2026 / 04 / 30 19:00 〜</div>
+      </div>
+      <div class="coming-soon">COMING SOON</div>
+    </div>
+
+    <div class="select-label">COLOR<span class="select-val" id="cval">ライトグレー</span></div>
+    <div class="colors" id="sw">
+      <div class="color-chip active" data-n="ライトグレー"><div class="sw" style="background:#d4cec8"></div><div class="cn">ライトグレー</div></div>
+      <div class="color-chip" data-n="ブラック"><div class="sw" style="background:#2a2a2a"></div><div class="cn">ブラック</div></div>
+      <div class="color-chip" data-n="セージグリーン"><div class="sw" style="background:#8a9a8a"></div><div class="cn">セージグリーン</div></div>
+      <div class="color-chip" data-n="モカ"><div class="sw" style="background:#c8b4a0"></div><div class="cn">モカ</div></div>
+    </div>
+
+    <div class="select-label">SIZE<span class="select-link" id="sizeChartLink">サイズ表を見る</span></div>
+    <div class="sizes" id="sz">
+      <div class="size-btn sold">FREE</div>
+      <div class="size-btn active">01</div>
+      <div class="size-btn">02<small>残りわずか</small></div>
+      <div class="size-btn sold">03</div>
+    </div>
+
+    <div class="vsize">
+      <svg width="14" height="14" viewBox="0 0 14 14"><rect x="1" y="4" width="12" height="6"/><line x1="4" y1="4" x2="4" y2="2"/><line x1="7" y1="4" x2="7" y2="2.5"/><line x1="10" y1="4" x2="10" y2="2"/></svg>
+      <span>バーチャサイズ ボタン（アプリ自動挿入）</span>
+    </div>
+
+    <button class="btn-cart">
+      <svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 2h12l-1.5 8h-9L2 2z"/><circle cx="5.5" cy="14" r="1" fill="var(--color-bg)" stroke="none"/><circle cx="11.5" cy="14" r="1" fill="var(--color-bg)" stroke="none"/></svg>
+      カートに入れる
+    </button>
+    <button class="btn-wishlist">
+      <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 12s-6-3.8-6-7.5A3.5 3.5 0 0 1 7 2.3 3.5 3.5 0 0 1 13 4.5C13 8.2 7 12 7 12z"/></svg>
+      お気に入りに追加
+    </button>
+
+    <div class="special-notes">
+      ※ ナチュラル：【予約販売★6月中旬入荷予定】<br>
+      ※ ネイビー：再入荷予定はございません
+    </div>
+
+    <!-- 読む情報：タブ（B / 商品説明＋特徴・仕様 / サイズ / 素材・お手入れ） -->
+    <div class="info-tabs" id="measure">
+      <div class="tabbar" id="infoTabs">
+        <div class="tab on" data-t="tab-desc">商品説明</div>
+        <div class="tab" data-t="tab-size">サイズ</div>
+        <div class="tab" data-t="tab-mat">素材・お手入れ</div>
+      </div>
+      <div class="tab-panel on" id="tab-desc">
+        <div class="desc-text">
+          プリーツデザインが美しいカットソー素材のワイドパンツ。やわらかく落ち感のある生地が、動くたびに上品にドレープを生み出します。<br><br>
+          ウエストはゴム仕様で一日中快適な穿き心地。シンプルなトップスと合わせるだけで、きちんとした印象に仕上がる万能アイテム。
+        </div>
+        <div class="hashtags"><a href="#">#スタイルデリ</a><a href="#">#SDコーデ</a><a href="#">#プリーツパンツ</a></div>
+        <div class="spec-block">
+          <div class="spec-h">特徴・仕様</div>
+          <div class="detail-list">
+            <div class="detail-row"><span class="detail-key">透け感</span><span class="detail-val">ややあり（インナー推奨）</span></div>
+            <div class="detail-row"><span class="detail-key">生地の厚み</span><span class="detail-val">普通</span></div>
+            <div class="detail-row"><span class="detail-key">光沢感</span><span class="detail-val">控えめ</span></div>
+            <div class="detail-row"><span class="detail-key">ポケット</span><span class="detail-val">あり（両サイド）</span></div>
+            <div class="detail-row"><span class="detail-key">サイズ感</span><span class="detail-val">ジャストめ</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-panel" id="tab-size">
+        <table class="measure-table">
+          <thead><tr><th></th><th>FREE</th><th>01</th><th>02</th><th>03</th></tr></thead>
+          <tbody>
+            <tr><td>ウエスト</td><td>58-78</td><td>60-80</td><td>62-82</td><td>64-84</td></tr>
+            <tr><td>ヒップ</td><td>94</td><td>96</td><td>100</td><td>104</td></tr>
+            <tr><td>股下</td><td>68</td><td>69</td><td>70</td><td>71</td></tr>
+            <tr><td>丈</td><td>98</td><td>100</td><td>102</td><td>104</td></tr>
+          </tbody>
+        </table>
+        <div class="vsize" style="margin:14px 0 0">
+          <svg width="14" height="14" viewBox="0 0 14 14"><rect x="1" y="4" width="12" height="6"/><line x1="4" y1="4" x2="4" y2="2"/><line x1="7" y1="4" x2="7" y2="2.5"/><line x1="10" y1="4" x2="10" y2="2"/></svg>
+          <span>バーチャサイズ（自分のサイズと比較）</span>
+        </div>
+      </div>
+      <div class="tab-panel" id="tab-mat">
+        <div class="detail-list">
+          <div class="detail-row"><span class="detail-key">素材</span><span class="detail-val">ポリエステル 95% / ポリウレタン 5%</span></div>
+          <div class="detail-row"><span class="detail-key">裏地</span><span class="detail-val">なし</span></div>
+          <div class="detail-row"><span class="detail-key">伸縮性</span><span class="detail-val">ややあり</span></div>
+          <div class="detail-row"><span class="detail-key">生産国</span><span class="detail-val">中国</span></div>
+          <div class="detail-row"><span class="detail-key">お手入れ</span><span class="detail-val">やさしく手洗いまたはネットに入れて洗濯機の弱水流コースで。</span></div>
+        </div>
+        <div class="care-label">洗濯表示</div>
+        <div class="care-icons">
+          <span class="ci"><svg viewBox="0 0 24 24"><path d="M4 6h16v14H4z"/><circle cx="12" cy="13" r="4"/></svg><span>洗濯機可</span></span>
+          <span class="ci"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M9 4v16"/></svg><span>ネット使用</span></span>
+          <span class="ci"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16"/><circle cx="12" cy="12" r="4"/><path d="M5 5l14 14"/></svg><span>乾燥機不可</span></span>
+          <span class="ci"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14"/><path d="M7 5l5 5M10 5l5 5"/></svg><span>日陰干し</span></span>
+          <span class="ci"><svg viewBox="0 0 24 24"><path d="M4 16h16l-2-6H7l-3 6z"/><circle cx="10" cy="13" r=".6"/><circle cx="13" cy="13" r=".6"/></svg><span>アイロン中温</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ここから全幅：ビジュアル系セクション -->
+<div class="full">
+
+  <div class="section">
+    <div class="sec-t">STAFF STYLING BY HEIGHT</div>
+    <div class="sec-sub">身長別の着用イメージ</div>
+    <div class="staff-tabs">
+      <div class="t on"><div class="lbl">P SIZE</div><div class="cm">〜155cm</div></div>
+      <div class="t"><div class="lbl">TALL SIZE</div><div class="cm">165cm〜</div></div>
+    </div>
+    <div class="staff-info" style="margin-bottom:16px">
+      <div class="si-line">
+        <span class="si-name">スタッフ 田中</span>
+        <span class="si-div">|</span>
+        <span class="si-meta">身長 153cm</span>
+        <span class="si-div">|</span>
+        <span class="si-sub">体型/華奢　骨格/華奢</span>
+      </div>
+      <div class="si-size">着用サイズ 01</div>
+    </div>
+    <div class="staff-imgs">
+      <div class="g"><span>着用写真 1</span></div>
+      <div class="g"><span>着用写真 2</span></div>
+      <div class="g"><span>着用写真 3</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-t">STYLING LAB</div>
+    <div class="sec-sub">スタイリング提案</div>
+    <div class="sw-grid">
+      <div class="g"><span>IMG</span></div>
+      <div class="g"><span>IMG</span></div>
+      <div class="g"><span>IMG</span></div>
+      <div class="g"><span>IMG</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-t">STAFF WEARING</div>
+    <div class="sec-sub">スタッフコーディネート</div>
+    <div class="sw-grid">
+      <div class="g"><span>IMG</span></div><div class="g"><span>IMG</span></div><div class="g"><span>IMG</span></div><div class="g"><span>IMG</span></div>
+      <div class="g"><span>IMG</span></div><div class="g"><span>IMG</span></div><div class="g"><span>IMG</span></div><div class="g"><span>IMG</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-t">DETAIL IMAGES</div>
+    <div class="sec-sub">詳細画像</div>
+    <div class="di-grid">
+      <div class="g"><span>詳細画像 1（素材クローズアップ）</span></div>
+      <div class="g"><span>詳細画像 2（ディテール）</span></div>
+      <div class="g"><span>詳細画像 3</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-t">COORDINATE ITEMS</div>
+    <div class="sec-sub">モデル着用アイテム</div>
+    <div class="cz-carousel">
+      <div>
+        <div class="cz-photo"><span>コーデ着用写真 1</span><span class="cz-save"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>保存</span></div>
+        <div class="cz-items"><a href="#">■tops：【selection】襟付きメッシュニットベスト(ホワイト)</a><span class="nfs">□other：Not for Sale</span></div>
+      </div>
+      <div>
+        <div class="cz-photo"><span>コーデ着用写真 2</span></div>
+        <div class="cz-items"><a href="#">■pants：テーパードカーゴパンツ(カーキ)</a><a href="#">■shoes：レザートングサンダル(ブラック)</a></div>
+      </div>
+      <div>
+        <div class="cz-photo"><span>コーデ着用写真 3</span></div>
+        <div class="cz-items"><a href="#">■onepiece：シアーレイヤードワンピース(グレー)</a><span class="nfs">□other：Not for Sale</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>PCレイアウト（A案）</b><br>
+    ・<b>読む情報（DESCRIPTION / SPEC / MEASUREMENTS / DETAILS）は右カラムにアコーディオンで集約</b> → 画像を全部スクロールしなくても読める。<br>
+    ・左ギャラリーは何枚あってもOK（説明が右にあるため、たどり着くのが長くならない）。<br>
+    ・<b>全幅は ビジュアル系だけ</b>（身長別着用 → Styling Lab → Staff Wearing → Detail Images → <b>コーデ</b> → おすすめ）。<br>
+    ・スマホは今の縦一列のまま（レスポンシブで切替）。<br>
+    ・任意：ギャラリーが長い時のために、カートだけ追従する sticky を後で足すことも可。
+  </div>
+</div>
+
+<script>
+(function(){
+  var sw=document.getElementById('sw'),cval=document.getElementById('cval'),sz=document.getElementById('sz');
+  if(sw)sw.addEventListener('click',function(e){var d=e.target.closest('.color-chip');if(!d)return;sw.querySelectorAll('.color-chip').forEach(function(x){x.classList.remove('active')});d.classList.add('active');if(cval&&d.dataset.n)cval.textContent=d.dataset.n;var mi=document.getElementById('mainImg');if(mi&&mi.querySelector('span')&&d.dataset.n)mi.querySelector('span').textContent='商品画像 1 \u2014 '+d.dataset.n;var mc=document.getElementById('mainCap');if(mc&&d.dataset.n)mc.textContent=d.dataset.n+' 着用イメージ';});
+  if(sz)sz.addEventListener('click',function(e){var b=e.target.closest('.size-btn');if(!b||b.classList.contains('sold'))return;sz.querySelectorAll('.size-btn').forEach(function(x){x.classList.remove('active')});b.classList.add('active');});
+  var thumbs=document.getElementById('thumbs'),mainImg=document.getElementById('mainImg'),mainCap=document.getElementById('mainCap');
+  if(thumbs&&mainImg)thumbs.addEventListener('click',function(e){var t=e.target.closest('.thumb');if(!t)return;thumbs.querySelectorAll('.thumb').forEach(function(x){x.classList.remove('active')});t.classList.add('active');mainImg.querySelector('span').textContent=t.dataset.label;if(mainCap)mainCap.textContent=t.dataset.cap||'';});
+  var ib=document.getElementById('infoTabs');
+  if(ib)ib.addEventListener('click',function(e){var t=e.target.closest('.tab');if(!t)return;document.querySelectorAll('.info-tabs .tab').forEach(function(x){x.classList.remove('on')});document.querySelectorAll('.info-tabs .tab-panel').forEach(function(x){x.classList.remove('on')});t.classList.add('on');var pp=document.getElementById(t.getAttribute('data-t'));if(pp)pp.classList.add('on');});
+  var scl=document.getElementById('sizeChartLink'),mz=document.getElementById('measure');
+  if(scl&&mz)scl.addEventListener('click',function(){var st=document.querySelector('.tab[data-t="tab-size"]');if(st)st.click();mz.scrollIntoView({behavior:'smooth',block:'center'});});
+  var tabs=document.querySelectorAll('.staff-tabs .t');
+  tabs.forEach(function(t){t.addEventListener('click',function(){tabs.forEach(function(x){x.classList.remove('on')});t.classList.add('on');});});
+})();
+</script>
+
+<!-- 共通フッター（確定版） -->
+<div class="d-foot">
+  <div class="d-news"><div><div class="nl-ey">NEWSLETTER</div><div class="nl-tx">新作・再入荷・会員様限定の情報をいち早くお届けします。</div></div><div class="nl-form"><input type="email" placeholder="メールアドレス"><button>登録する</button></div></div>
+  <div class="d-cols">
+    <div class="brand-col"><div class="fl">STYLE DELI</div><p>大人の女性のための、上質な日常着を。</p></div>
+    <div><h4>CATEGORY</h4><a>トップス</a><a>パンツ</a><a>スカート</a><a>ワンピース</a><a>アウター</a><a class="outlet">OUTLET</a></div>
+    <div><h4>BRAND</h4><a>STYLE DELI</a><a>DELI by STYLE DELI</a><a>BLK001</a><a>marjour</a><a>DRESSDEN</a></div>
+    <div><h4>GUIDE</h4><a>配送・送料について</a><a>返品・交換</a><a>お支払い方法</a><a>よくあるご質問</a><a>お問い合わせ</a></div>
+    <div><h4>ABOUT</h4><a>ブランドについて</a><a>RANKING</a><a>会員ステージ・ポイント</a><a>採用情報</a><a>特定商取引法に基づく表示</a></div>
+  </div>
+  <div class="d-foot-bottom">
+    <div class="d-sns"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span style="font-size:11px;letter-spacing:.1em">LINE</span></div>
+    <div class="d-pay"><span class="chip">VISA</span><span class="chip">Master</span><span class="chip">JCB</span><span class="chip">AMEX</span><span class="chip">代引</span><span class="chip">後払い</span></div>
+    <div class="d-copy">© STYLE DELI</div>
+  </div>
+</div>
+</body>
+</html>
