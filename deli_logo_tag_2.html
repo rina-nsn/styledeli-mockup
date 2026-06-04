@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STYLE DELI ｜ 襟ネーム・下げ札 デザイン案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:wght@300;400&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1b18; --ink-soft:#46443e; --muted:#928c80;
+    --line:rgba(28,27,24,0.13); --line-soft:rgba(28,27,24,0.08);
+    --paper:#f4f1ea; --card:#fbfaf6;
+    --serif-ja:'Shippori Mincho', serif; --sans-ja:'Zen Kaku Gothic New', sans-serif;
+    --logo:'Tenor Sans',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans-ja);font-weight:300;line-height:1.85;letter-spacing:0.02em;display:flex;justify-content:center;}
+  .wrap{width:100%;max-width:430px;padding:2.4rem 20px 3.6rem;}
+
+  .eyebrow{font-family:'Jost',sans-serif;font-weight:300;font-size:9.5px;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;align-items:center;padding-bottom:1.1rem;border-bottom:0.5px solid var(--line);}
+
+  .hero{padding:2.2rem 0 1.9rem;}
+  .hero .pl{font-family:var(--logo);font-weight:400;font-size:25px;letter-spacing:0.34em;padding-left:0.34em;color:var(--ink);line-height:1;}
+  .hero h1{font-family:var(--serif-ja);font-weight:600;font-size:21px;line-height:1.5;letter-spacing:0.07em;color:var(--ink);margin-top:1rem;}
+  .hero p{margin-top:1.2rem;font-size:13.5px;line-height:1.95;color:var(--ink-soft);font-weight:300;}
+
+  .aim{padding:1.9rem 0;border-top:0.5px solid var(--line);border-bottom:0.5px solid var(--line);}
+  .sec-label{font-family:'Jost',sans-serif;font-weight:300;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:0.8rem;}
+  .aim h2{font-family:var(--serif-ja);font-weight:600;font-size:18px;letter-spacing:0.06em;line-height:1.5;margin-bottom:0.9rem;}
+  .aim p{font-size:13px;line-height:1.95;color:var(--ink-soft);font-weight:300;}
+  .aim .note{margin-top:1rem;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.14em;color:var(--muted);}
+
+  .block{margin-top:2.6rem;}
+  .block-head{margin-bottom:1.3rem;}
+  .block-head h2{font-family:var(--serif-ja);font-weight:600;font-size:19px;letter-spacing:0.06em;line-height:1.45;}
+  .block-head p{margin-top:0.6rem;font-size:12.5px;color:var(--ink-soft);font-weight:300;line-height:1.9;}
+
+  .pat{margin-bottom:1rem;}
+  .pat-cap{display:flex;align-items:baseline;gap:9px;margin:0 0 0.6rem 2px;}
+  .pat-cap .pn{font-family:'Jost',sans-serif;font-weight:400;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-soft);}
+  .pat-cap .pd{font-size:11px;color:var(--muted);font-weight:300;letter-spacing:0.02em;}
+
+  /* ステージ */
+  .stage{background:rgba(28,27,24,0.025);border:0.5px solid var(--line-soft);border-radius:3px;padding:2.6rem 1rem;display:flex;justify-content:center;align-items:center;}
+
+  /* ===== 襟ネーム（織りネーム）===== */
+  .neck{position:relative;display:inline-flex;align-items:stretch;box-shadow:0 1px 4px rgba(28,27,24,0.13);}
+  .neck .st{width:9px;}
+  .neck-in{text-align:center;}
+  /* A: 生成り × 黒文字・1行 */
+  .v-ecru{background:repeating-linear-gradient(90deg,#efe9dc 0 1px,#f6f1e7 1px 2px);}
+  .v-ecru .st{background:rgba(28,27,24,0.045);}
+  .v-ecru .st-l{border-right:1px dashed rgba(28,27,24,0.30);}
+  .v-ecru .st-r{border-left:1px dashed rgba(28,27,24,0.30);}
+  .v-ecru .neck-in{padding:0.95rem 1.7rem;}
+  .v-ecru .nd{font-family:var(--logo);font-weight:400;font-size:17px;letter-spacing:0.3em;padding-left:0.3em;color:#26241f;line-height:1;}
+  /* B: 黒タブ × 生成り文字・1行 */
+  .v-black{background:#211f1b;box-shadow:0 2px 6px rgba(28,27,24,0.28);}
+  .v-black .st{background:rgba(255,255,255,0.05);}
+  .v-black .st-l{border-right:1px dashed rgba(244,241,234,0.32);}
+  .v-black .st-r{border-left:1px dashed rgba(244,241,234,0.32);}
+  .v-black .neck-in{padding:0.95rem 1.7rem;}
+  .v-black .nd{font-family:var(--logo);font-weight:400;font-size:17px;letter-spacing:0.3em;padding-left:0.3em;color:#efe9dc;line-height:1;}
+  /* C: 生成り × 黒・2段組 STYLE / DELI */
+  .v-stack{background:repeating-linear-gradient(90deg,#efe9dc 0 1px,#f6f1e7 1px 2px);}
+  .v-stack .st{background:rgba(28,27,24,0.045);}
+  .v-stack .st-l{border-right:1px dashed rgba(28,27,24,0.30);}
+  .v-stack .st-r{border-left:1px dashed rgba(28,27,24,0.30);}
+  .v-stack .neck-in{padding:1.1rem 1.9rem;}
+  .v-stack .nd{font-family:var(--logo);font-weight:400;font-size:17px;letter-spacing:0.34em;padding-left:0.34em;color:#26241f;line-height:1.45;}
+
+  /* ===== 下げ札（スイングタグ）===== */
+  .swing{position:relative;box-shadow:0 2px 7px rgba(28,27,24,0.11);}
+  .hole{position:absolute;width:10px;height:10px;border-radius:50%;z-index:2;}
+  .string{position:absolute;left:50%;transform:translateX(-50%);}
+  /* A: アイボリー 縦長クラシック */
+  .sw-ivory{width:132px;background:#fcfbf7;border:0.5px solid var(--line);border-radius:2px 2px 5px 5px;padding:1.85rem 0.95rem 1.15rem;}
+  .sw-ivory .hole{top:9px;left:50%;transform:translateX(-50%);background:var(--paper);box-shadow:inset 0 0 0 1.5px rgba(28,27,24,0.26);}
+  .sw-ivory .string{top:-16px;}
+  .sw-ivory .sd{font-family:var(--logo);font-weight:400;font-size:18px;letter-spacing:0.26em;padding-left:0.26em;text-align:center;color:var(--ink);line-height:1.35;margin-top:0.5rem;}
+  .sw-ivory .sw-line{height:0.5px;background:var(--line);margin:0.95rem 0.4rem 0.7rem;}
+  .sw-ivory .sw-tag{font-family:var(--serif-ja);font-weight:500;font-size:8.5px;line-height:1.7;letter-spacing:0.05em;color:var(--muted);text-align:center;}
+  /* B: 黒 縦長 ミニマル（箔押し風） */
+  .sw-black{width:132px;background:#211f1b;border-radius:2px 2px 5px 5px;padding:1.85rem 0.95rem 1.25rem;}
+  .sw-black .hole{top:9px;left:50%;transform:translateX(-50%);background:var(--paper);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,0.22);}
+  .sw-black .string{top:-16px;}
+  .sw-black .sd{font-family:var(--logo);font-weight:400;font-size:18px;letter-spacing:0.26em;padding-left:0.26em;text-align:center;color:#e7dcc4;line-height:1.35;margin-top:0.5rem;}
+  .sw-black .sw-line{height:0.5px;background:rgba(231,220,196,0.32);margin:0.95rem 0.5rem 0.7rem;}
+  .sw-black .sw-tag{font-family:var(--serif-ja);font-weight:500;font-size:8.5px;line-height:1.7;letter-spacing:0.05em;color:#b6a98c;text-align:center;}
+  /* C: アイボリー ワイド（横長） */
+  .sw-wide{width:230px;background:#fcfbf7;border:0.5px solid var(--line);border-radius:2px 2px 5px 5px;padding:1.9rem 1.3rem 1.25rem;text-align:center;}
+  .sw-wide .hole{top:9px;left:50%;transform:translateX(-50%);background:var(--paper);box-shadow:inset 0 0 0 1.5px rgba(28,27,24,0.26);}
+  .sw-wide .string{top:-16px;}
+  .sw-wide .sd{font-family:var(--logo);font-weight:400;font-size:21px;letter-spacing:0.4em;padding-left:0.4em;color:var(--ink);line-height:1;margin-top:0.35rem;}
+  .sw-wide .sw-line{width:34px;height:0.5px;background:var(--muted);margin:0.85rem auto 0.65rem;}
+  .sw-wide .sw-tag{font-family:'Jost',sans-serif;font-weight:300;font-size:8.5px;letter-spacing:0.26em;text-transform:uppercase;color:var(--muted);}
+
+  .foot{margin-top:2.8rem;padding-top:1.8rem;border-top:0.5px solid var(--line);}
+  .foot h2{font-family:var(--serif-ja);font-weight:600;font-size:17px;letter-spacing:0.06em;margin-bottom:0.8rem;}
+  .foot ol{list-style:none;counter-reset:s;}
+  .foot li{position:relative;padding:0.5rem 0 0.5rem 2.2rem;font-size:12.5px;color:var(--ink-soft);font-weight:300;border-bottom:0.5px solid var(--line-soft);line-height:1.7;}
+  .foot li:before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0.6rem;font-family:'Jost',sans-serif;font-size:10px;color:var(--muted);}
+  .sign{margin-top:2rem;font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);text-align:right;}
+
+  .reveal{opacity:0;transform:translateY(12px);animation:rise 0.85s cubic-bezier(.2,.7,.2,1) forwards;}
+  @keyframes rise{to{opacity:1;transform:none;}}
+  @media(prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none;}}
+  @media print{body{background:#fff;}.reveal{animation:none;opacity:1;transform:none;}.stage,.swing,.neck{break-inside:avoid;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+
+  /* === 下げ札・別案（形状・紙質・組み方で振り幅）=== */
+  /* A: 和モダン 縦書き＋落款 */
+  .sw-vert{width:116px;min-height:190px;background:#fcfbf7;border:0.5px solid var(--line);border-radius:2px 2px 5px 5px;padding:1.7rem 0.8rem 1.15rem;display:flex;flex-direction:column;align-items:center;}
+  .sw-vert .hole{top:9px;left:50%;transform:translateX(-50%);background:var(--paper);box-shadow:inset 0 0 0 1.5px rgba(28,27,24,0.26);}
+  .sw-vert .string{top:-16px;}
+  .sw-vert .vtag{writing-mode:vertical-rl;font-family:var(--serif-ja);font-weight:500;font-size:10.5px;letter-spacing:0.16em;line-height:2.1;color:var(--ink-soft);margin:0.55rem 0 1rem;}
+  .sw-vert .vfoot{margin-top:auto;display:flex;flex-direction:column;align-items:center;gap:0.55rem;}
+  .sw-vert .vlogo{font-family:var(--logo);font-weight:400;font-size:11px;letter-spacing:0.2em;padding-left:0.2em;color:var(--ink);}
+  .sw-vert .seal{width:17px;height:17px;border:1px solid #a85a4d;border-radius:2px;display:flex;align-items:center;justify-content:center;font-family:var(--serif-ja);font-weight:600;font-size:8.5px;color:#a85a4d;}
+  /* B: クラフト紙 ナチュラル */
+  .sw-kraft{width:132px;background:#cbb595;background-image:repeating-linear-gradient(0deg,rgba(80,58,30,0.05) 0 1px,transparent 1px 3px);border:0.5px solid rgba(70,52,30,0.32);border-radius:2px 2px 5px 5px;padding:1.85rem 0.95rem 1.15rem;}
+  .sw-kraft .hole{top:9px;left:50%;transform:translateX(-50%);background:var(--paper);box-shadow:inset 0 0 0 1.5px rgba(70,52,30,0.4);}
+  .sw-kraft .string{top:-16px;}
+  .sw-kraft .sd{font-family:var(--logo);font-weight:400;font-size:18px;letter-spacing:0.26em;padding-left:0.26em;text-align:center;color:#3a2c1a;line-height:1.35;margin-top:0.5rem;}
+  .sw-kraft .sw-line{height:0.5px;background:rgba(70,52,30,0.38);margin:0.95rem 0.4rem 0.7rem;}
+  .sw-kraft .sw-tag{font-family:var(--serif-ja);font-weight:500;font-size:8.5px;line-height:1.7;letter-spacing:0.05em;color:#6e5838;text-align:center;}
+  /* C: 枠取り クラシックラベル */
+  .sw-label{width:132px;background:#fcfbf7;border:0.5px solid var(--line);border-radius:2px 2px 5px 5px;padding:1.65rem 0.7rem 1rem;}
+  .sw-label .hole{top:9px;left:50%;transform:translateX(-50%);background:var(--paper);box-shadow:inset 0 0 0 1.5px rgba(28,27,24,0.26);}
+  .sw-label .string{top:-16px;}
+  .sw-label .frame{position:relative;border:1px solid var(--ink);padding:0.95rem 0.5rem 0.85rem;text-align:center;}
+  .sw-label .frame:before{content:'';position:absolute;inset:3px;border:0.5px solid var(--ink);pointer-events:none;}
+  .sw-label .lcap{font-family:'Jost',sans-serif;font-weight:400;font-size:6.5px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted);position:relative;}
+  .sw-label .sd{font-family:var(--logo);font-weight:400;font-size:15px;letter-spacing:0.2em;padding-left:0.2em;color:var(--ink);margin:0.45rem 0;line-height:1;position:relative;}
+  .sw-label .lrule{width:22px;height:0.5px;background:var(--muted);margin:0.4rem auto;position:relative;}
+  /* D: サークル 丸タグ */
+  .sw-circle{position:relative;width:132px;height:132px;border-radius:50%;background:#fcfbf7;border:0.5px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+  .sw-circle:before{content:'';position:absolute;inset:9px;border:0.5px dashed rgba(28,27,24,0.22);border-radius:50%;pointer-events:none;}
+  .sw-circle .hole{top:13px;left:50%;transform:translateX(-50%);background:var(--paper);box-shadow:inset 0 0 0 1.5px rgba(28,27,24,0.26);}
+  .sw-circle .string{top:-12px;}
+  .sw-circle .sd{font-family:var(--logo);font-weight:400;font-size:15px;letter-spacing:0.24em;padding-left:0.24em;color:var(--ink);line-height:1.3;margin-top:0.3rem;}
+  .sw-circle .sw-line{width:22px;height:0.5px;background:var(--muted);margin:0.55rem auto 0.45rem;}
+  .sw-circle .ctag{font-family:'Jost',sans-serif;font-weight:300;font-size:7px;letter-spacing:0.26em;text-transform:uppercase;color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow reveal">
+    <span>STYLE DELI</span>
+    <span>2026.06</span>
+  </div>
+
+  <header class="hero reveal" style="animation-delay:.07s">
+    <div class="pl">STYLE DELI</div>
+    <h1>襟ネーム・下げ札 デザイン案</h1>
+    <p>新ロゴ（Tenor Sans ／ Quiet Luxury）を、襟ネームと下げ札へ展開したご提案です。本体ロゴ書体は確定済みのため、ここでは「地色・組み方・素材感」の違いで雰囲気の振り幅を見比べていただけるよう、それぞれ3パターンをご用意しました。</p>
+  </header>
+
+  <section class="aim reveal" style="animation-delay:.14s">
+    <div class="sec-label">Direction ─ 方針</div>
+    <h2>洗練された上品さを、タグから。</h2>
+    <p>お客様が最初に触れるのは、商品そのものとタグ類。だからこそ本体ロゴと書体を完全に揃え、生成りの織り地や黒の引き締め、繊細な字間で「大人の上質」を一貫させます。安っぽく見せない最小限の要素設計が軸です。</p>
+    <div class="note">本体ロゴ書体：STYLE DELI ─ Tenor Sans（C-3 ／ 確定）</div>
+  </section>
+
+  <!-- 襟ネーム -->
+  <section class="block reveal" style="animation-delay:.05s">
+    <div class="block-head">
+      <div class="sec-label">01 ─ Woven Neck Label</div>
+      <h2>襟ネーム（織りネーム）</h2>
+      <p>首裏に縫い付ける平ネーム。左右を折り返して縫製するイメージです。地色と組み方で印象が変わります。</p>
+    </div>
+
+    <div class="pat">
+      <div class="pat-cap"><span class="pn">Pattern A</span><span class="pd">生成り地 × 黒糸織り ／ 1行</span></div>
+      <div class="stage">
+        <div class="neck v-ecru"><span class="st st-l"></span><div class="neck-in"><div class="nd">STYLE DELI</div></div><span class="st st-r"></span></div>
+      </div>
+    </div>
+
+    <div class="pat">
+      <div class="pat-cap"><span class="pn">Pattern B</span><span class="pd">黒タブ × 生成り文字 ／ 1行</span></div>
+      <div class="stage">
+        <div class="neck v-black"><span class="st st-l"></span><div class="neck-in"><div class="nd">STYLE DELI</div></div><span class="st st-r"></span></div>
+      </div>
+    </div>
+
+    <div class="pat">
+      <div class="pat-cap"><span class="pn">Pattern C</span><span class="pd">生成り地 × 黒 ／ 2段組（正方形寄り）</span></div>
+      <div class="stage">
+        <div class="neck v-stack"><span class="st st-l"></span><div class="neck-in"><div class="nd">STYLE<br>DELI</div></div><span class="st st-r"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 下げ札 -->
+  <section class="block reveal" style="animation-delay:.05s">
+    <div class="block-head">
+      <div class="sec-label">02 ─ Swing Tag</div>
+      <h2>下げ札（スイングタグ）─ 別案</h2>
+      <p>前回案（縦長・黒・横長）から方向性を変え、形状・紙質・組み方で大きく振った4案です。書体は Tenor Sans のまま、見え方の引き出しを広げました。</p>
+    </div>
+
+    <div class="pat">
+      <div class="pat-cap"><span class="pn">Pattern A</span><span class="pd">和モダン ／ 縦書き＋落款</span></div>
+      <div class="stage">
+        <div class="swing sw-vert">
+          <svg class="string" width="34" height="30" viewBox="0 0 34 30"><path d="M17 27 C 6 23 6 6 17 3 C 28 6 28 23 17 27 Z" fill="none" stroke="#cabfa9" stroke-width="2.4"/></svg>
+          <span class="hole"></span>
+          <div class="vtag">洗練と、心地よさを着る。</div>
+          <div class="vfoot">
+            <div class="vlogo">STYLE DELI</div>
+            <span class="seal">S</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pat">
+      <div class="pat-cap"><span class="pn">Pattern B</span><span class="pd">クラフト紙 ／ ナチュラル</span></div>
+      <div class="stage">
+        <div class="swing sw-kraft">
+          <svg class="string" width="34" height="30" viewBox="0 0 34 30"><path d="M17 27 C 6 23 6 6 17 3 C 28 6 28 23 17 27 Z" fill="none" stroke="#9a8050" stroke-width="2.4"/></svg>
+          <span class="hole"></span>
+          <div class="sd">STYLE<br>DELI</div>
+          <div class="sw-line"></div>
+          <div class="sw-tag">洗練と、<br>心地よさを着る。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pat">
+      <div class="pat-cap"><span class="pn">Pattern C</span><span class="pd">枠取り ／ クラシックラベル</span></div>
+      <div class="stage">
+        <div class="swing sw-label">
+          <svg class="string" width="34" height="30" viewBox="0 0 34 30"><path d="M17 27 C 6 23 6 6 17 3 C 28 6 28 23 17 27 Z" fill="none" stroke="#cabfa9" stroke-width="2.4"/></svg>
+          <span class="hole"></span>
+          <div class="frame">
+            <div class="lcap">Tokyo</div>
+            <div class="sd">STYLE DELI</div>
+            <div class="lrule"></div>
+            <div class="lcap">Ladies Apparel</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pat">
+      <div class="pat-cap"><span class="pn">Pattern D</span><span class="pd">サークル ／ 丸タグ</span></div>
+      <div class="stage">
+        <div class="swing sw-circle">
+          <svg class="string" width="34" height="30" viewBox="0 0 34 30"><path d="M17 27 C 6 23 6 6 17 3 C 28 6 28 23 17 27 Z" fill="none" stroke="#cabfa9" stroke-width="2.4"/></svg>
+          <span class="hole"></span>
+          <div class="sd">STYLE<br>DELI</div>
+          <div class="sw-line"></div>
+          <div class="ctag">Refined</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot reveal" style="animation-delay:.05s">
+    <h2>次のステップ</h2>
+    <ol>
+      <li>襟ネーム・下げ札それぞれ、ご希望のパターンをお選びください。</li>
+      <li>選定案を実寸で検証（織りネーム ／ 下げ札の現物サイズ）。</li>
+      <li>白黒・反転、最小サイズの可読性、紐色・紙質を確認。</li>
+      <li>最終データ（SVG／入稿用）として書き出し、各媒体へ展開。</li>
+    </ol>
+    <div class="sign">STYLE DELI Shopify 移行プロジェクト</div>
+  </footer>
+
+</div>
+</body>
+</html>
