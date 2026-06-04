@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STYLE DELI ｜ 新ブランドロゴ ご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Cormorant+Garamond:wght@400;500&family=Jost:wght@300;400&family=Outfit:wght@200;300;400&family=Tenor+Sans&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1b18;
+    --ink-soft:#46443e;
+    --muted:#928c80;
+    --line:rgba(28,27,24,0.13);
+    --line-soft:rgba(28,27,24,0.08);
+    --paper:#f4f1ea;
+    --card:#fbfaf6;
+    --charcoal:#191814;
+    --serif-ja:'Shippori Mincho', serif;
+    --sans-ja:'Zen Kaku Gothic New', sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans-ja);
+    font-weight:300;
+    line-height:1.9;
+    letter-spacing:0.02em;
+  }
+  .wrap{max-width:940px;margin:0 auto;padding:clamp(2.5rem,6vw,5.5rem) clamp(1.4rem,5vw,3.5rem) 5rem;}
+
+  .eyebrow{
+    font-family:'Jost',sans-serif;font-weight:300;
+    font-size:11px;letter-spacing:0.42em;text-transform:uppercase;
+    color:var(--muted);
+    display:flex;justify-content:space-between;align-items:center;
+    padding-bottom:1.4rem;border-bottom:0.5px solid var(--line);
+  }
+  .hero{padding:clamp(2.6rem,6vw,4.2rem) 0 clamp(2.4rem,5vw,3.6rem);}
+  .hero h1{
+    font-family:var(--serif-ja);font-weight:600;
+    font-size:clamp(2rem,5.2vw,3.05rem);line-height:1.35;
+    letter-spacing:0.06em;color:var(--ink);
+  }
+  .hero p{
+    margin-top:1.5rem;max-width:40em;
+    font-size:clamp(0.9rem,1.3vw,1rem);line-height:2.05;
+    color:var(--ink-soft);font-weight:300;
+  }
+
+  .aim{
+    display:grid;grid-template-columns:1fr;gap:2rem;
+    padding:2.6rem 0;border-top:0.5px solid var(--line);border-bottom:0.5px solid var(--line);
+  }
+  @media(min-width:760px){.aim{grid-template-columns:0.9fr 1.1fr;gap:3.4rem;}}
+  .sec-label{
+    font-family:'Jost',sans-serif;font-weight:300;
+    font-size:11px;letter-spacing:0.34em;text-transform:uppercase;color:var(--muted);
+    margin-bottom:1rem;
+  }
+  .aim h2{font-family:var(--serif-ja);font-weight:600;font-size:1.35rem;letter-spacing:0.06em;line-height:1.6;}
+  .aim p{font-size:0.9rem;line-height:2.05;color:var(--ink-soft);font-weight:300;}
+  .aim p + p{margin-top:1rem;}
+
+  .current{
+    margin-top:2rem;padding:1.8rem;background:rgba(28,27,24,0.025);
+    border:0.5px dashed var(--line);border-radius:2px;text-align:center;
+  }
+  .current .tag{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:0.9rem;}
+  .current .mark{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:500;font-size:clamp(1.3rem,3vw,1.7rem);letter-spacing:0.04em;color:#5b5950;}
+
+  .family{margin-top:clamp(3rem,6vw,4.4rem);}
+  .family-head{margin-bottom:2rem;}
+  .family-head h2{font-family:var(--serif-ja);font-weight:600;font-size:clamp(1.35rem,2.6vw,1.7rem);letter-spacing:0.07em;line-height:1.5;}
+  .family-head p{margin-top:0.7rem;font-size:0.88rem;color:var(--ink-soft);font-weight:300;line-height:1.95;max-width:38em;}
+
+  .spec{
+    background:var(--card);border:0.5px solid var(--line);border-radius:3px;
+    padding:clamp(2.4rem,5vw,3.4rem) clamp(1.4rem,4vw,2.6rem) 1.8rem;
+    margin-bottom:1.1rem;position:relative;overflow:hidden;
+  }
+  .spec .meta{
+    display:flex;align-items:center;gap:0.7rem;margin-bottom:1.8rem;
+  }
+  .spec .no{font-family:'Jost',sans-serif;font-weight:400;font-size:12px;letter-spacing:0.16em;color:var(--ink);}
+  .spec .pick{
+    font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--paper);background:var(--ink);padding:3px 9px 2px;border-radius:2px;
+  }
+  .stage{min-height:118px;display:flex;align-items:center;justify-content:center;color:var(--ink);}
+  .note{
+    margin-top:1.7rem;padding-top:1.1rem;border-top:0.5px solid var(--line-soft);
+    display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;
+  }
+  .note .desc{font-size:0.82rem;color:var(--ink-soft);font-weight:300;line-height:1.8;flex:1;min-width:200px;}
+  .note .hd{display:flex;align-items:center;gap:0.6rem;color:var(--ink-soft);}
+  .note .hd small{font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);}
+
+  /* logo type specs */
+  .lA{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.9rem,5vw,2.7rem);letter-spacing:0.18em;padding-left:0.18em;}
+  .lA2{font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(1.9rem,5vw,2.7rem);letter-spacing:0.2em;padding-left:0.2em;}
+  .lA3{font-family:'Playfair Display',serif;font-weight:500;line-height:0.96;letter-spacing:0.14em;padding-left:0.14em;text-align:center;}
+  .lA3 .eb{font-family:'Jost',sans-serif;font-weight:300;font-size:10px;letter-spacing:0.5em;padding-left:0.5em;color:var(--muted);display:block;margin-bottom:0.5rem;}
+  .lA3 .rule{width:46px;height:0.5px;background:var(--ink);margin:0.55rem auto 0;}
+  .lA3 .big{font-size:clamp(1.7rem,4.4vw,2.4rem);}
+  .lC{font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(1.25rem,3.6vw,1.95rem);letter-spacing:0.52em;padding-left:0.52em;}
+  .lC2{font-family:'Outfit',sans-serif;font-weight:200;font-size:clamp(1.25rem,3.6vw,1.9rem);letter-spacing:0.4em;padding-left:0.4em;text-align:center;}
+  .lC2 .rule{width:120px;max-width:60%;height:0.5px;background:var(--ink);margin:0.9rem auto 0;opacity:0.75;}
+  .lC3{font-family:'Tenor Sans',sans-serif;font-weight:400;font-size:clamp(1.3rem,3.6vw,2rem);letter-spacing:0.34em;padding-left:0.34em;}
+
+  .hA{font-family:'Playfair Display',serif;font-weight:500;font-size:15px;letter-spacing:0.16em;padding-left:0.16em;}
+  .hA2{font-family:'Bodoni Moda',serif;font-weight:500;font-size:15px;letter-spacing:0.16em;padding-left:0.16em;}
+  .hA3{font-family:'Playfair Display',serif;font-weight:500;font-size:15px;letter-spacing:0.12em;padding-left:0.12em;}
+  .hC{font-family:'Jost',sans-serif;font-weight:300;font-size:13px;letter-spacing:0.4em;padding-left:0.4em;}
+  .hC2{font-family:'Outfit',sans-serif;font-weight:200;font-size:13px;letter-spacing:0.34em;padding-left:0.34em;}
+  .hC3{font-family:'Tenor Sans',sans-serif;font-size:14px;letter-spacing:0.28em;padding-left:0.28em;}
+
+  /* in-context mock headers */
+  .ctx{margin-top:clamp(3rem,6vw,4.4rem);}
+  .ctx h2{font-family:var(--serif-ja);font-weight:600;font-size:clamp(1.3rem,2.4vw,1.6rem);letter-spacing:0.07em;margin-bottom:1.6rem;}
+  .bar{display:flex;align-items:center;justify-content:space-between;padding:1.3rem clamp(1.2rem,3vw,2rem);border-radius:3px;margin-bottom:1rem;}
+  .bar.light{background:var(--card);border:0.5px solid var(--line);}
+  .bar.dark{background:var(--charcoal);}
+  .bar .nav{display:flex;gap:1.6rem;font-family:'Jost',sans-serif;font-weight:300;font-size:10px;letter-spacing:0.26em;text-transform:uppercase;}
+  .bar.light .nav{color:var(--ink-soft);}
+  .bar.dark .nav{color:rgba(244,241,234,0.7);}
+  .bar .nav span:first-child{visibility:hidden;}
+  .bar.light .blogo{font-family:'Playfair Display',serif;font-weight:500;font-size:19px;letter-spacing:0.16em;padding-left:0.16em;color:var(--ink);}
+  .bar.dark .blogo{font-family:'Jost',sans-serif;font-weight:300;font-size:16px;letter-spacing:0.46em;padding-left:0.46em;color:var(--paper);}
+  .ctx .cap{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted);margin:0.2rem 0 1.4rem;}
+
+  .foot{margin-top:clamp(3.2rem,6vw,4.6rem);padding-top:2rem;border-top:0.5px solid var(--line);}
+  .foot h2{font-family:var(--serif-ja);font-weight:600;font-size:1.2rem;letter-spacing:0.06em;margin-bottom:1rem;}
+  .foot ol{list-style:none;counter-reset:s;}
+  .foot li{position:relative;padding:0.55rem 0 0.55rem 2.4rem;font-size:0.86rem;color:var(--ink-soft);font-weight:300;border-bottom:0.5px solid var(--line-soft);}
+  .foot li:before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0.55rem;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.1em;color:var(--muted);}
+  .sign{margin-top:2.4rem;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);text-align:right;}
+
+  .reveal{opacity:0;transform:translateY(14px);animation:rise 0.9s cubic-bezier(.2,.7,.2,1) forwards;}
+  @keyframes rise{to{opacity:1;transform:none;}}
+  @media(prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none;}}
+
+  @media print{
+    body{background:#fff;}
+    .reveal{animation:none;opacity:1;transform:none;}
+    .spec,.bar,.current{break-inside:avoid;}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow reveal" style="animation-delay:0s">
+    <span>STYLE DELI &nbsp;/&nbsp; Brand Logo Renewal</span>
+    <span>2026.06</span>
+  </div>
+
+  <header class="hero reveal" style="animation-delay:.08s">
+    <h1>新ブランドロゴ<br>ご提案</h1>
+    <p>Shopify へのリニューアルに合わせ、ブランドが大切にしてきた「洗練された上品さ」と「高見え」を、ロゴから一貫して表現できるよう再設計しました。前回ご好評をいただいた2方向を軸に、それぞれバリエーションを加えてご提案いたします。</p>
+  </header>
+
+  <section class="aim reveal" style="animation-delay:.16s">
+    <div>
+      <div class="sec-label">Aim ─ 刷新のねらい</div>
+      <h2>「価格訴求のEC」から<br>「上品な大人ブランド」へ</h2>
+    </div>
+    <div>
+      <p>現行ロゴは視認性に優れる一方、汎用的なサンセリフのため、ブランドが目指す洗練・高級感とのあいだに少しギャップが生まれていました。</p>
+      <p>今回のリニューアルでは、サイト全体で導入する明朝・セリフの世界観とロゴを統一。見出しからロゴまで筋の通った「大人の品」を設計し、商品の良さがより高く見える土台をつくります。</p>
+      <div class="current">
+        <span class="tag">現行ロゴのトーン（イメージ）</span>
+        <span class="mark">STYLE DELI</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAMILY 1 -->
+  <section class="family reveal" style="animation-delay:.06s">
+    <div class="family-head">
+      <div class="sec-label">Direction 01</div>
+      <h2>エディトリアル ／ 高コントラスト</h2>
+      <p>ファッション誌の表紙のような、線の強弱を効かせた書体。いちばん華やかで「格」を感じさせる方向です。</p>
+    </div>
+
+    <div class="spec">
+      <div class="meta"><span class="no">案 A</span><span class="pick">前回ピックアップ</span></div>
+      <div class="stage"><div class="lA">STYLE DELI</div></div>
+      <div class="note">
+        <div class="desc">王道の高コントラストセリフ。華やかさと格は随一で、ブランドの主役を張れる存在感。</div>
+        <div class="hd"><span class="hA">STYLE DELI</span><small>Header</small></div>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="meta"><span class="no">案 A-2</span></div>
+      <div class="stage"><div class="lA2">STYLE DELI</div></div>
+      <div class="note">
+        <div class="desc">線の強弱をさらに際立たせたモード寄り。最も「モード誌」的で、シャープな高級感が出る。</div>
+        <div class="hd"><span class="hA2">STYLE DELI</span><small>Header</small></div>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="meta"><span class="no">案 A-3</span></div>
+      <div class="stage">
+        <div class="lA3">
+          <span class="eb">Tokyo</span>
+          <div class="big">STYLE<br>DELI</div>
+          <div class="rule"></div>
+        </div>
+      </div>
+      <div class="note">
+        <div class="desc">2段組みのマストヘッド型。雑誌の表紙ロゴのような佇まいで、メインビジュアルに映える。ヘッダーは横1行に展開。</div>
+        <div class="hd"><span class="hA3">STYLE DELI</span><small>Header</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAMILY 2 -->
+  <section class="family reveal" style="animation-delay:.06s">
+    <div class="family-head">
+      <div class="sec-label">Direction 02</div>
+      <h2>クワイエット ラグジュアリー ／ 細サンセリフ</h2>
+      <p>引き算の美しさ。新しいトップページ（Quiet Luxury）と世界観が完全に揃い、長く使える普遍性のある方向です。</p>
+    </div>
+
+    <div class="spec">
+      <div class="meta"><span class="no">案 C</span><span class="pick">前回ピックアップ</span></div>
+      <div class="stage"><div class="lC">STYLE DELI</div></div>
+      <div class="note">
+        <div class="desc">細いサンセリフと広い字間で、静かで上質な余白を感じさせる。主張しすぎず長く飽きない。</div>
+        <div class="hd"><span class="hC">STYLE DELI</span><small>Header</small></div>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="meta"><span class="no">案 C-2</span></div>
+      <div class="stage">
+        <div class="lC2">STYLE DELI<div class="rule"></div></div>
+      </div>
+      <div class="note">
+        <div class="desc">ワードマークの下にヘアラインを添えたクチュール風。端正で、より凛とした洗練を演出。</div>
+        <div class="hd"><span class="hC2">STYLE DELI</span><small>Header</small></div>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="meta"><span class="no">案 C-3</span></div>
+      <div class="stage"><div class="lC3">STYLE DELI</div></div>
+      <div class="note">
+        <div class="desc">ほんの少し人間味のある細ゴシック。冷たくなりすぎず、やわらかな上品さと親しみを両立。</div>
+        <div class="hd"><span class="hC3">STYLE DELI</span><small>Header</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IN CONTEXT -->
+  <section class="ctx reveal" style="animation-delay:.06s">
+    <h2>使用イメージ</h2>
+    <div class="bar light">
+      <div class="nav"><span>menu</span><span>New</span><span>Item</span></div>
+      <div class="blogo">STYLE DELI</div>
+      <div class="nav"><span>Cart</span><span>Mypage</span></div>
+    </div>
+    <p class="cap">エディトリアル（案A）をヘッダーに置いたイメージ</p>
+    <div class="bar dark">
+      <div class="nav"><span>menu</span><span>New</span><span>Item</span></div>
+      <div class="blogo">STYLE DELI</div>
+      <div class="nav"><span>Cart</span><span>Mypage</span></div>
+    </div>
+    <p class="cap" style="margin-bottom:0;">クワイエット（案C）を濃色背景に反転で置いたイメージ</p>
+  </section>
+
+  <!-- NEXT -->
+  <footer class="foot reveal" style="animation-delay:.06s">
+    <h2>次のステップ</h2>
+    <ol>
+      <li>ご希望の方向・案をお選びいただきます（複数キープも可）。</li>
+      <li>選定案を実寸で検証（PC ／ スマートフォンのヘッダー、最小サイズ）。</li>
+      <li>白黒・反転バージョン、ファビコン、アプリアイコンへ展開。</li>
+      <li>最終データ（SVG）として書き出し、Shopify テーマへ実装。</li>
+    </ol>
+    <div class="sign">STYLE DELI Shopify 移行プロジェクト</div>
+  </footer>
+
+</div>
+</body>
+</html>
