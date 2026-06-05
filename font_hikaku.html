@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>STYLE DELI – トップ フォント提案（A/B/C）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Jost:wght@300;400;500&family=Tenor+Sans&family=Zen+Kaku+Gothic+Antique:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== 確定トークン（共通） ===== */
+:root{
+  --ink:#2a2622;
+  --ink-soft:#6e665e;
+  --line:#e6e1d9;
+  --bg:#f7f5f1;
+  --card:#ffffff;
+  --accent:#1c1a17;
+  --tag:#8a7d6c;
+
+  /* ロゴは確定＝案C-3（Tenor Sans）。全案共通・触らない */
+  --f-logo:'Tenor Sans', 'Zen Kaku Gothic New', sans-serif;
+
+  /* 以下は案ごとに切り替わる */
+  --f-en:'Jost', sans-serif;
+  --f-jp-head:'Zen Kaku Gothic New', sans-serif;
+  --f-ui:'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+
+  --tr-en:.04em;       /* 英字見出しのトラッキング */
+  --tr-label:.12em;    /* 小ラベル */
+  --tr-jp:.04em;       /* 和文見出し */
+  --hero-en-style:normal;
+  --hero-en-weight:400;
+}
+
+/* ===== 案A：ジオメトリック・モダン（既定） ===== */
+/* :root が案A：EN=Jost / JP=Zen Kaku Gothic New */
+
+/* ===== 案B：クワイエット統一（英字もロゴと同じTenor Sans＋温かみのある和文ゴシック） ===== */
+.theme-b{
+  --f-en:'Tenor Sans', sans-serif;
+  --f-jp-head:'Zen Kaku Gothic Antique', sans-serif;
+  --f-ui:'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+  --tr-en:.06em;
+  --tr-label:.2em;
+  --tr-jp:.04em;
+  --hero-en-style:normal;
+  --hero-en-weight:400;
+}
+
+/* ===== 案C：デリケート・エディトリアル（英字Italiana＝細い高コントラスト・和文ゴシック） ===== */
+.theme-c{
+  --f-en:'Italiana', serif;
+  --f-jp-head:'Zen Kaku Gothic New', sans-serif;
+  --f-ui:'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+  --tr-en:.04em;
+  --tr-label:.2em;
+  --hero-en-style:normal;
+  --hero-en-weight:400;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{background:#dcdfe6;}
+body{
+  font-family:var(--f-ui);
+  color:var(--ink);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;width:100%;height:100%;object-fit:cover;}
+
+/* ===== 提案切り替えバー（実際のページには入りません） ===== */
+.switcher{
+  position:sticky;top:0;z-index:100;
+  background:#1c1a17;color:#fff;
+  padding:9px 12px 11px;
+  font-family:'Zen Kaku Gothic New',sans-serif;
+}
+.switcher .lead{
+  font-size:10.5px;letter-spacing:.04em;color:#b9b1a6;text-align:center;margin-bottom:8px;
+}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;}
+.tab{
+  flex:1 1 28%;border:1px solid #4a4640;background:transparent;color:#cfc8be;
+  border-radius:9px;padding:7px 4px;cursor:pointer;text-align:center;line-height:1.25;
+  transition:.18s;
+}
+.tab b{display:block;font-size:14px;letter-spacing:.02em;color:#fff;}
+.tab span{display:block;font-size:9.5px;letter-spacing:.02em;margin-top:2px;}
+.tab.active{background:#fff;border-color:#fff;color:#1c1a17;}
+.tab.active b{color:#1c1a17;}
+.tab.active span{color:#6e665e;}
+.caserow{display:flex;gap:6px;margin-top:7px;}
+.casebtn{
+  flex:1;border:1px solid #4a4640;background:transparent;color:#cfc8be;
+  border-radius:9px;padding:7px 4px;cursor:pointer;text-align:center;
+  font-size:11px;letter-spacing:.04em;transition:.18s;
+}
+.casebtn small{display:block;font-size:9px;letter-spacing:.04em;opacity:.7;margin-top:1px;}
+.casebtn.active{background:#c9a96a;border-color:#c9a96a;color:#1c1a17;}
+.casebtn.active small{opacity:.85;}
+.note{
+  margin-top:9px;font-size:11px;line-height:1.6;letter-spacing:.02em;
+  color:#e8e3da;text-align:center;min-height:34px;
+}
+.note b{color:#fff;font-weight:500;}
+
+/* ===== スマホ枠 ===== */
+.device{
+  max-width:430px;margin:0 auto;background:var(--bg);min-height:100vh;
+  overflow:hidden;
+}
+
+/* お知らせバー */
+.announce{
+  background:#1c1a17;color:#efe9df;
+  font-family:var(--f-ui);
+  font-size:11px;letter-spacing:.02em;text-align:center;
+  padding:9px 12px;display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.announce .more{color:#c9a96a;font-size:10px;}
+
+/* ヘッダー */
+.header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:13px 16px;background:var(--bg);border-bottom:1px solid var(--line);
+  position:relative;
+}
+.h-ic{display:flex;gap:15px;align-items:center;color:var(--ink);}
+.h-ic svg{width:19px;height:19px;}
+.logo{
+  font-family:'Tenor Sans', sans-serif;
+  font-weight:400;font-size:15px;letter-spacing:.34em;
+  padding-left:.34em;white-space:nowrap;color:#2a2a2a;
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+}
+.cart{position:relative;}
+.cart .badge{
+  position:absolute;top:-5px;right:-7px;background:var(--ink);color:#fff;
+  font-family:var(--f-ui);font-size:9px;width:15px;height:15px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;letter-spacing:0;
+}
+
+/* ===== Hero ===== */
+.hero{position:relative;height:74vh;max-height:640px;min-height:480px;background:#cfc6bb;}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,18,15,.10) 0%,rgba(20,18,15,0) 30%,rgba(20,18,15,.42) 100%);
+}
+.hero-copy{
+  position:absolute;left:24px;bottom:78px;z-index:2;color:#fff;
+}
+.hero-season{
+  font-family:var(--f-en);font-size:11px;letter-spacing:var(--tr-label);
+  text-transform:uppercase;opacity:.92;margin-bottom:10px;
+}
+.hero-title{
+  font-family:var(--f-en);
+  font-style:var(--hero-en-style);font-weight:var(--hero-en-weight);
+  font-size:44px;line-height:1.05;letter-spacing:.05em;
+  text-shadow:0 1px 14px rgba(0,0,0,.18);
+}
+.hero-sub{
+  font-family:var(--f-jp-head);font-size:12.5px;letter-spacing:var(--tr-jp);
+  margin-top:14px;line-height:1.75;opacity:.96;
+}
+.hero-btn{
+  position:absolute;left:24px;bottom:30px;z-index:2;
+  display:inline-block;background:#fff;color:var(--ink);
+  font-family:var(--f-ui);font-size:11px;letter-spacing:.18em;
+  padding:12px 26px;text-transform:uppercase;
+}
+.hero-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:2;
+  width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.78);
+  display:flex;align-items:center;justify-content:center;color:#1c1a17;font-size:14px;
+}
+.hero-arrow.l{left:12px;} .hero-arrow.r{right:12px;}
+.hero-dots{
+  position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:2;
+  display:flex;gap:6px;
+}
+.hero-dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);}
+.hero-dots i.on{background:#fff;width:18px;border-radius:3px;}
+
+/* ===== セクション共通 ===== */
+section{padding:34px 16px;}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:18px;}
+.sec-en{
+  font-family:var(--f-en);font-size:20px;letter-spacing:.07em;
+  color:var(--ink);line-height:1;
+}
+/* 大文字／Camel Case 切り替え（英字見出しのみ） */
+.case-upper .hero-title,.case-upper .sec-en{text-transform:uppercase;}
+.case-camel .hero-title,.case-camel .sec-en{text-transform:none;}
+.sec-jp{
+  font-family:var(--f-jp-head);font-size:11.5px;letter-spacing:var(--tr-jp);
+  color:var(--ink-soft);margin-top:5px;display:block;
+}
+.sec-all{
+  font-family:var(--f-ui);font-size:10.5px;letter-spacing:.08em;color:var(--ink-soft);
+  border-bottom:1px solid var(--line);padding-bottom:2px;white-space:nowrap;
+}
+
+/* ランキング */
+.rank{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;}
+.rank::-webkit-scrollbar{display:none;}
+.rank-item{flex:0 0 138px;}
+.rank-imgwrap{position:relative;aspect-ratio:3/4;background:#eceae5;overflow:hidden;}
+.rank-no{
+  position:absolute;top:0;left:0;z-index:2;
+  font-family:var(--f-en);font-size:15px;letter-spacing:0;
+  background:rgba(255,255,255,.92);color:var(--ink);
+  width:24px;height:24px;display:flex;align-items:center;justify-content:center;
+}
+.tag-soon{
+  position:absolute;bottom:8px;left:8px;z-index:2;
+  font-family:var(--f-ui);font-size:9.5px;letter-spacing:.04em;
+  background:rgba(28,26,23,.82);color:#fff;padding:3px 7px;
+}
+.p-name{
+  font-family:var(--f-ui);font-size:11.5px;line-height:1.55;letter-spacing:.01em;
+  margin-top:9px;color:var(--ink);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.p-price{font-family:var(--f-ui);font-size:12.5px;letter-spacing:.02em;margin-top:4px;color:var(--ink);}
+
+/* 新着グリッド */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px 11px;}
+.g-imgwrap{aspect-ratio:3/4;background:#eceae5;overflow:hidden;}
+
+/* スタッフ着用 */
+.staff{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;}
+.staff::-webkit-scrollbar{display:none;}
+.staff-item{flex:0 0 156px;}
+.staff-imgwrap{aspect-ratio:3/4.2;background:#eceae5;overflow:hidden;}
+.staff-meta{
+  font-family:var(--f-en);font-size:10px;letter-spacing:.1em;color:var(--tag);margin-top:8px;
+}
+.staff-name{font-family:var(--f-ui);font-size:11px;letter-spacing:.02em;color:var(--ink-soft);margin-top:1px;}
+.staff-cmt{font-family:var(--f-ui);font-size:11px;line-height:1.55;color:var(--ink);margin-top:5px;}
+
+.divline{height:1px;background:var(--line);margin:0 16px;}
+
+/* フッターっぽい締め */
+.foot{background:#1c1a17;color:#cfc8be;padding:30px 16px 26px;text-align:center;}
+.foot .fl{
+  font-family:'Tenor Sans', sans-serif;font-weight:400;font-size:15px;letter-spacing:.34em;color:#fff;padding-left:.34em;margin-bottom:14px;
+}
+.foot .fnav{
+  font-family:var(--f-ui);font-size:11px;letter-spacing:.06em;
+  display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;
+}
+.foot .fc{font-family:var(--f-en);font-size:10px;letter-spacing:.1em;color:#8a8278;}
+</style>
+</head>
+<body class="theme-a case-upper">
+
+<!-- 提案切り替え（共有用・実ページには入りません） -->
+<div class="switcher">
+  <div class="lead">▼ フォント（A・C・D）と 大文字／Camel を切り替え／ロゴは案C-3＝Tenor Sans</div>
+  <div class="tabs">
+    <button class="tab active" data-t="a"><b>A</b><span>ジオメトリック</span></button>
+    <button class="tab" data-t="b"><b>B</b><span>クワイエット</span></button>
+    <button class="tab" data-t="c"><b>C</b><span>デリケート</span></button>
+  </div>
+  <div class="caserow">
+    <button class="casebtn active" data-c="upper">ALL CAPS<small>大文字</small></button>
+    <button class="casebtn" data-c="camel">Camel Case<small>大文字小文字</small></button>
+  </div>
+  <div class="note" id="note"></div>
+</div>
+
+<div class="device">
+
+  <!-- お知らせ -->
+  <div class="announce">新作＆ピックアップ 24時間ポイントアップ開催中<span class="more">詳細 ›</span></div>
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="h-ic">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </div>
+    <div class="logo">STYLE DELI</div>
+    <div class="h-ic">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 20s-7-4.3-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.7-7 9-7 9z"/></svg>
+      <span class="cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        <i class="badge">2</i>
+      </span>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <img src="https://styledeli.itembox.cloud/product/085/000000008560/000000008560-40.jpg?size=l&w=ODAw&t=20260423102720" alt="">
+    <div class="hero-arrow l">‹</div>
+    <div class="hero-arrow r">›</div>
+    <div class="hero-copy">
+      <div class="hero-season">2025 Spring</div>
+      <div class="hero-title">Quiet<br>Elegance</div>
+      <div class="hero-sub">大人のための、静かに際立つ春服</div>
+    </div>
+    <a class="hero-btn">Shop Collection</a>
+    <div class="hero-dots"><i class="on"></i><i></i><i></i></div>
+  </div>
+
+  <!-- RANKING -->
+  <section>
+    <div class="sec-head">
+      <div>
+        <div class="sec-en">Ranking</div>
+        <span class="sec-jp">人気ランキング</span>
+      </div>
+      <a class="sec-all">すべて見る</a>
+    </div>
+    <div class="rank">
+      <div class="rank-item">
+        <div class="rank-imgwrap"><div class="rank-no">1</div><span class="tag-soon">残りわずか</span><img src="https://styledeli.itembox.cloud/product/100/000000010082/000000010082-40.jpg?size=l&w=ODAw&t=20260427175022" alt=""></div>
+        <div class="p-name">【LUXE】シャリシャリドルマンカーディガン</div>
+        <div class="p-price">¥11,000</div>
+      </div>
+      <div class="rank-item">
+        <div class="rank-imgwrap"><div class="rank-no">2</div><img src="https://styledeli.itembox.cloud/product/100/000000010084/000000010084-40.jpg?size=l&w=ODAw&t=20260427180221" alt=""></div>
+        <div class="p-name">カラッとしたシアーカーディガン</div>
+        <div class="p-price">¥7,300</div>
+      </div>
+      <div class="rank-item">
+        <div class="rank-imgwrap"><div class="rank-no">3</div><span class="tag-soon">残りわずか</span><img src="https://styledeli.itembox.cloud/product/100/000000010083/000000010083-40.jpg?size=l&w=ODAw&t=20260427175522" alt=""></div>
+        <div class="p-name">なめらかカットソースカート</div>
+        <div class="p-price">¥8,500</div>
+      </div>
+      <div class="rank-item">
+        <div class="rank-imgwrap"><div class="rank-no">4</div><img src="https://styledeli.itembox.cloud/product/099/000000009903/000000009903-40.jpg?size=l&w=ODAw&t=20260313121024" alt=""></div>
+        <div class="p-name">シアーフリルニットソートップス</div>
+        <div class="p-price">¥6,900</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divline"></div>
+
+  <!-- NEW ARRIVALS -->
+  <section>
+    <div class="sec-head">
+      <div>
+        <div class="sec-en">New Arrivals</div>
+        <span class="sec-jp">新着アイテム</span>
+      </div>
+      <a class="sec-all">すべて見る</a>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="g-imgwrap"><img src="https://styledeli.itembox.cloud/product/100/000000010063/000000010063-40.jpg?size=l&w=ODAw&t=20260422170521" alt=""></div>
+        <div class="p-name">テーラードネックメッシュジレ</div>
+        <div class="p-price">¥17,600</div>
+      </div>
+      <div>
+        <div class="g-imgwrap"><img src="https://styledeli.itembox.cloud/product/100/000000010071/000000010071-40.jpg?size=l&w=ODAw&t=20260423170221" alt=""></div>
+        <div class="p-name">バルーンペプラムパンツセットアップ</div>
+        <div class="p-price">¥18,500</div>
+      </div>
+      <div>
+        <div class="g-imgwrap"><img src="https://styledeli.itembox.cloud/product/100/000000010062/000000010062-40.jpg?size=l&w=ODAw&t=20260422170221" alt=""></div>
+        <div class="p-name">メッシュノーカラーダブルジャケット</div>
+        <div class="p-price">¥18,700</div>
+      </div>
+      <div>
+        <div class="g-imgwrap"><img src="https://styledeli.itembox.cloud/product/100/000000010088/000000010088-40.jpg?size=l&w=ODAw&t=20260428144029" alt=""></div>
+        <div class="p-name">夏に羽織るストライプ柄シアーシャツ</div>
+        <div class="p-price">¥6,900</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divline"></div>
+
+  <!-- STAFF WEARING -->
+  <section>
+    <div class="sec-head">
+      <div>
+        <div class="sec-en">Staff Wearing</div>
+        <span class="sec-jp">スタッフ着用</span>
+      </div>
+      <a class="sec-all">すべて見る</a>
+    </div>
+    <div class="staff">
+      <div class="staff-item">
+        <div class="staff-imgwrap"><img src="https://styledeli.itembox.cloud/product/085/000000008560/000000008560-40.jpg?size=l&w=ODAw&t=20260423102720" alt=""></div>
+        <div class="staff-meta">Height 162cm</div>
+        <div class="staff-name">スタッフ 田中</div>
+        <div class="staff-cmt">ゆったりシルエットで一日快適に。</div>
+      </div>
+      <div class="staff-item">
+        <div class="staff-imgwrap"><img src="https://styledeli.itembox.cloud/product/100/000000010062/000000010062-40.jpg?size=l&w=ODAw&t=20260422170221" alt=""></div>
+        <div class="staff-meta">Height 165cm</div>
+        <div class="staff-name">スタッフ 鈴木</div>
+        <div class="staff-cmt">細見えするのにストレスフリー。</div>
+      </div>
+      <div class="staff-item">
+        <div class="staff-imgwrap"><img src="https://styledeli.itembox.cloud/product/100/000000010071/000000010071-40.jpg?size=l&w=ODAw&t=20260423170221" alt=""></div>
+        <div class="staff-meta">Height 160cm</div>
+        <div class="staff-name">スタッフ 佐藤</div>
+        <div class="staff-cmt">きれいめにも普段使いにも。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター締め -->
+  <div class="foot">
+    <div class="fl">STYLE DELI</div>
+    <div class="fnav"><span>Category</span><span>Brand</span><span>Guide</span><span>About</span></div>
+    <div class="fc">© STYLE DELI</div>
+  </div>
+
+</div>
+
+<script>
+  var notes = {
+    a:'<b>案A ジオメトリック・モダン</b> — 英字 Jost＋和文ゴシック。直線的でクリーン。ロゴと素直に揃う王道',
+    b:'<b>案B クワイエット統一</b> — 英字もロゴと同じ Tenor Sans。引き算の上品さでロゴと完全に同調。最も静かで高見え',
+    c:'<b>案C デリケート・エディトリアル</b> — 英字 Italiana（細い高コントラスト）＋和文ゴシック。繊細で女性らしい抜け感'
+  };
+  var body = document.body, noteEl = document.getElementById('note');
+  var curT = 'a', curC = 'upper';
+  function apply(){
+    body.className = 'theme-' + curT + ' case-' + curC;
+    document.querySelectorAll('.tab').forEach(function(el){
+      el.classList.toggle('active', el.dataset.t === curT);
+    });
+    document.querySelectorAll('.casebtn').forEach(function(el){
+      el.classList.toggle('active', el.dataset.c === curC);
+    });
+    noteEl.innerHTML = notes[curT];
+  }
+  document.querySelectorAll('.tab').forEach(function(el){
+    el.addEventListener('click', function(){ curT = el.dataset.t; apply(); window.scrollTo({top:0,behavior:'smooth'}); });
+  });
+  document.querySelectorAll('.casebtn').forEach(function(el){
+    el.addEventListener('click', function(){ curC = el.dataset.c; apply(); });
+  });
+  apply();
+</script>
+</body>
+</html>
