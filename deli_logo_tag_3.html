@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STYLE DELI ｜ 下げ札 デザイン案（出し直し・拡張版）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2EEE6;
+    --paper-edge:#E6E0D4;
+    --stage:#E4DED2;
+    --stage-2:#DDD6C8;
+    --ink:#1A1817;
+    --ink-soft:rgba(26,24,23,.55);
+    --hair:rgba(26,24,23,.22);
+    --grey-tag:#CBC6BC;      /* 薄グレー地 */
+    --grey-tag-edge:#BCB6AA;
+    --grey-rev-text:#F0EBE0;  /* グレー地の上の生成り文字 */
+    --black-tag:#1C1A17;
+    --cream-text:#ECE5D6;
+    --accent:#8A7F6B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--stage);color:var(--ink);
+    font-family:"Shippori Mincho",serif;line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(120% 80% at 50% -10%, rgba(255,255,255,.35), transparent 60%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  }
+
+  .topbar{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:22px clamp(20px,5vw,64px);border-bottom:1px solid var(--hair);
+    font-family:"Tenor Sans",sans-serif;letter-spacing:.42em;font-size:11px;color:var(--ink-soft);
+  }
+  .topbar .brand{letter-spacing:.5em;color:var(--ink);}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:clamp(40px,7vw,88px) clamp(20px,5vw,64px) 120px;}
+
+  .eyebrow{font-family:"Tenor Sans",sans-serif;letter-spacing:.4em;font-size:11px;color:var(--accent);text-transform:uppercase;margin-bottom:18px;}
+  h1{font-weight:600;font-size:clamp(28px,4.6vw,46px);line-height:1.3;letter-spacing:.02em;margin-bottom:28px;}
+  .lede{max-width:62ch;font-size:15.5px;color:#3a3631;border-left:2px solid var(--hair);padding-left:22px;}
+
+  .principles{margin:54px 0 12px;display:grid;gap:1px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));background:var(--hair);border:1px solid var(--hair);}
+  .principles div{background:var(--stage);padding:22px 24px;}
+  .principles h4{font-family:"Tenor Sans",sans-serif;letter-spacing:.18em;font-size:11px;color:var(--accent);margin-bottom:8px;text-transform:uppercase;}
+  .principles p{font-size:13.5px;color:#3a3631;line-height:1.7;}
+  .principles .no{text-decoration:line-through;color:var(--ink-soft);}
+
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin:84px 0 6px;}
+  .sec-head .num{font-family:"Tenor Sans",sans-serif;letter-spacing:.3em;font-size:12px;color:var(--accent);}
+  .sec-head h2{font-weight:600;font-size:clamp(19px,3vw,25px);letter-spacing:.04em;}
+  .sec-sub{font-size:14px;color:#4a463f;max-width:64ch;margin-bottom:46px;}
+
+  .grid{display:grid;gap:clamp(28px,4vw,52px);grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:end;}
+  .cell{opacity:0;transform:translateY(18px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards;}
+  .cell:nth-child(1){animation-delay:.04s;}
+  .cell:nth-child(2){animation-delay:.10s;}
+  .cell:nth-child(3){animation-delay:.16s;}
+  .cell:nth-child(4){animation-delay:.22s;}
+  .cell:nth-child(5){animation-delay:.28s;}
+  @keyframes rise{to{opacity:1;transform:none;}}
+
+  .stage{display:flex;justify-content:center;align-items:flex-start;padding:30px 10px 8px;min-height:300px;}
+
+  /* タグ共通 */
+  .tag{position:relative;background:var(--paper);border:1px solid var(--paper-edge);
+    box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 14px 30px -14px rgba(40,35,28,.5),0 3px 8px -3px rgba(40,35,28,.25);
+    display:flex;flex-direction:column;align-items:center;}
+  .tag::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='0.04'/%3E%3C/svg%3E");}
+  .hole{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--stage);
+    box-shadow:0 1px 1px rgba(0,0,0,.3) inset,0 0 0 1px rgba(40,35,28,.18);top:16px;left:50%;transform:translateX(-50%);}
+  .wordmark{font-family:"Tenor Sans",sans-serif;color:var(--ink);letter-spacing:.34em;line-height:1.55;text-indent:.34em;text-align:center;white-space:nowrap;}
+
+  /* 形状 */
+  .portrait{width:184px;height:286px;border-radius:7px;}
+  .square{width:248px;height:248px;border-radius:7px;}
+  .land{width:300px;height:188px;border-radius:7px;flex-direction:row;align-items:center;}
+
+  /* 配置 */
+  .pos-center{justify-content:center;}
+  .pos-top{justify-content:flex-start;padding-top:56px;}
+  .pos-bottom{justify-content:flex-end;padding-bottom:46px;}
+
+  /* 文字サイズ */
+  .wm-lg .wordmark{font-size:18px;}
+  .wm-md .wordmark{font-size:16px;}
+  .wm-sm .wordmark{font-size:13px;letter-spacing:.3em;text-indent:.3em;}
+  .wm-xs .wordmark{font-size:11px;letter-spacing:.28em;text-indent:.28em;}
+
+  /* 地色バリエーション */
+  .g-grey{background:var(--grey-tag);border-color:var(--grey-tag-edge);}
+  .g-grey .hole,.g-grey-rev .hole{background:var(--stage);box-shadow:0 0 0 1px rgba(40,35,28,.28);}
+  .g-grey-rev{background:var(--grey-tag);border-color:var(--grey-tag-edge);}
+  .g-grey-rev .wordmark{color:var(--grey-rev-text);text-shadow:0 1px 1px rgba(40,35,28,.18);}
+  .g-black{background:var(--black-tag);border-color:#000;
+    box-shadow:0 14px 30px -14px rgba(0,0,0,.6),0 3px 8px -3px rgba(0,0,0,.4);}
+  .g-black::after{opacity:.5;}
+  .g-black .hole{box-shadow:0 0 0 1px rgba(0,0,0,.5);}
+  .g-black .wordmark{color:var(--cream-text);}
+  .g-deboss .wordmark{color:var(--paper);text-shadow:0 1px 0 rgba(255,255,255,.7),0 -1px 1px rgba(40,35,28,.28);}
+
+  /* 個別パーツ */
+  .rule{width:38px;height:1px;background:var(--hair);margin-top:18px;}
+  .deboss-note{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-family:"Tenor Sans",sans-serif;font-size:8.5px;letter-spacing:.25em;color:var(--ink-soft);}
+  .land .hole{left:22px;transform:none;top:50%;margin-top:-5.5px;}
+  .land .wordmark{text-align:left;padding-left:54px;width:100%;}
+
+  .label{margin-top:26px;text-align:center;}
+  .label .pat{font-family:"Tenor Sans",sans-serif;letter-spacing:.28em;font-size:12px;color:var(--ink);}
+  .label .desc{font-size:12.5px;color:#544f47;margin-top:5px;line-height:1.55;}
+  .label .tag-new{display:inline-block;margin-top:7px;font-family:"Tenor Sans",sans-serif;font-size:8.5px;letter-spacing:.2em;color:var(--accent);border:1px solid var(--hair);border-radius:20px;padding:2px 9px;}
+
+  .note{margin-top:96px;padding:34px clamp(24px,4vw,44px);background:linear-gradient(180deg,var(--stage-2),var(--stage));border:1px solid var(--hair);border-radius:4px;}
+  .note h3{font-weight:600;font-size:19px;margin-bottom:14px;letter-spacing:.03em;}
+  .note p{font-size:14px;color:#403c35;max-width:68ch;}
+  .steps{margin-top:30px;counter-reset:s;display:grid;gap:14px;max-width:70ch;}
+  .steps li{list-style:none;position:relative;padding-left:38px;font-size:14px;color:#403c35;}
+  .steps li::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;font-family:"Tenor Sans",sans-serif;font-size:12px;letter-spacing:.1em;color:var(--accent);}
+
+  footer{text-align:center;padding:40px 20px 56px;font-family:"Tenor Sans",sans-serif;letter-spacing:.4em;font-size:10px;color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="brand">STYLE DELI</span>
+  <span>SWING TAG ── 2026.06</span>
+</div>
+
+<div class="wrap">
+
+  <div class="eyebrow">Swing Tag ─ 出し直し・拡張版</div>
+  <h1>下げ札、ワードマーク一本で。<br>配置・サイズ・地色で12通り。</h1>
+  <p class="lede">
+    文字は「STYLE DELI」のみ。前回いただいたご意見をうけ、地色に薄グレーを追加し、ロゴの位置（中央・下・上）と文字サイズを振り分けた案を増やしました。
+    真っ黒はブランドトーンの“最も濃い端”として1案だけ参考に残し、主軸は生成り〜薄グレーに置いています。書体は確定済みの Tenor Sans のまま。
+  </p>
+
+  <div class="principles">
+    <div><h4>残すもの</h4><p>ワードマーク ／ 生成り・薄グレーの地色 ／ 広い余白 ／ 繊細な字間。</p></div>
+    <div><h4>外したもの</h4><p><span class="no">日本語コピー</span> ／ <span class="no">Tokyo</span> ／ <span class="no">Ladies Apparel</span> ／ <span class="no">装飾枠</span>。</p></div>
+    <div><h4>今回の追加</h4><p>薄グレー地 ／ ロゴ下寄せ・上寄せ ／ 文字小さめ ／ 反転グレー。印象の幅を広げています。</p></div>
+  </div>
+
+  <!-- 01 -->
+  <div class="sec-head"><span class="num">01</span><h2>王道ミニマル ─ 生成り地で配置とサイズを振る</h2></div>
+  <p class="sec-sub">「縦長・生成り地 × 黒・センター」を基準に、ロゴの高さ位置と文字サイズだけを変えた5案。同じ素材でも余白の取り方で印象が大きく変わります。</p>
+
+  <div class="grid">
+    <div class="cell"><div class="stage">
+      <div class="tag portrait pos-center wm-md"><span class="hole"></span><span class="wordmark">STYLE DELI</span></div>
+    </div><div class="label"><div class="pat">A</div><div class="desc">生成り × 黒・センター<br>標準サイズ／王道（基準）</div></div></div>
+
+    <div class="cell"><div class="stage">
+      <div class="tag portrait pos-bottom wm-md"><span class="hole"></span><span class="wordmark">STYLE DELI</span></div>
+    </div><div class="label"><div class="pat">F</div><div class="desc">生成り × 黒・下寄せ<br>上に余白／抜け感</div><span class="tag-new">NEW</span></div></div>
+
+    <div class="cell"><div class="stage">
+      <div class="tag portrait pos-center wm-xs"><span class="hole"></span><span class="wordmark">STYLE DELI</span></div>
+    </div><div class="label"><div class="pat">G</div><div class="desc">生成り × 黒・センター極小<br>余白最大／静けさ</div><span class="tag-new">NEW</span></div></div>
+
+    <div class="cell"><div class="stage">
+      <div class="tag portrait pos-top wm-sm"><span class="hole"></span><span class="wordmark">STYLE DELI</span></div>
+    </div><div class="label"><div class="pat">J</div><div class="desc">生成り × 黒・上寄せ小<br>視線を上に集める</div><span class="tag-new">NEW</span></div></div>
+
+    <div class="cell"><div class="stage">
+      <div class="tag portrait pos-center wm-md g-deboss"><span class="hole"></span><span class="wordmark">STYLE DELI</span><span class="deboss-note">BLIND DEBOSS</span></div>
+    </div><div class="label"><div class="pat">C</div><div class="desc">生成り・空押し（無色エンボス）<br>最も高見え</div></div></div>
+  </div>
+
+  <!-- 02 -->
+  <div class="sec-head"><span class="num">02</span><h2>薄グレー地 ─ 黒より柔らかい引き締め</h2></div>
+  <p class="sec-sub">真っ黒だと強すぎる…というご意見をうけて追加した、ブランドトーンに馴染む薄グレー地。黒文字・反転（生成り文字）の両方をご用意。一番右Bは比較用に黒地も残しています。</p>
+
+  <div class="grid">
+    <div class="cell"><div class="stage">
+      <div class="tag portrait pos-center wm-md g-grey"><span class="hole"></span><span class="wordmark">STYLE DELI</span></div>
+    </div><div class="label"><div class="pat">H</div><div class="desc">薄グレー × 黒文字・センター<br>柔らかい上品さ</div><span class="tag-new">NEW</span></div></div>
+
+    <div class="cell"><div class="stage">
+      <div class="tag portrait pos-bottom wm-sm g-grey"><span class="hole"></span><span class="wordmark">STYLE DELI</span></div>
+    </div><div class="label"><div class="pat">I</div><div class="desc">薄グレー × 黒・下寄せ小<br>静かで余白多め</div><span class="tag-new">NEW</span></div></div>
+
+    <div class="cell"><div class="stage">
+      <div class="tag portrait pos-center wm-md g-grey-rev"><span class="hole"></span><span class="wordmark">STYLE DELI</span></div>
+    </div><div class="label"><div class="pat">K</div><div class="desc">薄グレー × 生成り文字（反転）<br>トーンオントーン</div><span class="tag-new">NEW</span></div></div>
+
+    <div class="cell"><div class="stage">
+      <div class="tag portrait pos-center wm-md g-black"><span class="hole"></span><span class="wordmark">STYLE DELI</span></div>
+    </div><div class="label"><div class="pat">B</div><div class="desc">黒地 × 生成り文字（参考）<br>最も濃い振り</div></div></div>
+  </div>
+
+  <!-- 03 -->
+  <div class="sec-head"><span class="num">03</span><h2>形状違い ─ 正方形・横長</h2></div>
+  <p class="sec-sub">縦長以外の選択肢。スクエアはエディトリアル寄り、横長は落ち着いた佇まい。地色は生成り・薄グレーから選べます。</p>
+
+  <div class="grid">
+    <div class="cell"><div class="stage">
+      <div class="tag square pos-top wm-lg"><span class="hole"></span><span class="wordmark">STYLE DELI</span><span class="rule"></span></div>
+    </div><div class="label"><div class="pat">D</div><div class="desc">スクエア・生成り・上寄せ＋細罫<br>エディトリアル</div></div></div>
+
+    <div class="cell"><div class="stage">
+      <div class="tag square pos-center wm-sm g-grey"><span class="hole"></span><span class="wordmark">STYLE DELI</span></div>
+    </div><div class="label"><div class="pat">L</div><div class="desc">スクエア・薄グレー・センター小<br>余白で見せる</div><span class="tag-new">NEW</span></div></div>
+
+    <div class="cell"><div class="stage">
+      <div class="tag land wm-md"><span class="hole"></span><span class="wordmark">STYLE DELI</span></div>
+    </div><div class="label"><div class="pat">E</div><div class="desc">横長・生成り・左寄せ<br>建築的・落ち着いた佇まい</div></div></div>
+  </div>
+
+  <div class="note">
+    <h3>補足 ─ 並べて見たときのおすすめの絞り方</h3>
+    <p>
+      まず地色を「生成り・薄グレー・空押し」のどれかに決めると一気に絞れます。社長の“ハイブラっぽく＝静かな高級感”の本命はC（空押し）かK（反転グレー）あたり。
+      ロゴ位置は、F（下寄せ）やJ（上寄せ）のように余白を片側に寄せると一段とモード感が出ます。文字サイズはG・Iくらい小さくすると更にミニマルですが、最小可読性は現物で要確認です。
+      真っ黒Bは念のための比較用なので、外して問題なければこのまま落としてOKです。
+    </p>
+    <ul class="steps">
+      <li>地色を決める（生成り ／ 薄グレー ／ 空押し）。</li>
+      <li>ロゴ位置とサイズを1案に絞る（センター ／ 上寄せ ／ 下寄せ × 標準 ／ 小）。</li>
+      <li>選定案を実寸出力し、紐色・紙厚・最小可読性を確認。</li>
+      <li>襟ネーム（C-3確定の織りネーム）とのトーン統一をチェック。</li>
+      <li>最終データ（SVG／入稿用）に書き出し、各媒体へ展開。</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>STYLE DELI ── SHOPIFY MIGRATION PROJECT</footer>
+
+</body>
+</html>
