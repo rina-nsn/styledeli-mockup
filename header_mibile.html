@@ -6,13 +6,13 @@
 <title>STYLE DELI – モバイルヘッダー＆メニュー（確定版）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:wght@500;600&family=Tenor+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Italiana&family=Tenor+Sans&display=swap" rel="stylesheet">
 <style>
 :root{
   --color-ink:#2a2a2a; --color-label:#5a5a52; --color-ink-secondary:#7a7570; --color-caption:#8a8580; --color-ink-tertiary:#aaa;
   --color-bg:#faf9f7; --color-hairline:#ece9e4; --color-hairline-2:#e4dfd8; --color-ph-1:#e5e0d6; --color-gold:#b98f40;
   --font-body:'Zen Kaku Gothic New','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;
-  --font-serif-en:'Cormorant Garamond','Times New Roman',serif;
+  --font-serif-en:'Italiana','Times New Roman',serif;
   --font-logo:'Tenor Sans',sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -44,24 +44,24 @@ p.sub{font-size:10px;color:#bbb;letter-spacing:.06em;text-align:center}
 .drawer{position:absolute;inset:0;background:var(--color-bg);overflow-y:auto;z-index:9}
 .drawer::-webkit-scrollbar{width:0}
 .dr-head{height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--color-hairline)}
-.dr-head .t{font-family:var(--font-serif-en);font-size:12px;letter-spacing:.2em;color:var(--color-caption)}
+.dr-head .t{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.2em;color:var(--color-caption);text-transform:uppercase}
 .dr-close{cursor:pointer;color:var(--color-ink)}
 .dr-group-h{font-size:10.5px;font-weight:500;letter-spacing:.18em;color:var(--color-caption);padding:20px 18px 10px;display:flex;align-items:center;gap:10px}
 .dr-group-h::after{content:'';flex:1;height:1px;background:var(--color-hairline-2)}
 .dr-arrivals{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--color-hairline);border-bottom:1px solid var(--color-hairline)}
 .a-cell{display:flex;flex-direction:column;align-items:center;gap:3px;padding:14px 4px;cursor:pointer;border-right:1px solid var(--color-hairline)}
 .a-cell:last-child{border-right:none}
-.a-cell .en{font-family:var(--font-serif-en);font-size:12px;letter-spacing:.12em;color:var(--color-ink)}
+.a-cell .en{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.12em;color:var(--color-ink);text-transform:uppercase}
 .a-cell .jp{font-size:10px;color:var(--color-ink-secondary)}
 .dr-nav .di{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--color-hairline);cursor:pointer}
-.dr-nav .di .en{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.14em;color:var(--color-ink)}
+.dr-nav .di .en{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.14em;color:var(--color-ink);text-transform:uppercase}
 .dr-nav .di .chev{width:12px;height:12px;opacity:.55}
 .dr-nav .di.outlet .en{color:var(--color-gold)}
 .dr-nav .di .jp-tag{font-size:10px;letter-spacing:.08em;color:var(--color-caption);margin-left:10px}
 .dr-styling{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:6px 18px 18px}
 .st-card{cursor:pointer}
 .st-card .thumb{aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#efe9e1,#efe9e1 12px,#e9e2d8 12px,#e9e2d8 24px);border-radius:3px;display:flex;align-items:flex-end;padding:10px;color:var(--color-caption);font-size:8px;letter-spacing:.1em}
-.st-card .en{display:block;font-family:var(--font-serif-en);font-size:12px;letter-spacing:.14em;color:var(--color-ink);margin-top:9px}
+.st-card .en{display:block;font-family:var(--font-serif-en);font-size:14px;letter-spacing:.14em;color:var(--color-ink);margin-top:9px;text-transform:uppercase}
 .st-card .jp{display:block;font-size:9.5px;color:var(--color-ink-secondary);margin-top:2px}
 .dr-util{padding:8px 18px 14px;display:flex;flex-direction:column;gap:2px;border-top:1px solid var(--color-hairline)}
 .dr-util a{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--color-label);padding:9px 0;cursor:pointer}
@@ -73,7 +73,7 @@ p.sub{font-size:10px;color:#bbb;letter-spacing:.06em;text-align:center}
 <body>
 
 <div class="doc">STYLE DELI — モバイル ヘッダー＆メニュー（確定版）</div>
-<p class="sub">PDPモック準拠 / ロゴ Tenor Sans・英字 Cormorant Garamond・本文 Zen Kaku Gothic</p>
+<p class="sub">PDPモック準拠 / ロゴ Tenor Sans・英字 Italiana・本文 Zen Kaku Gothic</p>
 
 <div class="row" id="row"></div>
 

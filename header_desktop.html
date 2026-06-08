@@ -6,14 +6,14 @@
 <title>STYLE DELI – デスクトップ ナビ マウスオーバー（ITEM左：新着・入荷）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:wght@500;600&family=Tenor+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Italiana&family=Tenor+Sans&display=swap" rel="stylesheet">
 <style>
 :root{
   --color-ink:#2a2a2a; --color-label:#5a5a52; --color-ink-secondary:#7a7570; --color-caption:#8a8580; --color-ink-muted:#9a9490; --color-ink-tertiary:#bbb; --color-border:#ddd;
   --color-bg:#faf9f7; --color-panel:#f5f2ec; --color-hairline:#ece9e4; --color-hairline-2:#e4dfd8;
   --color-ph-1:#e5e0d6; --color-gold:#b98f40;
   --font-body:'Zen Kaku Gothic New','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;
-  --font-serif-en:'Cormorant Garamond','Times New Roman',serif;
+  --font-serif-en:'Italiana','Times New Roman',serif;
   --font-logo:'Tenor Sans',sans-serif;
   --tracking-eyebrow:.18em;
 }
@@ -32,22 +32,22 @@ p.sub{font-size:10px;color:var(--color-ink-tertiary);letter-spacing:.06em;text-a
 .hdr-logo{font-family:var(--font-logo);font-size:18px;letter-spacing:.42em;text-align:center;padding-left:.42em}
 .hdr-icons{display:flex;gap:18px;justify-self:end}
 .hdr-nav{display:flex;justify-content:center;gap:22px;padding:13px 0;border-bottom:1px solid var(--color-hairline);position:relative;z-index:30;background:var(--color-bg)}
-.hdr-nav a{font-family:var(--font-serif-en);font-size:13px;letter-spacing:.08em;color:var(--color-ink);text-decoration:none;padding-bottom:3px;white-space:nowrap}
+.hdr-nav a{font-family:var(--font-body);font-size:13px;letter-spacing:.08em;color:var(--color-ink);text-decoration:none;padding-bottom:3px;white-space:nowrap}
 .hdr-nav a svg{margin-left:5px;opacity:.5;vertical-align:middle}
 .hdr-nav a.active{border-bottom:1px solid var(--color-ink)}
 .hdr-nav a.outlet{color:var(--color-gold)}
 
 .stage{position:relative;flex:1}
 .behind{padding:22px 36px;opacity:.42}
-.behind .h{text-align:center;font-family:var(--font-serif-en);font-size:18px;letter-spacing:.16em;margin-bottom:16px}
+.behind .h{text-align:center;font-family:var(--font-serif-en);font-size:18px;letter-spacing:.16em;margin-bottom:16px;text-transform:uppercase}
 .behind .g{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .behind .c{height:110px;background:var(--color-ph-1)}
 .overlay{position:absolute;inset:0;background:rgba(42,42,42,.26);z-index:20}
 
 /* ドロップダウン */
 .dd{position:absolute;top:0;left:0;right:0;background:var(--color-bg);z-index:25;box-shadow:0 12px 28px rgba(0,0,0,.12);border-bottom:1px solid var(--color-hairline);padding:28px 40px 32px}
-.dd-eyebrow{font-family:var(--font-serif-en);font-size:11px;letter-spacing:var(--tracking-eyebrow);color:var(--color-caption);margin-bottom:14px}
-.lab{font-family:var(--font-serif-en);font-size:11px;letter-spacing:var(--tracking-eyebrow);color:var(--color-caption);margin-bottom:12px}
+.dd-eyebrow{font-family:var(--font-serif-en);font-size:14px;letter-spacing:var(--tracking-eyebrow);color:var(--color-caption);margin-bottom:14px;text-transform:uppercase}
+.lab{font-family:var(--font-body);font-size:11px;letter-spacing:var(--tracking-eyebrow);color:var(--color-caption);margin-bottom:12px}
 
 /* ITEM：左＝新着・入荷（縦）／右＝カテゴリ */
 .item-dd{display:flex;gap:40px}
@@ -58,7 +58,7 @@ p.sub{font-size:10px;color:var(--color-ink-tertiary);letter-spacing:.06em;text-a
 .arr-item + .arr-item{border-top:1px solid var(--color-hairline)}
 .arr-item:hover{background:var(--color-panel)}
 .arr-item .thumb{width:48px;height:48px;background:var(--color-ph-1);flex-shrink:0}
-.arr-item .en{font-family:var(--font-serif-en);font-size:16px;letter-spacing:.1em;display:block}
+.arr-item .en{font-family:var(--font-serif-en);font-size:16px;letter-spacing:.1em;display:block;text-transform:uppercase}
 .arr-item .jp{font-size:11px;color:var(--color-ink-secondary);display:block;margin-top:2px}
 .arr-item .arw{margin-left:auto;color:var(--color-ink-muted);font-size:14px}
 
@@ -66,14 +66,14 @@ p.sub{font-size:10px;color:var(--color-ink-tertiary);letter-spacing:.06em;text-a
 .mcols{display:flex;gap:28px}
 .mcol{flex:1;min-width:0}
 .mgrp{margin-bottom:16px}
-.mgrp .mh{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.1em;margin-bottom:8px}
+.mgrp .mh{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.1em;margin-bottom:8px;text-transform:uppercase}
 .mgrp a{display:block;font-size:11px;color:var(--color-ink-secondary);text-decoration:none;padding:4px 0}
 
 /* STYLING：最新コーデ2カラム */
 .styling-cols{display:flex;gap:40px}
 .scol{flex:1}
 .scol-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;border-bottom:1px solid var(--color-hairline);padding-bottom:10px}
-.scol-h .en{font-family:var(--font-serif-en);font-size:16px;letter-spacing:.12em}
+.scol-h .en{font-family:var(--font-serif-en);font-size:16px;letter-spacing:.12em;text-transform:uppercase}
 .scol-h .jp{font-size:10px;color:var(--color-caption);margin-left:6px}
 .scol-h .more{font-size:10px;letter-spacing:.1em;color:var(--color-ink-muted)}
 .coord-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}

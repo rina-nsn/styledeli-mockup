@@ -6,7 +6,7 @@
 <title>STYLE DELI – PDP (Desktop / A)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:wght@500;600&family=Tenor+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Italiana&family=Tenor+Sans&display=swap" rel="stylesheet">
 <style>
 /* === Design Tokens (mockは自己完結のためinline / 本番は外部 tokens.css を参照) === */
 :root{
@@ -18,7 +18,7 @@
   --color-preorder:#4a5870; --color-preorder-bg:#eceef3; --color-preorder-border:#b8c0d0;
   --color-neutral-bg:#f0f0ee; --color-neutral-border:#c8c4b8; --color-pinterest:#e60023;
   --font-body:'Zen Kaku Gothic New','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;
-  --font-serif-en:'Cormorant Garamond','Times New Roman',serif;
+  --font-serif-en:'Italiana','Times New Roman',serif;
   --tracking-heading:.28em; --tracking-eyebrow:.22em; --tracking-label:.12em;
   --pdp-max:1280px; --section-max:1080px; --buybox-w:440px; --gap-pdp:56px; --header-offset:92px;
 }
@@ -120,7 +120,7 @@ a{color:inherit}
 /* full-width visual sections */
 .full{border-top:1px solid var(--color-hairline)}
 .section{max-width:var(--section-max);margin:0 auto;padding:48px 40px}
-.sec-t{font-family:var(--font-serif-en);font-size:13px;letter-spacing:.12em;color:var(--color-label);margin-bottom:6px;font-weight:500}
+.sec-t{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.12em;color:var(--color-label);margin-bottom:6px;font-weight:500;text-transform:uppercase}
 .sec-sub{font-size:10px;color:var(--color-ink-tertiary);margin-bottom:22px;letter-spacing:.04em}
 .cz-carousel{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:16px}
 .cz-photo{aspect-ratio:4/5;max-width:230px;background:linear-gradient(135deg,var(--color-ph-1),var(--color-ph-2));display:flex;align-items:center;justify-content:center;color:var(--color-ph-ink);font-size:10px;position:relative}
@@ -176,7 +176,7 @@ a{color:inherit}
 /* ===== confirmed PC footer ===== */
 .d-foot{background:#2a2a2a;color:#d9d4cc;margin-top:70px}
 .d-news{border-bottom:1px solid rgba(255,255,255,.08);padding:34px 40px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
-.d-news .nl-ey{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.22em;color:#efe9e1}
+.d-news .nl-ey{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.22em;color:#efe9e1;text-transform:uppercase}
 .d-news .nl-tx{font-size:11px;color:#a8a299;letter-spacing:.06em;margin-top:6px}
 .d-news .nl-form{display:flex;min-width:340px}
 .d-news input{flex:1;background:transparent;border:1px solid rgba(255,255,255,.25);border-right:none;color:#efe9e1;font-size:12px;padding:11px 14px;font-family:inherit}
@@ -185,7 +185,7 @@ a{color:inherit}
 .d-cols{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr 1fr;gap:30px;padding:40px 40px 30px}
 .d-cols .fl{font-family:'Tenor Sans',sans-serif;font-size:18px;letter-spacing:.28em;padding-left:.28em;color:#efe9e1}
 .d-cols .brand-col p{font-size:10.5px;line-height:1.9;color:#9a948c;margin-top:14px;letter-spacing:.04em}
-.d-cols h4{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.18em;color:#b8b2a8;margin-bottom:14px;font-weight:600}
+.d-cols h4{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.18em;color:#b8b2a8;margin-bottom:14px;font-weight:600;text-transform:uppercase}
 .d-cols a{display:block;font-size:11px;color:#cfc9c0;letter-spacing:.04em;padding:5px 0;cursor:pointer}
 .d-cols a:hover{color:#fff}.d-cols a.outlet{color:#b98f40}
 .d-foot-bottom{border-top:1px solid rgba(255,255,255,.08);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}

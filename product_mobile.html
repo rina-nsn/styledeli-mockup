@@ -6,7 +6,7 @@
 <title>STYLE DELI – 商品詳細ページ モックアップ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:wght@500;600&family=Tenor+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Italiana&family=Tenor+Sans&display=swap" rel="stylesheet">
 <style>
 /* === Design Tokens (mockは自己完結のためinline / 本番は外部 tokens.css を参照) === */
 :root{
@@ -18,7 +18,7 @@
   --color-preorder:#4a5870; --color-preorder-bg:#eceef3; --color-preorder-border:#b8c0d0;
   --color-neutral-bg:#f0f0ee; --color-neutral-border:#c8c4b8; --color-pinterest:#e60023;
   --font-body:'Zen Kaku Gothic New','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;
-  --font-serif-en:'Cormorant Garamond','Times New Roman',serif;
+  --font-serif-en:'Italiana','Times New Roman',serif;
   --tracking-label:.12em; --tracking-eyebrow:.18em;
 }
 
@@ -126,7 +126,7 @@ p.sub{font-size:10px;color:var(--color-ink-tertiary);margin-bottom:28px;letter-s
 .sec.acc.open .sec-body{display:block}
 .sec-arr{transition:transform .2s}
 .sec.acc.open .sec-arr{transform:rotate(180deg)}
-.sec-t{font-family:var(--font-serif-en);font-size:12px;letter-spacing:.14em;color:var(--color-label);font-weight:500}
+.sec-t{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.14em;color:var(--color-label);font-weight:500;text-transform:uppercase}
 .sec-arr{font-size:16px;color:#ccc;font-weight:400}
 .sec-body{padding:0 16px 16px}
 
@@ -274,14 +274,14 @@ p.sub{font-size:10px;color:var(--color-ink-tertiary);margin-bottom:28px;letter-s
 /* ===== confirmed footer ===== */
 .m-foot{background:#2a2a2a;color:#d9d4cc;margin-top:44px}
 .m-foot .nl{padding:26px 18px;border-bottom:1px solid rgba(255,255,255,.08);text-align:center}
-.m-foot .nl-ey{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.22em;color:#efe9e1}
+.m-foot .nl-ey{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.22em;color:#efe9e1;text-transform:uppercase}
 .m-foot .nl-tx{font-size:10px;color:#9a948c;margin:7px 0 12px;letter-spacing:.04em}
 .m-foot .nl-form{display:flex}
 .m-foot .nl-form input{flex:1;background:transparent;border:1px solid rgba(255,255,255,.25);border-right:none;color:#efe9e1;font-size:11px;padding:10px 12px;font-family:inherit}
 .m-foot .nl-form input::placeholder{color:#7c766e}
 .m-foot .nl-form button{background:#efe9e1;color:#2a2a2a;border:none;font-size:10px;letter-spacing:.14em;padding:0 16px;font-family:inherit}
 .m-acc .row{border-bottom:1px solid rgba(255,255,255,.08);padding:15px 18px;display:flex;justify-content:space-between;align-items:center;color:#cfc9c0;cursor:pointer}
-.m-acc .row .pl{font-family:'Cormorant Garamond',serif;letter-spacing:.16em;font-size:11px}
+.m-acc .row .pl{font-family:var(--font-body);letter-spacing:.16em;font-size:11px}
 .m-bottom{padding:20px 18px;display:flex;flex-direction:column;align-items:center;gap:14px}
 .m-sns{display:flex;gap:18px;color:#cfc9c0;align-items:center}
 .m-pay{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
@@ -293,17 +293,17 @@ p.sub{font-size:10px;color:var(--color-ink-tertiary);margin-bottom:28px;letter-s
 .drawer{position:fixed;top:0;bottom:0;left:50%;transform:translateX(-50%);width:375px;max-width:100%;background:#faf9f7;overflow-y:auto;z-index:100;display:none;box-shadow:0 0 40px rgba(0,0,0,.25)}
 .drawer.open{display:block}
 .dr-head{height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid #ece9e4}
-.dr-head .t{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.2em;color:#8a8580}
+.dr-head .t{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.2em;color:#8a8580;text-transform:uppercase}
 .dr-close{cursor:pointer;color:#2a2a2a}
 .dr-group-h{font-size:10.5px;font-weight:500;letter-spacing:.18em;color:#8a8580;padding:20px 18px 10px;display:flex;align-items:center;gap:10px}
 .dr-group-h::after{content:'';flex:1;height:1px;background:#e4dfd8}
 .dr-arrivals{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #ece9e4;border-bottom:1px solid #ece9e4}
 .dr-arrivals .a-cell{display:flex;flex-direction:column;align-items:center;gap:3px;padding:14px 4px;cursor:pointer;border-right:1px solid #ece9e4}
 .dr-arrivals .a-cell:last-child{border-right:none}
-.dr-arrivals .a-cell .en{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.12em;color:#2a2a2a}
+.dr-arrivals .a-cell .en{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.12em;color:#2a2a2a;text-transform:uppercase}
 .dr-arrivals .a-cell .jp{font-size:10px;color:#7a7570}
 .dr-nav .di{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid #ece9e4;cursor:pointer}
-.dr-nav .di .en{font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.14em;color:#2a2a2a}
+.dr-nav .di .en{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.14em;color:#2a2a2a;text-transform:uppercase}
 .dr-nav .di .chev{width:12px;height:12px;opacity:.55}
 .dr-nav .di.sub{padding:12px 18px 12px 30px;background:#f5f2ec;border-bottom:1px solid #e4dfd8;font-size:12px;letter-spacing:.06em;color:#5a5a52}
 .dr-nav .di.outlet .en{color:#b98f40}
@@ -311,7 +311,7 @@ p.sub{font-size:10px;color:var(--color-ink-tertiary);margin-bottom:28px;letter-s
 .dr-styling{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:6px 18px 18px}
 .st-card{cursor:pointer}
 .st-card .thumb{aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#efe9e1,#efe9e1 12px,#e9e2d8 12px,#e9e2d8 24px);border-radius:3px;display:flex;align-items:flex-end;padding:10px;color:#8a8580;font-size:8px;letter-spacing:.1em}
-.st-card .en{display:block;font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.14em;color:#2a2a2a;margin-top:9px}
+.st-card .en{display:block;font-family:var(--font-serif-en);font-size:14px;letter-spacing:.14em;color:#2a2a2a;margin-top:9px;text-transform:uppercase}
 .st-card .jp{display:block;font-size:9.5px;color:#7a7570;margin-top:2px}
 .dr-util{padding:8px 18px 14px;display:flex;flex-direction:column;gap:2px;border-top:1px solid #ece9e4}
 .dr-util a{display:flex;align-items:center;gap:9px;font-size:12px;color:#5a5a52;padding:9px 0;cursor:pointer}

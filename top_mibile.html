@@ -6,19 +6,19 @@
 <title>STYLE DELI – トップページ（モバイル / 確定デザイン）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:wght@500;600&family=Jost:wght@300&family=Tenor+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Italiana&family=Jost:wght@300&family=Tenor+Sans&display=swap" rel="stylesheet">
 <style>
 :root{
   --color-ink:#2a2a2a; --color-label:#5a5a52; --color-ink-secondary:#7a7570; --color-caption:#8a8580; --color-hint:#aaa; --color-ink-tertiary:#bbb; --color-border:#ddd;
   --color-bg:#faf9f7; --color-surface-white:#fff; --color-panel:#f5f2ec; --color-hairline:#ece9e4; --color-hairline-2:#e4dfd8;
   --color-anno:#2a2a2a; --gold:#b98f40;
   --font-body:'Zen Kaku Gothic New','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;
-  --font-serif-en:'Cormorant Garamond','Times New Roman',serif;
+  --font-serif-en:'Italiana','Times New Roman',serif;
   --tracking-eyebrow:.2em; --tracking-label:.12em; --tracking-nav:.18em; --tracking-logo:.34em;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-body);background:#e8e5e0;color:var(--color-ink);padding:30px 20px 70px;display:flex;flex-direction:column;align-items:center;gap:6px}
-.page-title{font-family:var(--font-serif-en);font-size:22px;letter-spacing:.06em;color:#4a4641}
+.page-title{font-family:var(--font-serif-en);font-size:22px;letter-spacing:.06em;color:#4a4641;text-transform:uppercase}
 .page-sub{font-size:11px;color:#9a948c;letter-spacing:.08em;margin-bottom:8px}
 .note{max-width:760px;font-size:11px;color:#7a746c;line-height:1.8;text-align:center;background:#f3f1ec;border:1px solid #d7d2c8;border-radius:4px;padding:11px 16px;margin-bottom:14px}
 .note b{color:#4a4641}
@@ -52,8 +52,8 @@ svg{display:block}
 .hero-slide.on{display:flex}
 .hs1{background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,.05) 55%),url('https://styledeli.itembox.cloud/product/085/000000008560/000000008560-40.jpg?size=l&w=ODAw&t=20260423102720') center/cover}.hs2{background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,.05) 55%),url('https://styledeli.itembox.cloud/product/100/000000010062/000000010062-40.jpg?size=l&w=ODAw&t=20260422170221') center/cover}.hs3{background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,.05) 55%),url('https://styledeli.itembox.cloud/product/100/000000010071/000000010071-40.jpg?size=l&w=ODAw&t=20260423170221') center/cover}
 .hero-text{padding:0 28px}
-.hero-eye{font-family:var(--font-serif-en);font-size:12px;letter-spacing:.3em;color:rgba(255,255,255,.92);margin-bottom:14px;text-shadow:0 1px 10px rgba(0,0,0,.4)}
-.hero-h{font-family:var(--font-serif-en);font-size:42px;font-weight:500;letter-spacing:.02em;line-height:1.08;color:#fff;margin-bottom:12px;text-shadow:0 2px 18px rgba(0,0,0,.4)}
+.hero-eye{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.3em;color:rgba(255,255,255,.92);margin-bottom:14px;text-shadow:0 1px 10px rgba(0,0,0,.4);text-transform:uppercase}
+.hero-h{font-family:var(--font-serif-en);font-size:42px;font-weight:500;letter-spacing:.02em;line-height:1.08;color:#fff;margin-bottom:12px;text-shadow:0 2px 18px rgba(0,0,0,.4);text-transform:uppercase}
 .hero-desc{font-size:11px;color:rgba(255,255,255,.9);line-height:1.7;margin-bottom:22px;text-shadow:0 1px 10px rgba(0,0,0,.35)}
 .hero-cta{display:inline-block;background:#fff;color:var(--color-ink);font-size:10px;letter-spacing:.2em;padding:13px 30px;cursor:pointer}
 .hero-dots{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:7px}
@@ -64,7 +64,7 @@ svg{display:block}
 
 /* ===== ranking ===== */
 .rank-item{display:flex;gap:13px;padding:11px 20px;border-bottom:1px solid var(--color-hairline);align-items:center}
-.rank-num{font-family:var(--font-serif-en);font-size:20px;color:var(--color-ink-tertiary);width:22px;text-align:center;flex-shrink:0;font-weight:500}
+.rank-num{font-family:var(--font-serif-en);font-size:20px;color:var(--color-ink-tertiary);width:22px;text-align:center;flex-shrink:0;font-weight:500;text-transform:uppercase}
 .rank-num.top{color:var(--gold)}
 .rank-img{width:54px;height:68px;flex-shrink:0;position:relative}
 .stock-badge{position:absolute;bottom:0;left:0;right:0;background:rgba(42,42,42,.78);color:#faf9f7;font-size:7px;letter-spacing:.08em;padding:2px 0;text-align:center}
@@ -75,7 +75,7 @@ svg{display:block}
 /* ===== tabs / products ===== */
 .tab-wrap{padding:0 20px}
 .tab-bar{display:flex;border-bottom:1px solid var(--color-hairline)}
-.tab{flex:1;text-align:center;padding:11px 0;font-family:var(--font-serif-en);font-size:12px;letter-spacing:.14em;color:var(--color-ink-tertiary);border-bottom:1.5px solid transparent;margin-bottom:-1px;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer}
+.tab{flex:1;text-align:center;padding:11px 0;font-family:var(--font-body);font-size:12px;letter-spacing:.14em;color:var(--color-ink-tertiary);border-bottom:1.5px solid transparent;margin-bottom:-1px;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer}
 .tab.active{color:var(--color-ink);border-bottom-color:var(--color-ink)}
 .tbadge{font-family:var(--font-body);background:var(--color-hairline-2);color:var(--color-ink-secondary);font-size:8px;padding:1px 6px;border-radius:7px;letter-spacing:0}
 .tab.active .tbadge{background:var(--color-ink);color:var(--color-bg)}
@@ -94,7 +94,7 @@ svg{display:block}
 .coord-scroll::-webkit-scrollbar{display:none}
 .coord-card{flex-shrink:0;width:140px}
 .coord-img{width:140px;height:175px;margin-bottom:9px}
-.coord-label{font-family:var(--font-serif-en);font-size:11px;letter-spacing:.1em;color:var(--color-caption);margin-bottom:3px}
+.coord-label{font-family:var(--font-body);font-size:11px;letter-spacing:.1em;color:var(--color-caption);margin-bottom:3px}
 .coord-sname{font-size:11px;color:var(--color-ink);margin-bottom:4px}
 .coord-comment{font-size:10px;color:var(--color-ink-secondary);line-height:1.6}
 
@@ -102,7 +102,7 @@ svg{display:block}
 .itab-scroll{overflow-x:auto;padding:0 20px;scrollbar-width:none}
 .itab-scroll::-webkit-scrollbar{display:none}
 .itab-bar{display:flex;border-bottom:1px solid var(--color-hairline);min-width:max-content}
-.itab{padding:10px 14px;font-family:var(--font-serif-en);font-size:12px;letter-spacing:.12em;color:var(--color-ink-tertiary);border-bottom:1.5px solid transparent;margin-bottom:-1px;cursor:pointer;white-space:nowrap}
+.itab{padding:10px 14px;font-family:var(--font-body);font-size:12px;letter-spacing:.12em;color:var(--color-ink-tertiary);border-bottom:1.5px solid transparent;margin-bottom:-1px;cursor:pointer;white-space:nowrap}
 .itab.active{color:var(--color-ink);border-bottom-color:var(--color-ink)}
 .ipanel{padding:14px 16px 4px}
 .insta-handle{font-size:9px;letter-spacing:.1em;color:var(--color-caption);margin-bottom:9px;display:flex;align-items:center;gap:5px}
@@ -128,21 +128,21 @@ svg{display:block}
 .feat-li{display:flex;gap:12px;align-items:center}
 .feat-thumb{width:66px;height:42px;flex-shrink:0}
 .feat-arr{font-size:16px;color:var(--color-ink-tertiary);flex-shrink:0;font-weight:300}
-.media-cat{font-family:var(--font-serif-en);font-size:10px;letter-spacing:.16em;color:var(--color-caption);margin-bottom:4px}
+.media-cat{font-family:var(--font-body);font-size:10px;letter-spacing:.16em;color:var(--color-caption);margin-bottom:4px}
 .media-name{font-size:14px;color:var(--color-ink);margin-bottom:3px}
 .media-desc{font-size:11px;color:var(--color-ink-secondary)}
 
 /* ===== footer (confirmed) ===== */
 .m-foot{background:var(--color-ink);color:#d9d4cc;margin-top:44px}
 .m-foot .nl{padding:26px 18px;border-bottom:1px solid rgba(255,255,255,.08);text-align:center}
-.m-foot .nl-ey{font-family:var(--font-serif-en);font-size:12px;letter-spacing:.22em;color:#efe9e1}
+.m-foot .nl-ey{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.22em;color:#efe9e1;text-transform:uppercase}
 .m-foot .nl-tx{font-size:10px;color:#9a948c;margin:7px 0 12px;letter-spacing:.04em}
 .m-foot .nl-form{display:flex}
 .m-foot .nl-form input{flex:1;background:transparent;border:1px solid rgba(255,255,255,.25);border-right:none;color:#efe9e1;font-size:11px;padding:10px 12px;font-family:var(--font-body)}
 .m-foot .nl-form input::placeholder{color:#7c766e}
 .m-foot .nl-form button{background:#efe9e1;color:var(--color-ink);border:none;font-size:10px;letter-spacing:.14em;padding:0 16px;font-family:var(--font-body)}
 .m-acc .row{border-bottom:1px solid rgba(255,255,255,.08);padding:15px 18px;display:flex;justify-content:space-between;align-items:center;color:#cfc9c0;cursor:pointer}
-.m-acc .row .pl{font-family:var(--font-serif-en);letter-spacing:.16em;font-size:11px}
+.m-acc .row .pl{font-family:var(--font-body);letter-spacing:.16em;font-size:11px}
 .m-bottom{padding:20px 18px;display:flex;flex-direction:column;align-items:center;gap:14px}
 .m-sns{display:flex;gap:18px;color:#cfc9c0;align-items:center}
 .m-pay{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
@@ -155,17 +155,17 @@ svg{display:block}
 .drawer{position:fixed;top:0;bottom:0;left:50%;transform:translateX(-50%);width:375px;max-width:100%;background:var(--color-bg);overflow-y:auto;z-index:100;display:none;box-shadow:0 0 40px rgba(0,0,0,.25)}
 .drawer.open{display:block}
 .dr-head{height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--color-hairline)}
-.dr-head .t{font-family:var(--font-serif-en);font-size:12px;letter-spacing:.2em;color:var(--color-caption)}
+.dr-head .t{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.2em;color:var(--color-caption);text-transform:uppercase}
 .dr-close{cursor:pointer;color:var(--color-ink)}
 .dr-group-h{font-size:10.5px;font-weight:500;letter-spacing:.18em;color:var(--color-caption);padding:20px 18px 10px;display:flex;align-items:center;gap:10px}
 .dr-group-h::after{content:'';flex:1;height:1px;background:var(--color-hairline-2)}
 .dr-arrivals{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--color-hairline);border-bottom:1px solid var(--color-hairline)}
 .dr-arrivals .a-cell{display:flex;flex-direction:column;align-items:center;gap:3px;padding:14px 4px;cursor:pointer;border-right:1px solid var(--color-hairline)}
 .dr-arrivals .a-cell:last-child{border-right:none}
-.dr-arrivals .a-cell .en{font-family:var(--font-serif-en);font-size:12px;letter-spacing:.12em;color:var(--color-ink)}
+.dr-arrivals .a-cell .en{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.12em;color:var(--color-ink);text-transform:uppercase}
 .dr-arrivals .a-cell .jp{font-size:10px;color:var(--color-ink-secondary)}
 .dr-nav .di{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--color-hairline);cursor:pointer}
-.dr-nav .di .en{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.14em;color:var(--color-ink)}
+.dr-nav .di .en{font-family:var(--font-serif-en);font-size:14px;letter-spacing:.14em;color:var(--color-ink);text-transform:uppercase}
 .dr-nav .di .chev{width:12px;height:12px;opacity:.55}
 .dr-nav .di.sub{padding:12px 18px 12px 30px;background:var(--color-panel);border-bottom:1px solid var(--color-hairline-2);font-size:12px;letter-spacing:.06em;color:var(--color-label)}
 .dr-nav .di.outlet .en{color:var(--gold)}
@@ -173,7 +173,7 @@ svg{display:block}
 .dr-styling{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:6px 18px 18px}
 .st-card{cursor:pointer}
 .st-card .thumb{aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#efe9e1,#efe9e1 12px,#e9e2d8 12px,#e9e2d8 24px);border-radius:3px;display:flex;align-items:flex-end;padding:10px;color:var(--color-caption);font-size:8px;letter-spacing:.1em}
-.st-card .en{display:block;font-family:var(--font-serif-en);font-size:12px;letter-spacing:.14em;color:var(--color-ink);margin-top:9px}
+.st-card .en{display:block;font-family:var(--font-serif-en);font-size:14px;letter-spacing:.14em;color:var(--color-ink);margin-top:9px;text-transform:uppercase}
 .st-card .jp{display:block;font-size:9.5px;color:var(--color-ink-secondary);margin-top:2px}
 .dr-util{padding:8px 18px 14px;display:flex;flex-direction:column;gap:2px;border-top:1px solid var(--color-hairline)}
 .dr-util a{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--color-label);padding:9px 0;cursor:pointer}
@@ -188,7 +188,7 @@ svg{display:block}
 <body>
 <div class="page-title">Top Page — Mobile</div>
 <div class="page-sub">STYLE DELI ／ トップページ（確定デザイン・売上重視の並び）</div>
-<div class="note">B v5 の構成を確定トークンに載せ替え。見出しは Cormorant＋日本語サブで階層化、Hero はセリフ大見出し。<b>☰ で確定ドロワー</b>が開く。中身は仮データ。</div>
+<div class="note">B v5 の構成を確定トークンに載せ替え。見出しは Italiana＋日本語サブで階層化、Hero はセリフ大見出し。<b>☰ で確定ドロワー</b>が開く。中身は仮データ。</div>
 
 <div class="phone" id="phone">
 
