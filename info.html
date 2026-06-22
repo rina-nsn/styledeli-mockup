@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHOPPING GUIDE / FAQ — STYLE DELI mock</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Tenor+Sans&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F2EC; --paper-2:#EDE8DF; --paper-3:#E7E1D6;
+    --ink:#20201E; --ink-soft:#514C44; --taupe:#9A9285;
+    --line:#DBD4C8; --line-soft:#E6E0D5;
+    --ff-disp:'Italiana','Zen Kaku Gothic New',serif;
+    --ff-util:'Tenor Sans','Zen Kaku Gothic New',sans-serif;
+    --ff-jp:'Zen Kaku Gothic New',sans-serif;
+    --pad:clamp(16px,4vw,52px); --maxw:1100px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--ff-jp);line-height:1.85;letter-spacing:.02em}
+  a{color:inherit;text-decoration:none}
+  .lat{font-family:var(--ff-util)} .disp{font-family:var(--ff-disp)}
+  .eyebrow{font-family:var(--ff-util);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--taupe)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+
+  /* top bar */
+  header.site{position:sticky;top:0;z-index:40;background:rgba(245,242,236,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-soft)}
+  .site-inner{max-width:var(--maxw);margin:0 auto;padding:18px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .logo{font-family:var(--ff-util);font-size:clamp(15px,1.4vw,18px);letter-spacing:.34em;text-transform:uppercase;padding-left:.34em}
+  .crumb{font-family:var(--ff-util);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe);display:flex;gap:.7em;align-items:center}
+  .crumb .sep{opacity:.5}
+
+  /* view toggle */
+  .switch{position:fixed;right:12px;bottom:14px;left:12px;z-index:60;display:flex;justify-content:center;gap:0;background:var(--ink);border-radius:999px;padding:4px;box-shadow:0 8px 30px rgba(32,32,30,.22);max-width:max-content;margin:0 auto}
+  .switch button{font-family:var(--ff-util);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#C9C2B5;background:transparent;border:0;cursor:pointer;padding:9px 13px;border-radius:999px;transition:color .25s,background .25s;white-space:nowrap}
+  .switch button.on{color:var(--ink);background:var(--paper)}
+  .view{display:none} .view.show{display:block;animation:fade .5s ease both}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  /* hero */
+  .hero{padding:clamp(22px,5vw,56px) 0 clamp(18px,3vw,34px)}
+  .hero .eyebrow{margin-bottom:10px}
+  .hero h1{font-family:var(--ff-disp);font-weight:400;font-size:clamp(34px,8vw,72px);line-height:1;letter-spacing:.02em}
+  .hero .jp{margin-top:10px;font-size:12px;letter-spacing:.18em;color:var(--taupe)}
+  .hero .lead{margin-top:14px;font-size:13px;line-height:1.9;color:var(--ink-soft);max-width:42rem}
+
+  /* note banner */
+  .banner{margin:8px 0 4px;padding:14px 16px;background:var(--paper-2);border-left:2px solid var(--ink);font-size:12.5px;line-height:1.85;color:var(--ink-soft)}
+  .banner b{color:var(--ink);font-weight:500}
+
+  /* ===== GUIDE: anchor index ===== */
+  .toc{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;margin:clamp(20px,4vw,40px) 0}
+  .toc .lbl{font-family:var(--ff-util);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--taupe);margin-bottom:14px}
+  .toc ol{list-style:none;display:grid;grid-template-columns:1fr 1fr;column-gap:16px;gap:0}
+  .toc a{display:flex;align-items:baseline;gap:8px;padding:11px 2px;font-size:13px;border-bottom:1px solid var(--line-soft);transition:color .2s}
+  .toc a:hover{color:var(--taupe)}
+  .toc a .n{font-family:var(--ff-util);font-size:11px;letter-spacing:.1em;color:var(--taupe);min-width:18px}
+  .toc .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px}
+  .toc .links a{font-family:var(--ff-util);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--line);padding-bottom:3px}
+  .toc .links a:hover{color:var(--ink);border-color:var(--ink)}
+
+  /* guide sections */
+  .gsec{padding:clamp(28px,5vw,52px) 0;border-top:1px solid var(--line-soft);scroll-margin-top:80px}
+  .gsec:first-of-type{border-top:0}
+  .gsec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:20px}
+  .gsec-head .n{font-family:var(--ff-disp);font-size:clamp(20px,4vw,30px);color:var(--taupe);line-height:1}
+  .gsec-head h2{font-size:clamp(17px,3.4vw,22px);font-weight:500;letter-spacing:.06em;line-height:1.4}
+  .gsec p{font-size:13.5px;line-height:1.95;color:var(--ink-soft);margin-bottom:12px;max-width:46rem}
+  .gsec p.tight{margin-bottom:6px}
+  .gsec strong{color:var(--ink);font-weight:500}
+  /* in-content row link (distinct from support cards) */
+  .rowlink{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:17px 6px;margin-top:8px;transition:background .2s}
+  .rowlink:hover{background:var(--paper-2)}
+  .rowlink .rl-text{font-size:14px;letter-spacing:.04em}
+  .rowlink .rl-arrow{font-family:var(--ff-util);font-size:15px;color:var(--taupe);transition:transform .25s,color .25s}
+  .rowlink:hover .rl-arrow{transform:translateX(4px);color:var(--ink)}
+
+  /* inline text links (Concierge Desk / email) */
+  .ilink{color:var(--ink);border-bottom:1px solid var(--taupe);transition:border-color .2s}
+  .ilink:hover{border-color:var(--ink)}
+
+  /* help nav cards (bottom of guide) */
+  .helpnav{margin:clamp(40px,6vw,68px) 0 0}
+  .helpnav .hn-lbl{font-family:var(--ff-util);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--taupe);text-align:center;display:block;margin-bottom:18px}
+  .help-cards{display:grid;grid-template-columns:1fr;gap:12px}
+  .hcard{position:relative;display:block;border:1px solid var(--line);padding:22px 22px 20px;transition:background .25s,color .25s,border-color .25s}
+  .hcard:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .hcard .he{font-family:var(--ff-disp);font-size:23px;letter-spacing:.04em;display:block;line-height:1}
+  .hcard .hj{font-size:12px;letter-spacing:.14em;color:var(--taupe);display:block;margin-top:5px}
+  .hcard:hover .hj{color:#C9C2B5}
+  .hcard .hd{font-size:12.5px;color:var(--ink-soft);line-height:1.8;display:block;margin-top:13px;max-width:36ch;word-break:auto-phrase;line-break:strict}
+  .hcard:hover .hd{color:#D8D2C6}
+  .hcard .harrow{position:absolute;top:22px;right:22px;font-family:var(--ff-util);font-size:15px;color:var(--taupe);transition:transform .25s,color .25s}
+  .hcard:hover .harrow{color:var(--paper);transform:translateX(3px)}
+
+  /* step flow */
+  /* purchase flow timeline */
+  .flow{margin:8px 0 2px;position:relative}
+  .fstep{position:relative;padding:0 0 24px 46px}
+  .fstep:last-child{padding-bottom:2px}
+  .fstep::before{content:"";position:absolute;left:14px;top:31px;bottom:0;width:1px;background:var(--line)}
+  .fstep:last-child::before{display:none}
+  .fstep .node{position:absolute;left:0;top:1px;width:29px;height:29px;border-radius:50%;border:1px solid var(--line);background:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--ff-util);font-size:11px;letter-spacing:.06em;color:var(--ink-soft)}
+  .fstep .st{font-size:14px;font-weight:500;letter-spacing:.04em;margin-bottom:5px;padding-top:5px}
+  .fstep .sd{font-size:12.5px;color:var(--ink-soft);line-height:1.85;margin-bottom:0;max-width:42rem}
+
+  /* payment / spec table */
+  .ptable{border:1px solid var(--line);margin:6px 0}
+  .prow{display:grid;grid-template-columns:1fr;border-top:1px solid var(--line)}
+  .prow:first-child{border-top:0}
+  .prow .pk{background:var(--paper-2);padding:11px 15px;font-size:13.5px;font-weight:500;letter-spacing:.04em}
+  .prow .pv{padding:11px 15px;font-size:13px;color:var(--ink-soft);line-height:1.8}
+  .pv .fee{font-family:var(--ff-util);font-size:12px;letter-spacing:.04em;color:var(--ink)}
+
+  /* bullet list */
+  .blist{margin:4px 0 12px;padding:0;list-style:none}
+  .blist li{position:relative;padding-left:16px;font-size:13px;color:var(--ink-soft);line-height:1.9}
+  .blist li::before{content:"";position:absolute;left:2px;top:.85em;width:5px;height:1px;background:var(--taupe)}
+
+  .prov{display:inline-block;font-family:var(--ff-util);font-size:10px;letter-spacing:.1em;color:var(--taupe);border:1px solid var(--line);border-radius:999px;padding:2px 9px;margin-left:6px;vertical-align:middle}
+
+  /* ===== FAQ ===== */
+  .faqnav{position:sticky;top:57px;z-index:30;background:rgba(245,242,236,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-soft);margin-bottom:clamp(16px,3vw,28px)}
+  .faqnav-in{display:flex;gap:8px;overflow-x:auto;padding:12px var(--pad);max-width:var(--maxw);margin:0 auto;-webkit-overflow-scrolling:touch}
+  .faqnav-in::-webkit-scrollbar{display:none}
+  .faqnav a{flex:0 0 auto;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:6px 14px;white-space:nowrap;transition:background .2s,color .2s,border-color .2s}
+  .faqnav a:hover{border-color:var(--ink)}
+  .faqnav a.mig{border-color:var(--ink);color:var(--ink)}
+
+  .faq-group{padding-top:clamp(20px,3vw,32px);scroll-margin-top:108px}
+  .grp-title{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--ink);padding-bottom:11px;margin-bottom:6px}
+  .grp-title .en{font-family:var(--ff-disp);font-size:clamp(18px,3.4vw,26px);letter-spacing:.04em}
+  .grp-title .jp{font-size:12px;letter-spacing:.16em;color:var(--taupe)}
+  .grp-title.mig .en{color:var(--ink)}
+  .grp-badge{font-family:var(--ff-util);font-size:9px;letter-spacing:.14em;background:var(--ink);color:var(--paper);padding:2px 7px;align-self:center}
+
+  .faq-item{border-bottom:1px solid var(--line-soft)}
+  .faq-item .q{width:100%;text-align:left;background:transparent;border:0;cursor:pointer;display:flex;gap:12px;align-items:flex-start;padding:15px 2px;font-family:var(--ff-jp);font-size:13.5px;color:var(--ink);letter-spacing:.02em;line-height:1.6}
+  .faq-item .q .qi{font-family:var(--ff-util);font-size:13px;color:var(--taupe);min-width:14px}
+  .faq-item .q .mk{margin-left:auto;font-family:var(--ff-util);font-size:16px;color:var(--taupe);transition:transform .3s;line-height:1}
+  .faq-item.open .q .mk{transform:rotate(45deg)}
+  .faq-item .a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .faq-item .a-in{display:flex;gap:12px;padding:0 2px 18px;font-size:13px;color:var(--ink-soft);line-height:1.95}
+  .faq-item .a-in .ai{font-family:var(--ff-util);font-size:13px;color:var(--ink);min-width:14px}
+  .faq-item .a-in .prov{margin-left:0}
+  .tbd{font-size:11px;color:var(--taupe);letter-spacing:.04em}
+
+  /* contact cta */
+  .cta{margin:clamp(36px,6vw,64px) 0 0;padding:clamp(26px,4vw,40px);background:var(--paper-2);text-align:center}
+  .cta .ce{font-family:var(--ff-util);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--taupe)}
+  .cta .ct{font-family:var(--ff-disp);font-size:clamp(20px,3.4vw,28px);margin:8px 0 14px}
+  .cta a{display:inline-block;font-family:var(--ff-util);font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:13px 34px;border:1px solid var(--ink);transition:background .25s,color .25s}
+  .cta a:hover{background:var(--ink);color:var(--paper)}
+
+  /* ===== MEMBER STAGE ===== */
+  .stage-intro{font-size:13.5px;color:var(--ink-soft);line-height:1.95;margin:8px 0 4px;max-width:46rem}
+  .chart,.row5{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+  .chart{align-items:end;margin:18px 0 0;border-bottom:1px solid var(--ink)}
+  .bar{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:3px;color:var(--ink);border-radius:4px 4px 0 0;padding:11px 4px 12px;text-align:center}
+  .bar.dark{color:#F5F2EC}
+  .bar .num{font-family:var(--ff-util);font-size:clamp(15px,4.2vw,24px);line-height:1}
+  .bar .nl{font-size:9px;letter-spacing:.02em;line-height:1.3;opacity:.85}
+  .bar .freein{font-size:9px;letter-spacing:.04em;border:1px solid currentColor;border-radius:999px;padding:2px 7px;margin-top:5px;opacity:.95}
+  .row5.bday{margin-top:5px}
+  .row5.bday .b{font-size:10px;line-height:1.45;color:var(--ink-soft);text-align:center;padding:8px 2px;background:var(--paper-2)}
+  .row5.names{margin-top:6px}
+  .row5.names .nm{font-family:var(--ff-disp);font-size:clamp(11px,2.7vw,16px);letter-spacing:.03em;text-align:center;padding:0 1px}
+  .row5.thr{margin-top:7px}
+  .row5.thr .t{font-size:clamp(9px,2.2vw,11px);color:var(--ink-soft);line-height:1.5;text-align:center;padding:0 1px}
+
+  .note-block{margin-top:26px;border-top:1px solid var(--line)}
+  .note-group{padding:18px 0;border-bottom:1px solid var(--line-soft)}
+  .note-group h3{font-family:var(--ff-util);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);margin-bottom:11px}
+  .note-group p{position:relative;padding-left:16px;font-size:12.5px;line-height:1.85;color:var(--ink-soft);margin-bottom:8px}
+  .note-group p:last-child{margin-bottom:0}
+  .note-group p::before{content:"—";position:absolute;left:0;top:0;color:var(--taupe)}
+  .tbd{font-size:11px;color:var(--taupe);letter-spacing:.04em}
+
+  /* ===== CONTACT ===== */
+  .tabs{display:flex;max-width:640px;margin:8px auto 22px;border:1px solid var(--line)}
+  .tabs button{flex:1;font-family:var(--ff-util);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:13px 10px;background:transparent;border:0;cursor:pointer;color:var(--taupe);transition:background .2s,color .2s}
+  .tabs button+button{border-left:1px solid var(--line)}
+  .tabs button.on{background:var(--ink);color:var(--paper)}
+  .cform{display:none;max-width:640px;margin:0 auto}
+  .cform.show{display:block}
+  .biz-note{font-size:12px;color:var(--ink-soft);line-height:1.9;background:var(--paper-2);padding:14px 16px;margin-bottom:20px}
+  .field{margin-bottom:16px}
+  .field label{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500;margin-bottom:7px;letter-spacing:.04em}
+  .field .req{font-family:var(--ff-util);font-size:9px;letter-spacing:.1em;background:var(--ink);color:var(--paper);padding:2px 7px}
+  .field .opt{font-family:var(--ff-util);font-size:9px;letter-spacing:.1em;color:var(--taupe);border:1px solid var(--line);padding:2px 7px}
+  .field input,.field select,.field textarea{width:100%;font-family:var(--ff-jp);font-size:14px;color:var(--ink);background:var(--paper-2);border:1px solid var(--line);border-radius:0;padding:12px 13px;letter-spacing:.02em}
+  .field textarea{min-height:130px;resize:vertical}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ink);background:var(--paper)}
+  .upload{border:1px dashed var(--line);padding:18px;text-align:center;font-size:12px;color:var(--taupe);background:var(--paper-2)}
+  .submit{width:100%;font-family:var(--ff-util);font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:16px;background:var(--ink);color:var(--paper);border:0;cursor:pointer;margin-top:6px;transition:opacity .2s}
+  .submit:hover{opacity:.88}
+
+  /* footer */
+  footer.site{border-top:1px solid var(--line);margin-top:clamp(36px,5vw,64px);padding:clamp(32px,5vw,56px) 0}
+  .foot-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;align-items:baseline}
+  .foot-logo{font-family:var(--ff-util);font-size:14px;letter-spacing:.34em;text-transform:uppercase}
+  .foot-cr{font-family:var(--ff-util);font-size:10px;letter-spacing:.14em;color:var(--taupe)}
+
+  @media(min-width:720px){
+    .toc ol{grid-template-columns:1fr 1fr;column-gap:28px}
+    .prow{grid-template-columns:200px 1fr}
+    .help-cards{grid-template-columns:1fr 1fr}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="site-inner">
+    <a href="#" class="logo">Style Deli</a>
+    <div class="crumb"><span>Home</span><span class="sep">/</span><span id="crumb-tail">Shopping Guide</span></div>
+  </div>
+</header>
+
+<!-- ===================== SHOPPING GUIDE ===================== -->
+<main class="view show" id="view-guide">
+  <div class="wrap">
+    <section class="hero">
+      <p class="eyebrow">Help center</p>
+      <h1 class="disp">Shopping Guide</h1>
+      <p class="jp lat">ショッピングガイド</p>
+      <p class="lead">ご注文からお届け、お支払い、交換・返品、ポイントやクーポンのご利用方法までをご案内します。</p>
+    </section>
+
+    <p class="banner"><b>※ 本モックは構成確認用です。</b> 本文は仮テキスト。「仮」表記の項目（ポイント付与率・会員ステージ確定日など）は確定後に差し替えます。</p>
+
+    <!-- anchor index -->
+    <nav class="toc">
+      <p class="lbl">Contents</p>
+      <ol>
+        <li><a href="#g-order"><span class="n">01</span>ご購入からお届けまで</a></li>
+        <li><a href="#g-ship"><span class="n">02</span>送料について</a></li>
+        <li><a href="#g-delivery"><span class="n">03</span>配送サービスについて</a></li>
+        <li><a href="#g-pay"><span class="n">04</span>お支払いについて</a></li>
+        <li><a href="#g-return"><span class="n">05</span>交換・返品について</a></li>
+        <li><a href="#g-point"><span class="n">06</span>ポイント利用について</a></li>
+        <li><a href="#g-coupon"><span class="n">07</span>クーポン利用について</a></li>
+        <li><a href="#g-stage"><span class="n">08</span>会員ステージについて</a></li>
+      </ol>
+    </nav>
+
+    <!-- 01 order flow -->
+    <section class="gsec" id="g-order">
+      <div class="gsec-head"><span class="n disp">01</span><h2>ご購入からお届けまで</h2></div>
+      <p>新作は<strong>月曜日〜金曜日の19時ごろ</strong>に発売します。ご注文からお届けまでの流れは以下のとおりです。</p>
+      <div class="flow">
+        <div class="fstep"><span class="node lat">01</span><p class="st">お買い物・会員登録</p><p class="sd">会員登録でポイントやクーポンがご利用いただけます。</p></div>
+        <div class="fstep"><span class="node lat">02</span><p class="st">ご購入手続き</p><p class="sd">お支払い方法を選択します（→ お支払いについて）。</p></div>
+        <div class="fstep"><span class="node lat">03</span><p class="st">ご注文完了</p><p class="sd">ご登録メールアドレス宛に注文確認メールをお送りします。</p></div>
+        <div class="fstep"><span class="node lat">04</span><p class="st">商品の発送</p><p class="sd">在庫商品はご注文確認後、翌日〜3営業日で発送します。</p></div>
+        <div class="fstep"><span class="node lat">05</span><p class="st">お届け</p><p class="sd">到着後すぐに商品をご確認ください（→ 交換・返品について）。</p></div>
+        <div class="fstep"><span class="node lat">06</span><p class="st">ご注意</p><p class="sd">予約商品と在庫商品を同時にご注文の場合、予約商品の入荷を待ってまとめて発送します。</p></div>
+      </div>
+    </section>
+
+    <!-- 02 shipping fee -->
+    <section class="gsec" id="g-ship">
+      <div class="gsec-head"><span class="n disp">02</span><h2>送料について</h2></div>
+      <p>1回のご注文につき、送料は<strong>全国一律 ¥390（税込）</strong>です。</p>
+      <p class="tight"><strong>送料無料特典</strong></p>
+      <p>上級会員（VIP・ダイヤモンドステージ）の特典として、お買い上げ金額にかかわらず送料無料でお買い物できるクーポンを毎月配布します。<span class="tbd">※配布日（毎月1日／10日）は確定後に記載</span></p>
+    </section>
+
+    <!-- 03 delivery -->
+    <section class="gsec" id="g-delivery">
+      <div class="gsec-head"><span class="n disp">03</span><h2>配送サービスについて</h2></div>
+      <p><strong>宅配業者：ヤマト運輸</strong>。お支払い確認後、翌日〜3営業日で発送します（平日12時までのご購入で通常当日出荷／後払いは当日出荷対象外）。</p>
+      <ul class="blist">
+        <li>アクセサリー・コスメのみのご注文などはゆうパケット（ポスト投函・着日指定不可）での配送となります。</li>
+        <li>ご注文時にお届け日時の指定が可能です（一部対象外）。</li>
+        <li>長期不在・受け取り拒否でお受け取りいただけなかった場合、2回目より手数料 ¥2,100 をご請求します。</li>
+      </ul>
+      <p class="tight"><strong>海外発送 / Overseas</strong></p>
+      <p>当店から直接の海外発送は行っておりませんが、「転送コム（tenso.com）」のサービスをご利用いただけます。</p>
+    </section>
+
+    <!-- 04 payment -->
+    <section class="gsec" id="g-pay">
+      <div class="gsec-head"><span class="n disp">04</span><h2>お支払いについて</h2></div>
+      <p>以下のお支払い方法をご利用いただけます。</p>
+      <div class="ptable">
+        <div class="prow"><div class="pk">クレジットカード</div><div class="pv">VISA / Mastercard / JCB / AMEX / Diners。<strong>一括払いのみ</strong>。3Dセキュア（本人認証）対応。</div></div>
+        <div class="prow"><div class="pk">Shop Pay</div><div class="pv">配送先・支払い情報を保存して、すばやくお支払いいただけます。</div></div>
+        <div class="prow"><div class="pk">Amazon Pay</div><div class="pv">Amazonアカウントの配送先・カード情報でお支払いいただけます。</div></div>
+        <div class="prow"><div class="pk">後払い（後払い.com）</div><div class="pv">手数料 <span class="fee">¥310</span>。請求書発行から14日以内にお支払いください。<span class="tbd">（当日出荷対象外）</span></div></div>
+        <div class="prow"><div class="pk">代金引換</div><div class="pv">手数料 <span class="fee">¥330</span>。現金決済のみ／ご利用限度額 ¥100,000未満。</div></div>
+      </div>
+      <ul class="blist">
+        <li>消費税率：10.0％（商品価格は税込表示）。</li>
+        <li>領収書は注文情報よりご確認いただけます（インボイス対応）。</li>
+      </ul>
+    </section>
+
+    <!-- 05 return -->
+    <section class="gsec" id="g-return">
+      <div class="gsec-head"><span class="n disp">05</span><h2>交換・返品について</h2></div>
+      <p>受け取り時に必ず商品をご確認のうえ、<a class="ilink" href="#" onclick="setView('contact');return false;"><strong>Concierge Desk</strong></a> までご連絡ください。</p>
+      <p class="tight"><strong>交換・返品をお受けできない場合</strong></p>
+      <ul class="blist">
+        <li>ご使用済み・お客様のもとで傷や損傷が生じた商品</li>
+        <li>洗濯・加工・リフォーム等を施された商品</li>
+        <li>ピアス・イヤリング等、衛生上の理由で試着後の返品が不可の商品 ほか<span class="tbd">（全条件は確定後に記載）</span></li>
+      </ul>
+      <p class="tight"><strong>送料・手数料</strong></p>
+      <p>サイズ交換・色交換・お客様都合による交換は往復送料をお客様負担。不良品の場合は当社負担となります。</p>
+      <p class="tight"><strong>ご返金</strong></p>
+      <p>ご注文時のお支払い方法に基づき返金します。会員様は返金額をポイントとして付与することも可能です。</p>
+      <p class="tight"><strong>返送先</strong></p>
+      <p>〒358-0026 埼玉県入間市小谷田859-1 株式会社ネバーセイネバー STYLE DELI 返品・交換係<br><span class="tbd">※ご返送前に必ず <a class="ilink" href="#" onclick="setView('contact');return false;">Concierge Desk</a> へご連絡ください。</span></p>
+    </section>
+
+    <!-- 06 point -->
+    <section class="gsec" id="g-point">
+      <div class="gsec-head"><span class="n disp">06</span><h2>ポイント利用について</h2></div>
+      <p>会員登録いただくと、お買い物金額（税抜）に応じてポイントが付与されます。1ポイント＝1円として次回以降のお買い物にご利用いただけます。</p>
+      <ul class="blist">
+        <li>付与率は会員ステージごとに異なります。<span class="tbd">※付与率・付与タイミング・有効期限は確定後に記載（仮）</span></li>
+        <li>付与されたポイントは購入日から3日後に有効になります（仮）。有効期限は最新のポイント獲得時より1年間（仮）。</li>
+      </ul>
+    </section>
+
+    <!-- 07 coupon -->
+    <section class="gsec" id="g-coupon">
+      <div class="gsec-head"><span class="n disp">07</span><h2>クーポン利用について</h2></div>
+      <p>会員登録いただくと、キャンペーン時などにお得なクーポンをご利用いただけます。</p>
+      <ul class="blist">
+        <li>クーポンごとに有効期限があります。期限内にご利用ください。</li>
+        <li>日本製シューズ・コラボ商品・アウトレット商品など、一部対象外があります。</li>
+        <li>クーポンの併用可否はクーポンの種類によります。<span class="tbd">※併用ルールは確定後に記載</span></li>
+      </ul>
+    </section>
+
+    <!-- 08 member stage -->
+    <section class="gsec" id="g-stage">
+      <div class="gsec-head"><span class="n disp">08</span><h2>会員ステージ・特典について</h2></div>
+      <p>過去12ヶ月のご購入金額に応じて会員ステージが決まり、ステージが上がるほど<strong>ポイント還元率（1%〜10%）</strong>が高くなります。上位ステージでは送料無料やバースデークーポンなどの特典もご利用いただけます。</p>
+      <a class="rowlink" href="#" onclick="setView('stage');return false;">
+        <span class="rl-text">会員ステージ・特典の詳細を見る</span>
+        <span class="rl-arrow lat">→</span>
+      </a>
+    </section>
+
+    <section class="helpnav">
+      <span class="hn-lbl">Still need help?</span>
+      <div class="help-cards">
+        <a class="hcard" href="#" onclick="setView('faq');return false;">
+          <span class="he disp">FAQ</span>
+          <span class="hj">よくある質問</span>
+          <span class="hd">お問い合わせの前に、よくあるご質問もあわせてご確認ください。</span>
+          <span class="harrow lat">→</span>
+        </a>
+        <a class="hcard" href="#" onclick="setView('contact');return false;">
+          <span class="he disp">Concierge Desk</span>
+          <span class="hj">お問い合わせ</span>
+          <span class="hd">解決しない場合は、お気軽にお問い合わせください。</span>
+          <span class="harrow lat">→</span>
+        </a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- ===================== FAQ ===================== -->
+<main class="view" id="view-faq">
+  <div class="wrap">
+    <section class="hero">
+      <p class="eyebrow">Help center</p>
+      <h1 class="disp">FAQ</h1>
+      <p class="jp lat">よくあるご質問</p>
+      <p class="lead">お問い合わせの前に、よくあるご質問をご確認ください。</p>
+    </section>
+  </div>
+
+  <!-- category nav -->
+  <nav class="faqnav">
+    <div class="faqnav-in">
+      <a href="#cat-mig" class="mig">移行について</a>
+      <a href="#cat-product">商品</a>
+      <a href="#cat-order">ご注文・キャンセル</a>
+      <a href="#cat-delivery">お届け</a>
+      <a href="#cat-pay">お支払い</a>
+      <a href="#cat-point">ポイント</a>
+      <a href="#cat-coupon">クーポン</a>
+      <a href="#cat-member">会員登録・ログイン</a>
+      <a href="#cat-return">返品・交換</a>
+      <a href="#cat-mail">メールマガジン</a>
+    </div>
+  </nav>
+
+  <div class="wrap" id="faqRoot">
+
+    <!-- migration (new) -->
+    <section class="faq-group" id="cat-mig">
+      <div class="grp-title mig"><span class="en disp">Migration</span><span class="jp">移行について</span><span class="grp-badge lat">NEW</span></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>旧サイトのアカウントは引き継がれますか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>はい。これまでと同じメールアドレスでログインしていただくと、会員情報・ポイント残高・購入履歴をそのままご確認いただけます。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>ログイン方法は変わりますか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>はい。新サイトではセキュリティ向上のため、パスワードによるログインを廃止し、メールアドレス＋ワンタイムパスワード（認証コード）方式に変わります。詳しい手順は「会員登録・ログイン」をご覧ください。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>以前設定したパスワードはどうなりますか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>以前のパスワードは使用されなくなります。再設定は不要で、ログインのたびにメールに届く認証コードでサインインします。</span></div></div></div>
+    </section>
+
+    <!-- product -->
+    <section class="faq-group" id="cat-product">
+      <div class="grp-title"><span class="en disp">Product</span><span class="jp">商品</span></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>予約商品とはなんですか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>現在在庫がなく、入荷後に順次発送となる商品です。発送目安は商品ページに記載しています。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>予約商品の支払いタイミングは？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>通常商品と同じく、ご注文時のお支払いとなります。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>再入荷お知らせを申し込めば必ず再入荷しますか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>再入荷をお約束するものではありません。生産状況により再入荷できない場合があります。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>商品のサイズがわかりません。<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>商品ページの「サイズ・詳細」に掲載しています（1〜2cmの誤差が生じる場合があります）。</span></div></div></div>
+    </section>
+
+    <!-- order -->
+    <section class="faq-group" id="cat-order">
+      <div class="grp-title"><span class="en disp">Order</span><span class="jp">ご注文・キャンセル</span></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>注文内容の変更・キャンセルはできますか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>発送準備前であれば可能な場合があります。お早めに <a class="ilink" href="#" onclick="setView('contact');return false;">Concierge Desk</a> へお問い合わせください。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>注文内容を確認したいのですが。<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>マイページの「注文履歴」よりご確認いただけます。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>注文完了メールが届きません。<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>ご注文確定後、確認メールをお送りします。<span class="tbd">（メール構成は新サイト仕様に合わせて記載予定）</span></span></div></div></div>
+    </section>
+
+    <!-- delivery -->
+    <section class="faq-group" id="cat-delivery">
+      <div class="grp-title"><span class="en disp">Delivery</span><span class="jp">お届け</span></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>注文した商品は何日くらいで届きますか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>平日12時までのご購入で通常当日出荷、以降は翌営業日の出荷となります（後払いは当日出荷対象外）。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>お届け日時の指定はできますか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>ご注文時にお届け日時を指定いただけます（一部対象外）。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>宅配業者はどこですか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>ヤマト運輸です（アクセサリーなど一部商品はゆうパケット）。</span></div></div></div>
+    </section>
+
+    <!-- payment -->
+    <section class="faq-group" id="cat-pay">
+      <div class="grp-title"><span class="en disp">Payment</span><span class="jp">お支払い</span></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>利用できるお支払い方法は？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>クレジットカード（一括）／Shop Pay／Amazon Pay／後払い.com（手数料¥310）／代金引換（手数料¥330）がご利用いただけます。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>領収書は発行できますか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>注文情報より発行いただけます（インボイス対応）。<span class="tbd">（手順は新サイト仕様で記載予定）</span></span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>後払いの請求書を紛失しました。<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>決済代行の「後払い.com」へお問い合わせください。<span class="prov lat">後払い.com</span></span></div></div></div>
+    </section>
+
+    <!-- point -->
+    <section class="faq-group" id="cat-point">
+      <div class="grp-title"><span class="en disp">Points</span><span class="jp">ポイント</span></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>ポイントの貯め方・使い方は？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>会員登録でポイントが貯まり、1ポイント＝1円としてご利用いただけます。付与率は会員ステージごとに異なります。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>ポイントの有効期限は？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span><span class="tbd">確認中（仮：有効期間1年、新たな獲得で更新）。確定後に記載します。</span></span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>返品した場合、ポイントはどうなりますか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>購入時に付与されたポイントは取り消し、利用されたポイントは返還されます。</span></div></div></div>
+    </section>
+
+    <!-- coupon -->
+    <section class="faq-group" id="cat-coupon">
+      <div class="grp-title"><span class="en disp">Coupon</span><span class="jp">クーポン</span></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>クーポンとは？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>会員様にキャンペーン時などにお配りする割引クーポンです。マイページからご確認いただけます。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>クーポンは併用できますか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span><span class="tbd">確認中。併用可否は確定後に記載します。</span></span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>返品した場合、クーポンは戻りますか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>お客様都合によるご返品の場合、利用されたクーポンは失効となります。</span></div></div></div>
+    </section>
+
+    <!-- account / login -->
+    <section class="faq-group" id="cat-member">
+      <div class="grp-title"><span class="en disp">Account</span><span class="jp">会員登録・ログイン</span></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>ログイン方法を教えてください（パスワード欄が表示されません）。<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>新サイトはパスワードを使いません。ログイン画面でご登録済みのメールアドレスを入力すると、そのメール宛にワンタイムパスワード（認証コード）が届きます。コードを入力するとログインできます。新規設定・再設定は不要です。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>認証コード（ワンタイムパスワード）が届きません。<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>次の点をご確認ください。<br>・迷惑メールフォルダに振り分けられていないか<br>・ご登録のメールアドレスに誤りがないか<br>・キャリアメール（@docomo.ne.jp／@ezweb.ne.jp など）で受信制限がかかっていないか。「<a class="ilink" href="mailto:info@style-deli.com">info@style-deli.com</a>」からのメールを受信できるよう設定をお願いします。<br>見当たらない場合は再送信をお試しいただくか、<a class="ilink" href="#" onclick="setView('contact');return false;">Concierge Desk</a> へお問い合わせください。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>ログインのたびに認証が必要ですか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>いいえ。一度ログインすると一定期間はログイン状態が保持されます。ただしログアウトした場合や、別の端末・ブラウザをご利用の場合は、再度認証コードの入力が必要です。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>別の端末やブラウザからもログインできますか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>はい。新しい端末・ブラウザからの場合は、あらためてワンタイムパスワードによる認証が必要になります。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>メールアドレスを忘れてしまいました。<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>お手数ですが <a class="ilink" href="#" onclick="setView('contact');return false;">Concierge Desk</a> へお問い合わせください。本人確認のうえご案内いたします。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>会員登録をしないと買い物はできませんか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>会員登録なしでもお買い物いただけますが、ポイント付与などの会員特典がございます。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>会員特典は何がありますか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>会員ステージに応じたポイント還元率や送料無料特典などがございます。詳しくは会員ステージのページをご覧ください。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>退会したいです。<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>マイページの退会手続きより行えます。退会されると特典・保有ポイントはすべて無効となります。</span></div></div></div>
+    </section>
+
+    <!-- return -->
+    <section class="faq-group" id="cat-return">
+      <div class="grp-title"><span class="en disp">Returns</span><span class="jp">返品・交換</span></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>返品・交換はできますか？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>商品受け取り後5日を目安に、<a class="ilink" href="#" onclick="setView('contact');return false;">Concierge Desk</a> へご連絡ください（不良の場合は7日を目安）。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>交換・返品ができない条件は？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>使用済み・洗濯済み・加工された商品、衛生上の理由でピアス等の試着後返品などは対象外です。</span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>返品時の送料・手数料は？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>お客様都合の場合は送料をお客様負担、不良品の場合は当社負担となります。</span></div></div></div>
+    </section>
+
+    <!-- mail -->
+    <section class="faq-group" id="cat-mail">
+      <div class="grp-title"><span class="en disp">Newsletter</span><span class="jp">メールマガジン</span></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>メールマガジンの登録・解除方法は？<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>登録・解除ページよりお手続きいただけます。<span class="tbd">（配信基盤は新サイト仕様で記載予定）</span></span></div></div></div>
+      <div class="faq-item"><button class="q"><span class="qi">Q</span>メールマガジンが届きません。<span class="mk">+</span></button><div class="a"><div class="a-in"><span class="ai">A</span><span>迷惑メール設定の解除、ドメイン「@style-deli.com」の受信設定をご確認ください。</span></div></div></div>
+    </section>
+
+    <div class="cta">
+      <p class="ce">Still need help?</p>
+      <p class="ct disp">解決しませんでしたか？</p>
+      <a href="#" onclick="setView('contact');return false;">Concierge Desk へ問い合わせ</a>
+    </div>
+  </div>
+</main>
+
+<!-- ===================== MEMBER STAGE ===================== -->
+<main class="view" id="view-stage">
+  <div class="wrap">
+    <section class="hero">
+      <p class="eyebrow">Membership</p>
+      <h1 class="disp">Member Stage</h1>
+      <p class="jp lat">会員ステージ・特典について</p>
+      <p class="lead">ステージが上がるほどポイントが貯まりやすく、キャンペーンなどのスペシャルな特典をご案内します。</p>
+    </section>
+
+    <p class="stage-intro">過去12ヶ月間のご購入商品合計金額によって、<strong>毎月末にステージを判定し、翌1日に反映</strong>します。ステージが上がるほどポイント還元率が高くなり、特典も充実します。</p>
+
+    <div class="chart">
+      <div class="bar" style="min-height:66px;background:#D8CFBE"><span class="num">1%</span><span class="nl">ポイント還元</span></div>
+      <div class="bar" style="min-height:92px;background:#C9B894"><span class="num">3%</span><span class="nl">ポイント還元</span></div>
+      <div class="bar" style="min-height:120px;background:#BBA06B"><span class="num">5%</span><span class="nl">ポイント還元</span></div>
+      <div class="bar" style="min-height:154px;background:#A98E55"><span class="num">7%</span><span class="nl">ポイント還元</span><span class="freein">送料無料</span></div>
+      <div class="bar dark" style="min-height:194px;background:#20201E"><span class="num">10%</span><span class="nl">ポイント還元</span><span class="freein">送料無料</span></div>
+    </div>
+    <div class="row5 bday">
+      <div class="b">バースデー<br>10%OFF</div>
+      <div class="b">バースデー<br>15%OFF</div>
+      <div class="b">バースデー<br>15%OFF</div>
+      <div class="b">バースデー<br>20%OFF</div>
+      <div class="b">バースデー<br>20%OFF</div>
+    </div>
+    <div class="row5 names">
+      <div class="nm disp">Regular</div>
+      <div class="nm disp">Gold</div>
+      <div class="nm disp">Platinum</div>
+      <div class="nm disp">Diamond</div>
+      <div class="nm disp">VIP</div>
+    </div>
+    <div class="row5 thr">
+      <div class="t">年間購入額<br>1〜5万円未満</div>
+      <div class="t">年間購入額<br>5〜15万円未満</div>
+      <div class="t">年間購入額<br>15〜30万円未満</div>
+      <div class="t">年間購入額<br>30〜50万円未満</div>
+      <div class="t">年間購入額<br>50万円以上</div>
+    </div>
+
+    <div class="note-block">
+      <div class="note-group">
+        <h3>ステージ判定について</h3>
+        <p>判定日は毎月末で、翌月1日に過去12ヶ月のご購入合計金額で決定します。</p>
+        <p>合計金額は、ご購入総額から【ポイント利用・クーポン利用・配送料・代引き手数料】等を差し引いた金額です。</p>
+        <p>毎月、過去12ヶ月を遡って判定するため、基準額に満たない場合はステージダウンすることがあります。</p>
+        <p>ステージ確定後に特典が適用されます。確定はシステム反映の都合でタイムラグが生じる場合があります。現在のステージはマイページでご確認いただけます。</p>
+      </div>
+      <div class="note-group">
+        <h3>バースデークーポンについて</h3>
+        <p>特典を受けるには、会員情報への生年月日の登録が必要です（誕生月の前月までに更新をお願いします）。</p>
+        <p>毎月1日のステージ判定後に、クーポンご案内メールでお知らせします。</p>
+        <p>利用期限は誕生日月の翌月末まで。対象外商品（日本製シューズ／インポート／アウトレット／コラボ等）があります。</p>
+        <p>キャンペーンクーポンとの併用はできません。</p>
+      </div>
+      <div class="note-group">
+        <h3>退会・その他</h3>
+        <p>退会されると、累計購入金額・獲得ポイント・各ステージのサービス等、すべての権利が失効します。</p>
+        <p>退会後に再度ご登録された場合は、レギュラー会員として登録されます（退会前の内容には戻せません）。</p>
+        <p>本会員ステージ制の内容は、予告なく変更・改定・終了する場合があります。</p>
+      </div>
+    </div>
+
+    <div class="cta">
+      <p class="ce">Join us</p>
+      <p class="ct disp">新規会員登録</p>
+      <a href="#">会員登録はこちら</a>
+    </div>
+  </div>
+</main>
+
+<!-- ===================== CONTACT ===================== -->
+<main class="view" id="view-contact">
+  <div class="wrap">
+    <section class="hero">
+      <p class="eyebrow">Contact</p>
+      <h1 class="disp">Concierge Desk</h1>
+      <p class="jp lat">お問い合わせ</p>
+      <p class="lead">お問い合わせの前に、よくある質問もあわせてご確認ください。</p>
+    </section>
+
+    <p class="banner"><b>※ 本モックはフォームの項目・レイアウト確認用です。</b> 送信機能は動作しません。</p>
+
+    <div class="tabs">
+      <button class="on" id="tab-general" onclick="setCForm('general')">一般のお客様</button>
+      <button id="tab-biz" onclick="setCForm('biz')">企業様</button>
+    </div>
+
+    <!-- general -->
+    <div class="cform show" id="cf-general">
+      <div class="field">
+        <label>件名（タイトル）<span class="req lat">必須</span></label>
+        <select>
+          <option>内容を選択</option>
+          <option>ご注文に関するお問い合わせ</option>
+          <option>商品に関するお問い合わせ</option>
+          <option>返品交換に関するお問い合わせ</option>
+          <option>会員登録に関するお問い合わせ</option>
+          <option>キャンセル・変更に関するお問い合わせ</option>
+          <option>INSTA LIVEに関するお問い合わせ</option>
+          <option>その他お問い合わせ</option>
+        </select>
+      </div>
+      <div class="field"><label>お名前<span class="req lat">必須</span></label><input type="text"></div>
+      <div class="field"><label>お電話番号<span class="req lat">必須</span></label><input type="tel"></div>
+      <div class="field"><label>メールアドレス<span class="req lat">必須</span></label><input type="email"></div>
+      <div class="field"><label>メールアドレス（確認用）<span class="req lat">必須</span></label><input type="email"></div>
+      <div class="field"><label>注文番号<span class="opt lat">任意</span></label><input type="text"></div>
+      <div class="field"><label>お問い合わせ内容<span class="req lat">必須</span></label><textarea></textarea></div>
+      <div class="field"><label>画像アップロード<span class="opt lat">任意</span></label><div class="upload">不具合のある箇所の画像を添付できます（1枚のみ）</div></div>
+      <button class="submit" type="button">送信する</button>
+    </div>
+
+    <!-- business -->
+    <div class="cform" id="cf-biz">
+      <p class="biz-note">出版社様・広告代理店様・メーカー様など、ビジネスパートナー様からのお問い合わせ用です。添付資料がある場合は、フォームではなく contact@style-deli.com までメール添付でお願いします。</p>
+      <div class="field">
+        <label>お問い合わせ項目<span class="req lat">必須</span></label>
+        <select>
+          <option>内容を選択</option>
+          <option>広告、宣伝について</option>
+          <option>雑誌等、商品リースについて</option>
+          <option>生産、商材について</option>
+          <option>スタッフ募集、インターンシップについて</option>
+          <option>上記以外のお問い合わせ</option>
+        </select>
+      </div>
+      <div class="field"><label>会社名<span class="req lat">必須</span></label><input type="text"></div>
+      <div class="field"><label>お名前<span class="req lat">必須</span></label><input type="text"></div>
+      <div class="field"><label>お電話番号<span class="req lat">必須</span></label><input type="tel"></div>
+      <div class="field"><label>メールアドレス<span class="req lat">必須</span></label><input type="email"></div>
+      <div class="field"><label>メールアドレス（確認用）<span class="req lat">必須</span></label><input type="email"></div>
+      <div class="field"><label>お問い合わせ内容<span class="req lat">必須</span></label><textarea></textarea></div>
+      <button class="submit" type="button">送信する</button>
+    </div>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap foot-inner">
+    <span class="foot-logo">Style Deli</span>
+    <span class="foot-cr">© STYLE DELI. All Rights Reserved.</span>
+  </div>
+</footer>
+
+<div class="switch">
+  <button class="on" id="b-guide" onclick="setView('guide')">ガイド</button>
+  <button id="b-faq" onclick="setView('faq')">FAQ</button>
+  <button id="b-stage" onclick="setView('stage')">ステージ</button>
+  <button id="b-contact" onclick="setView('contact')">問合せ</button>
+</div>
+
+<script>
+  // accordion
+  document.querySelectorAll('.faq-item .q').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const item=btn.closest('.faq-item');
+      const a=item.querySelector('.a');
+      const open=item.classList.toggle('open');
+      a.style.maxHeight = open ? a.scrollHeight+'px' : null;
+    });
+  });
+
+  // view switch
+  const VIEWS={guide:'Shopping Guide',faq:'FAQ',stage:'Membership',contact:'Contact'};
+  function setView(v){
+    for(const k in VIEWS){
+      document.getElementById('view-'+k).classList.toggle('show', k===v);
+      document.getElementById('b-'+k).classList.toggle('on', k===v);
+    }
+    document.getElementById('crumb-tail').textContent = VIEWS[v];
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+
+  // contact tab switch
+  function setCForm(t){
+    document.getElementById('cf-general').classList.toggle('show', t==='general');
+    document.getElementById('cf-biz').classList.toggle('show', t==='biz');
+    document.getElementById('tab-general').classList.toggle('on', t==='general');
+    document.getElementById('tab-biz').classList.toggle('on', t==='biz');
+  }
+</script>
+</body>
+</html>
