@@ -1,0 +1,393 @@
+<!-- ============================================================
+  STYLE DELI LP ｜ ONE ITEM, TWO SEASONS（夏→秋コーデ）
+  Future Shop フリーページの<div>内にこのまま貼り付け（HTML/CSS/JS一体）
+  ▼要修正ポイントは「要修正」で検索してください
+  ============================================================ -->
+<div id="lpoits">
+<style>
+/* ===== モバイルファースト：基本はスマホ幅、最大500pxで頭打ち ===== */
+#lpoits{--lp-ink:#2b2723;--lp-sub:#8a827a;--lp-line:#e5e0d8;--lp-bg:#faf8f5;--lp-accent:#b79a6a;
+ width:100%;max-width:500px;margin:0 auto;background:var(--lp-bg);color:var(--lp-ink);
+ font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;line-height:1.7;
+ -webkit-font-smoothing:antialiased;}
+#lpoits *{box-sizing:border-box;}
+#lpoits img{display:block;max-width:100%;height:auto;}
+/* 画像・動画は横幅最大500px（コンテナ内で100%） */
+#lpoits .lp-mfr img,#lpoits .lp-video{max-width:500px;}
+#lpoits a{color:inherit;text-decoration:none;}
+#lpoits .lp-ph{background:repeating-linear-gradient(45deg,#f1ece3,#f1ece3 9px,#eae3d6 9px,#eae3d6 18px);
+ border:1px dashed #cbbfaa;color:#9c907c;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:11px;}
+#lpoits .lp-ph span{font-size:10px;}
+#lpoits .lp-mfr{position:relative;}
+#lpoits .lp-mfr img{width:100%;border-radius:12px;}
+#lpoits .lp-mferr{display:none;height:300px;border-radius:12px;}
+#lpoits .lp-video{width:100%;border-radius:12px;margin-top:10px;background:#000;}
+/* banner */
+#lpoits .lp-banner .lp-bn-fallback{background:#1f1b18;color:#fff;text-align:center;padding:48px 20px;}
+#lpoits .lp-banner .kick{font-size:11px;letter-spacing:.32em;color:#d8c8a8;}
+#lpoits .lp-banner h1{font-size:24px;letter-spacing:.12em;margin:12px 0 6px;font-weight:600;}
+#lpoits .lp-banner .en{font-size:11px;letter-spacing:.28em;color:#b9b2a8;}
+/* lead */
+#lpoits .lp-lead{padding:26px 24px 4px;text-align:center;}
+#lpoits .lp-lead p{font-size:13px;color:#5c554d;margin:0;}
+/* campaign */
+#lpoits .lp-cp{margin:24px 18px;border-radius:14px;overflow:hidden;border:1px solid var(--lp-line);}
+#lpoits .lp-cp-body{padding:18px 20px;text-align:center;background:#fff;}
+#lpoits .lp-cp .tag{display:inline-block;font-size:10px;letter-spacing:.2em;padding:4px 12px;border-radius:20px;margin-bottom:9px;font-weight:700;}
+#lpoits .lp-cp .cp-ttl{font-size:17px;font-weight:700;margin:2px 0 4px;}
+#lpoits .lp-cp .cp-sub{font-size:12px;color:#6b645b;margin:0 0 13px;}
+#lpoits .lp-cp .cp-btn{display:inline-block;font-size:13px;font-weight:600;padding:11px 28px;border-radius:30px;letter-spacing:.06em;}
+#lpoits .lp-cp.before .tag{background:#eef1f4;color:#4a5568;}
+#lpoits .lp-cp.before .cp-btn{background:#2b2723;color:#fff;}
+#lpoits .lp-cp.during{border-color:#d94f2a;}
+#lpoits .lp-cp.during .lp-cp-body{background:linear-gradient(180deg,#fff6f2,#fff);}
+#lpoits .lp-cp.during .tag{background:#d94f2a;color:#fff;}
+#lpoits .lp-cp.during .cp-ttl{color:#c9401d;}
+#lpoits .lp-cp.during .cp-btn{background:#d94f2a;color:#fff;}
+/* index */
+#lpoits .lp-index{padding:22px 0 20px;margin-top:16px;border-top:1px solid var(--lp-line);border-bottom:1px solid var(--lp-line);background:#fff;scroll-margin-top:20px;}
+#lpoits .lp-index .ttl{text-align:center;font-size:12px;letter-spacing:.22em;font-weight:700;margin:0 0 3px;}
+#lpoits .lp-index .sub{text-align:center;font-size:10.5px;letter-spacing:.1em;color:var(--lp-sub);margin:0 0 15px;}
+#lpoits .lp-iwrap{display:flex;gap:10px;overflow-x:auto;padding:0 20px;scrollbar-width:none;}
+#lpoits .lp-iwrap::-webkit-scrollbar{display:none;}
+#lpoits .lp-ic{flex:0 0 27%;}
+#lpoits .lp-ic-th{position:relative;aspect-ratio:3/4;border-radius:10px;overflow:hidden;background:#ece7de;}
+#lpoits .lp-ic-th img{width:100%;height:100%;object-fit:cover;}
+#lpoits .lp-ic-no{position:absolute;left:6px;top:6px;font-family:Georgia,serif;font-weight:700;font-size:14px;color:#fff;background:rgba(31,27,24,.55);width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+#lpoits .lp-ic-th .lp-mv{position:absolute;right:6px;bottom:6px;background:rgba(255,255,255,.9);color:#1f1b18;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;}
+#lpoits .lp-ic-nm{font-size:10.5px;text-align:center;margin-top:6px;color:#5c554d;}
+/* block */
+#lpoits .lp-block{border-top:10px solid #efece7;padding:6px 0 8px;scroll-margin-top:20px;}
+#lpoits .lp-bhead{display:flex;align-items:baseline;gap:12px;padding:22px 24px 4px;}
+#lpoits .lp-no{font-size:28px;font-weight:700;color:var(--lp-accent);font-family:Georgia,serif;line-height:1;}
+#lpoits .lp-no small{font-size:10px;letter-spacing:.24em;display:block;color:var(--lp-sub);font-family:sans-serif;font-weight:600;}
+#lpoits .lp-mi{font-size:12px;color:#5c554d;}
+#lpoits .lp-mi b{font-size:14px;color:var(--lp-ink);display:block;margin-top:2px;}
+#lpoits .lp-mvtag{font-size:9px;color:#fff;background:var(--lp-accent);padding:2px 7px;border-radius:10px;letter-spacing:.08em;}
+/* ===== メインアイテム（物撮り・大きめカード） ===== */
+#lpoits .lp-mitem{display:flex;align-items:stretch;gap:14px;margin:12px 24px 0;padding:12px;border:1px solid var(--lp-line);border-radius:12px;background:#fff;}
+#lpoits .lp-mitem-imgw{position:relative;width:42%;max-width:170px;flex:none;border-radius:9px;overflow:hidden;background:#f6f4f0;}
+#lpoits .lp-mitem-imgw::before{content:"";display:block;padding-top:125%;}
+#lpoits .lp-mitem-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
+#lpoits .lp-mitem-fb{position:absolute;inset:0;font-size:11px;}
+#lpoits .lp-mitem-info{flex:1;display:flex;flex-direction:column;justify-content:center;}
+#lpoits .lp-l{font-size:9px;letter-spacing:.14em;color:var(--lp-accent);font-weight:700;}
+#lpoits .lp-mitem-name{display:block;font-size:14px;font-weight:700;margin:5px 0 4px;line-height:1.45;}
+#lpoits .lp-mitem-price{font-size:13px;color:var(--lp-ink);}
+#lpoits .lp-mitem-cta{display:inline-block;align-self:flex-start;margin-top:10px;font-size:11px;font-weight:700;color:#fff;background:var(--lp-ink);padding:7px 15px;border-radius:20px;letter-spacing:.04em;}
+#lpoits .lp-mitem-num{font-size:10px;color:var(--lp-sub);margin-top:8px;}
+#lpoits .lp-desc{margin:14px 24px 0;font-size:12.5px;color:#4c463f;}
+#lpoits .lp-stack{margin:14px 24px 0;}
+/* ===== 季節グルーピング（夏／秋を視覚的に分ける） ===== */
+#lpoits .lp-season{border-radius:14px;padding:14px 13px 8px;margin-top:12px;}
+#lpoits .lp-summer{background:#eef2f0;}
+#lpoits .lp-autumn{background:#f6ece1;}
+#lpoits .lp-sh{font-size:12px;letter-spacing:.1em;font-weight:700;color:var(--lp-ink);margin:0 0 10px;display:flex;align-items:center;}
+#lpoits .lp-seasontag{display:inline-block;font-size:10px;letter-spacing:.16em;font-weight:700;color:#fff;padding:3px 11px;border-radius:14px;margin-right:9px;}
+#lpoits .lp-summer .lp-seasontag{background:#6f9186;}
+#lpoits .lp-autumn .lp-seasontag{background:#a56a37;}
+/* ===== 夏→秋 切り替えディバイダー ===== */
+#lpoits .lp-change{position:relative;text-align:center;margin:22px 0 2px;}
+#lpoits .lp-change::before{content:"";position:absolute;left:24px;right:24px;top:50%;height:1px;background:linear-gradient(90deg,transparent,var(--lp-line) 30%,var(--lp-line) 70%,transparent);}
+#lpoits .lp-change-badge{position:relative;display:inline-flex;align-items:center;gap:9px;background:#2b2723;color:#fff;font-size:12px;letter-spacing:.1em;font-weight:700;padding:9px 20px;border-radius:30px;box-shadow:0 4px 14px rgba(43,39,35,.18);}
+#lpoits .lp-change-badge .s{color:#cfe0d9;} #lpoits .lp-change-badge .a{color:#e9b985;}
+#lpoits .lp-change-badge i{font-style:normal;opacity:.7;}
+#lpoits .lp-change-note{display:block;font-size:10.5px;color:var(--lp-sub);margin-top:8px;letter-spacing:.06em;}
+#lpoits .lp-items{margin:12px 0 2px;}
+#lpoits .lp-ih{font-size:10px;letter-spacing:.16em;color:var(--lp-sub);font-weight:700;border-bottom:1px solid var(--lp-line);padding-bottom:6px;}
+#lpoits .lp-item{display:flex;align-items:center;gap:12px;padding:11px 2px;border-bottom:1px solid var(--lp-line);}
+#lpoits .lp-ithw{position:relative;width:44px;height:44px;border-radius:6px;flex:none;overflow:hidden;background:#f0ece4;}
+#lpoits .lp-ithw img{width:100%;height:100%;object-fit:cover;}
+#lpoits .lp-ith{position:absolute;inset:0;width:100%;height:100%;border-radius:6px;font-size:8px;}
+#lpoits .lp-it{flex:1;font-size:12px;}
+#lpoits .lp-p{color:#8a827a;font-size:11px;margin-top:2px;}
+#lpoits .lp-num{color:#bcae98;font-size:10px;margin-left:8px;}
+#lpoits .lp-arw{color:#c3b8a4;font-size:16px;}
+#lpoits .lp-backtop{display:block;text-align:center;margin:18px 24px 4px;font-size:11px;letter-spacing:.12em;color:var(--lp-sub);border:1px solid var(--lp-line);border-radius:20px;padding:8px;}
+#lpoits .lp-end{padding:22px 24px 30px;text-align:center;color:#b3a894;font-size:10px;letter-spacing:.2em;}
+</style>
+<script>/* 画像フォールバックは早期定義（onerror即時発火に備える） */
+window.LPOITS=window.LPOITS||{};window.LPOITS.imgErr=function(el){el.style.display='none';var e=el.nextElementSibling;if(e)e.style.display='flex';};</script>
+
+  <!-- ① バナー：本番PC/SP画像が決まったら下記コメントを外して差し替え（不要な方は削除） 要修正 -->
+  <div class="lp-banner">
+    <!--
+    <img class="lp-bn-pc" src="バナーPC画像URL" alt="ONE ITEM, TWO SEASONS">
+    <img class="lp-bn-sp" src="バナーSP画像URL" alt="ONE ITEM, TWO SEASONS">
+    -->
+    <div class="lp-bn-fallback">
+      <div class="kick">STYLE DELI</div>
+      <h1>ひとつの主役で、夏から秋へ</h1>
+      <div class="en">ONE ITEM, TWO SEASONS</div>
+    </div>
+  </div>
+
+  <!-- ② LP説明文（本番コピーに差し替え） 要修正 -->
+  <div class="lp-lead">
+    <p>お気に入りの1着を、夏コーデ→秋コーデへ。<br>季節をまたいで使える5つの着回しをご紹介します。</p>
+  </div>
+
+  <!-- ★ キャンペーン導線（上部）：日付で自動表示。終了後は自動的に非表示 -->
+  <div id="lpoits-cp-top"></div>
+
+  <!-- ★ 冒頭コーデインデックス（夏サムネ／▶=動画あり） -->
+  <div class="lp-index" id="lpoits-index">
+    <div class="ttl">COORDINATE LINE UP</div>
+    <div class="sub">5つのコーデ・タップで移動</div>
+    <div class="lp-iwrap"><a class="lp-ic" href="#lpoits-s01" data-jump="lpoits-s01"><div class="lp-ic-th"><img src="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style1-1.jpg?d=20260806140257" alt="" loading="lazy" onerror="this.style.display='none'"><span class="lp-mv">▶</span><span class="lp-ic-no">01</span></div><div class="lp-ic-nm">コットンレース調</div></a><a class="lp-ic" href="#lpoits-s02" data-jump="lpoits-s02"><div class="lp-ic-th"><img src="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style2-1.jpg?d=20260806140257" alt="" loading="lazy" onerror="this.style.display='none'"><span class="lp-ic-no">02</span></div><div class="lp-ic-nm">スラブ生地ギャザ</div></a><a class="lp-ic" href="#lpoits-s03" data-jump="lpoits-s03"><div class="lp-ic-th"><img src="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style3-1.jpg?d=20260806140257" alt="" loading="lazy" onerror="this.style.display='none'"><span class="lp-ic-no">03</span></div><div class="lp-ic-nm">パウダリーストレ</div></a><a class="lp-ic" href="#lpoits-s04" data-jump="lpoits-s04"><div class="lp-ic-th"><img src="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style4-1.jpg?d=20260806140257" alt="" loading="lazy" onerror="this.style.display='none'"><span class="lp-mv">▶</span><span class="lp-ic-no">04</span></div><div class="lp-ic-nm">シアーレースTシ</div></a><a class="lp-ic" href="#lpoits-s05" data-jump="lpoits-s05"><div class="lp-ic-th"><img src="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style5-1.jpg?d=20260806140257" alt="" loading="lazy" onerror="this.style.display='none'"><span class="lp-ic-no">05</span></div><div class="lp-ic-nm">サラ落ちキャミオ</div></a></div>
+  </div>
+
+    <!-- ===== STYLE 01 ===== -->
+    <section class="lp-block" id="lpoits-s01">
+      <div class="lp-bhead"><div class="lp-no"><small>STYLE</small>01</div>
+        <div class="lp-mi">MAIN ITEM <span class="lp-mvtag">▶ MOVIE</span><br><b>【selection】コットンレース調サマーブルゾン</b></div></div>
+      <a class="lp-mitem" href="https://www.style-deli.com/c/all/236340" target="_blank" rel="noopener">
+        <div class="lp-mitem-imgw">
+          <img class="lp-mitem-img" src="https://styledeli.itembox.cloud/product/103/000000010363/000000010363-39.jpg?size=l&w=ODAw&t=20260721105527" alt="【selection】コットンレース調サマーブルゾン" loading="lazy" onerror="LPOITS.imgErr(this)">
+          <div class="lp-ph lp-mitem-fb" style="display:none">ITEM</div>
+        </div>
+        <div class="lp-mitem-info">
+          <span class="lp-l">MAIN ITEM ／ 主役の1着</span>
+          <b class="lp-mitem-name">【selection】コットンレース調サマーブルゾン</b>
+          <span class="lp-mitem-price">¥14,300（税込）</span>
+          <span class="lp-mitem-cta">主役アイテムを見る ›</span>
+          <span class="lp-mitem-num">品番 236340</span>
+        </div></a>
+      <p class="lp-desc">透け感のあるコットンレース調ブルゾンは、夏の軽やかな装いにプラスするだけでこなれ感を演出。秋には落ち着いたカラーのボトムや長袖アイテムを合わせて、季節をまたいで活躍します。</p>
+      <div class="lp-stack">
+        <div class="lp-season lp-summer">
+          <div class="lp-sh"><span class="lp-seasontag">SUMMER</span>夏コーデ</div>
+          <div class="lp-mfr"><img src="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style1-1.jpg?d=20260806140257" alt="SUMMERコーデ" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-mferr">SUMMER<br><span>画像読込待ち</span></div></div>
+          <div class="lp-items"><div class="lp-ih">SUMMER｜夏の COORDINATE ITEMS</div><a class="lp-item" href="https://www.style-deli.com/c/all/236340" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/236/236340/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【selection】コットンレース調サマーブルゾン<div class="lp-p">¥14,300（税込）<span class="lp-num">品番 236340</span></div></div><div class="lp-arw">›</div></a><a class="lp-item" href="https://www.style-deli.com/c/all/236346" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/236/236346/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【selection】キレイな薄手涼感コンフォートワイドパンツ<div class="lp-p">¥13,200（税込）<span class="lp-num">品番 236346</span></div></div><div class="lp-arw">›</div></a></div>
+        </div>
+        <div class="lp-change">
+          <span class="lp-change-badge"><span class="s">SUMMER</span><i>→</i><span class="a">AUTUMN</span></span>
+          <span class="lp-change-note">同じ1着で、秋の着回しにチェンジ</span>
+        </div>
+        <div class="lp-season lp-autumn">
+          <div class="lp-sh"><span class="lp-seasontag">AUTUMN</span>秋コーデ</div>
+          <div class="lp-mfr"><img src="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style1-2.jpg?d=20260806140257" alt="AUTUMNコーデ" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-mferr">AUTUMN<br><span>画像読込待ち</span></div></div><video class="lp-video" src="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style1-3.mp4?d=20260806140257" poster="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style1-2.jpg?d=20260806140257" muted loop playsinline preload="none" controls></video>
+          <div class="lp-items"><div class="lp-ih">AUTUMN｜秋の COORDINATE ITEMS</div><a class="lp-item" href="https://www.style-deli.com/c/all/236340" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/236/236340/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【selection】コットンレース調サマーブルゾン<div class="lp-p">¥14,300（税込）<span class="lp-num">品番 236340</span></div></div><div class="lp-arw">›</div></a><a class="lp-item" href="https://www.style-deli.com/c/all/235104" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/235/235104/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【OUTLET】ジャージータッチAラインスカート<div class="lp-p">¥6,800（税込）<span class="lp-num">品番 235104</span></div></div><div class="lp-arw">›</div></a></div>
+        </div>
+      </div>
+      <a class="lp-backtop" href="#lpoits-index" data-jump="lpoits-index">▲ コーデ一覧へ戻る</a>
+    </section>
+    <!-- ===== STYLE 02 ===== -->
+    <section class="lp-block" id="lpoits-s02">
+      <div class="lp-bhead"><div class="lp-no"><small>STYLE</small>02</div>
+        <div class="lp-mi">MAIN ITEM <br><b>スラブ生地ギャザージャンパースカート</b></div></div>
+      <a class="lp-mitem" href="https://www.style-deli.com/c/all/236279" target="_blank" rel="noopener">
+        <div class="lp-mitem-imgw">
+          <img class="lp-mitem-img" src="https://styledeli.itembox.cloud/product/102/000000010226/000000010226-39.jpg?size=l&w=ODAw&t=20260610182523" alt="スラブ生地ギャザージャンパースカート" loading="lazy" onerror="LPOITS.imgErr(this)">
+          <div class="lp-ph lp-mitem-fb" style="display:none">ITEM</div>
+        </div>
+        <div class="lp-mitem-info">
+          <span class="lp-l">MAIN ITEM ／ 主役の1着</span>
+          <b class="lp-mitem-name">スラブ生地ギャザージャンパースカート</b>
+          <span class="lp-mitem-price">¥7,900（税込）</span>
+          <span class="lp-mitem-cta">主役アイテムを見る ›</span>
+          <span class="lp-mitem-num">品番 236279</span>
+        </div></a>
+      <p class="lp-desc">軽やかなスラブ生地のジャンパースカートは、合わせるインナー次第で印象を変えられる一枚。秋は長袖トップスを合わせて、シックな着こなしへ。</p>
+      <div class="lp-stack">
+        <div class="lp-season lp-summer">
+          <div class="lp-sh"><span class="lp-seasontag">SUMMER</span>夏コーデ</div>
+          <div class="lp-mfr"><img src="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style2-1.jpg?d=20260806140257" alt="SUMMERコーデ" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-mferr">SUMMER<br><span>画像読込待ち</span></div></div>
+          <div class="lp-items"><div class="lp-ih">SUMMER｜夏の COORDINATE ITEMS</div><a class="lp-item" href="https://www.style-deli.com/c/all/236279" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/236/236279/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">スラブ生地ギャザージャンパースカート<div class="lp-p">¥7,900（税込）<span class="lp-num">品番 236279</span></div></div><div class="lp-arw">›</div></a><a class="lp-item" href="https://www.style-deli.com/c/all/121209" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/121/121209/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【DELI by】リボンストロークラッチバッグ<div class="lp-p">¥3,800（税込）<span class="lp-num">品番 121209</span></div></div><div class="lp-arw">›</div></a></div>
+        </div>
+        <div class="lp-change">
+          <span class="lp-change-badge"><span class="s">SUMMER</span><i>→</i><span class="a">AUTUMN</span></span>
+          <span class="lp-change-note">同じ1着で、秋の着回しにチェンジ</span>
+        </div>
+        <div class="lp-season lp-autumn">
+          <div class="lp-sh"><span class="lp-seasontag">AUTUMN</span>秋コーデ</div>
+          <div class="lp-mfr"><img src="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style2-2.jpg?d=20260806140257" alt="AUTUMNコーデ" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-mferr">AUTUMN<br><span>画像読込待ち</span></div></div>
+          <div class="lp-items"><div class="lp-ih">AUTUMN｜秋の COORDINATE ITEMS</div><a class="lp-item" href="https://www.style-deli.com/c/all/236279" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/236/236279/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">スラブ生地ギャザージャンパースカート<div class="lp-p">¥7,900（税込）<span class="lp-num">品番 236279</span></div></div><div class="lp-arw">›</div></a><a class="lp-item" href="https://www.style-deli.com/c/all/235980" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/235/235980/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">とろみ薄リブクルーネックトップス<div class="lp-p">¥4,900（税込）<span class="lp-num">品番 235980</span></div></div><div class="lp-arw">›</div></a><a class="lp-item" href="https://www.style-deli.com/c/all/121131" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/121/121131/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【DELI by】スプリットレザー ミニフラップ クロスボディショルダーバッグ<div class="lp-p">¥12,800（税込）<span class="lp-num">品番 121131</span></div></div><div class="lp-arw">›</div></a></div>
+        </div>
+      </div>
+      <a class="lp-backtop" href="#lpoits-index" data-jump="lpoits-index">▲ コーデ一覧へ戻る</a>
+    </section>
+    <!-- ===== STYLE 03 ===== -->
+    <section class="lp-block" id="lpoits-s03">
+      <div class="lp-bhead"><div class="lp-no"><small>STYLE</small>03</div>
+        <div class="lp-mi">MAIN ITEM <br><b>【selection】パウダリーストレッチシフォン／スカート</b></div></div>
+      <a class="lp-mitem" href="https://www.style-deli.com/c/all/236350" target="_blank" rel="noopener">
+        <div class="lp-mitem-imgw">
+          <img class="lp-mitem-img" src="https://styledeli.itembox.cloud/product/103/000000010355/000000010355-37.jpg?size=l&w=ODAw&t=20260724175654" alt="【selection】パウダリーストレッチシフォン／スカート" loading="lazy" onerror="LPOITS.imgErr(this)">
+          <div class="lp-ph lp-mitem-fb" style="display:none">ITEM</div>
+        </div>
+        <div class="lp-mitem-info">
+          <span class="lp-l">MAIN ITEM ／ 主役の1着</span>
+          <b class="lp-mitem-name">【selection】パウダリーストレッチシフォン／スカート</b>
+          <span class="lp-mitem-price">¥15,400（税込）</span>
+          <span class="lp-mitem-cta">主役アイテムを見る ›</span>
+          <span class="lp-mitem-num">品番 236350</span>
+        </div></a>
+      <p class="lp-desc">軽やかなシフォン素材のスカートは、夏は涼しげなトップス合わせで抜け感を演出。秋はシャツやニットを重ねて、季節感のある大人のスタイルへシフトできます。</p>
+      <div class="lp-stack">
+        <div class="lp-season lp-summer">
+          <div class="lp-sh"><span class="lp-seasontag">SUMMER</span>夏コーデ</div>
+          <div class="lp-mfr"><img src="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style3-1.jpg?d=20260806140257" alt="SUMMERコーデ" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-mferr">SUMMER<br><span>画像読込待ち</span></div></div>
+          <div class="lp-items"><div class="lp-ih">SUMMER｜夏の COORDINATE ITEMS</div><a class="lp-item" href="https://www.style-deli.com/c/all/236350" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/236/236350/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【selection】パウダリーストレッチシフォン／スカート<div class="lp-p">¥15,400（税込）<span class="lp-num">品番 236350</span></div></div><div class="lp-arw">›</div></a><a class="lp-item" href="https://www.style-deli.com/c/all/235658" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/235/235658/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">片畦編みサマーニットベスト<div class="lp-p">¥5,900（税込）<span class="lp-num">品番 235658</span></div></div><div class="lp-arw">›</div></a></div>
+        </div>
+        <div class="lp-change">
+          <span class="lp-change-badge"><span class="s">SUMMER</span><i>→</i><span class="a">AUTUMN</span></span>
+          <span class="lp-change-note">同じ1着で、秋の着回しにチェンジ</span>
+        </div>
+        <div class="lp-season lp-autumn">
+          <div class="lp-sh"><span class="lp-seasontag">AUTUMN</span>秋コーデ</div>
+          <div class="lp-mfr"><img src="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style3-2.jpg?d=20260806140257" alt="AUTUMNコーデ" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-mferr">AUTUMN<br><span>画像読込待ち</span></div></div>
+          <div class="lp-items"><div class="lp-ih">AUTUMN｜秋の COORDINATE ITEMS</div><a class="lp-item" href="https://www.style-deli.com/c/all/236350" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/236/236350/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【selection】パウダリーストレッチシフォン／スカート<div class="lp-p">¥15,400（税込）<span class="lp-num">品番 236350</span></div></div><div class="lp-arw">›</div></a><a class="lp-item" href="https://www.style-deli.com/c/all/236150" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/236/236150/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">半袖ボートネックリブトップス<div class="lp-p">¥6,900（税込）<span class="lp-num">品番 236150</span></div></div><div class="lp-arw">›</div></a><a class="lp-item" href="https://www.style-deli.com/c/all/235611" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/235/235611/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">立体ステッチチェック柄シャツ<div class="lp-p">¥7,900（税込）<span class="lp-num">品番 235611</span></div></div><div class="lp-arw">›</div></a></div>
+        </div>
+      </div>
+      <a class="lp-backtop" href="#lpoits-index" data-jump="lpoits-index">▲ コーデ一覧へ戻る</a>
+    </section>
+    <!-- ===== STYLE 04 ===== -->
+    <section class="lp-block" id="lpoits-s04">
+      <div class="lp-bhead"><div class="lp-no"><small>STYLE</small>04</div>
+        <div class="lp-mi">MAIN ITEM <span class="lp-mvtag">▶ MOVIE</span><br><b>【BLK001】シアーレースTシャツ</b></div></div>
+      <a class="lp-mitem" href="https://www.style-deli.com/c/all/850269" target="_blank" rel="noopener">
+        <div class="lp-mitem-imgw">
+          <img class="lp-mitem-img" src="https://styledeli.itembox.cloud/product/103/000000010378/000000010378-27.jpg?size=l&w=ODAw&t=20260724110221" alt="【BLK001】シアーレースTシャツ" loading="lazy" onerror="LPOITS.imgErr(this)">
+          <div class="lp-ph lp-mitem-fb" style="display:none">ITEM</div>
+        </div>
+        <div class="lp-mitem-info">
+          <span class="lp-l">MAIN ITEM ／ 主役の1着</span>
+          <b class="lp-mitem-name">【BLK001】シアーレースTシャツ</b>
+          <span class="lp-mitem-price">¥6,300（税込）</span>
+          <span class="lp-mitem-cta">主役アイテムを見る ›</span>
+          <span class="lp-mitem-num">品番 850269</span>
+        </div></a>
+      <p class="lp-desc">フェミニンなレース素材を、ブラックアイテムで引き締めてモードな印象に。夏は軽快に、秋はジャケットを重ねて洗練されたスタイルへアップデート。</p>
+      <div class="lp-stack">
+        <div class="lp-season lp-summer">
+          <div class="lp-sh"><span class="lp-seasontag">SUMMER</span>夏コーデ</div>
+          <div class="lp-mfr"><img src="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style4-1.jpg?d=20260806140257" alt="SUMMERコーデ" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-mferr">SUMMER<br><span>画像読込待ち</span></div></div>
+          <div class="lp-items"><div class="lp-ih">SUMMER｜夏の COORDINATE ITEMS</div><a class="lp-item" href="https://www.style-deli.com/c/all/850269" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/850/850269/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【BLK001】シアーレースTシャツ<div class="lp-p">¥6,300（税込）<span class="lp-num">品番 850269</span></div></div><div class="lp-arw">›</div></a><a class="lp-item" href="https://www.style-deli.com/c/all/850217" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/850/850217/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【BLK001】配色刺繍イージーパンツ<div class="lp-p">¥11,000（税込）<span class="lp-num">品番 850217</span></div></div><div class="lp-arw">›</div></a></div>
+        </div>
+        <div class="lp-change">
+          <span class="lp-change-badge"><span class="s">SUMMER</span><i>→</i><span class="a">AUTUMN</span></span>
+          <span class="lp-change-note">同じ1着で、秋の着回しにチェンジ</span>
+        </div>
+        <div class="lp-season lp-autumn">
+          <div class="lp-sh"><span class="lp-seasontag">AUTUMN</span>秋コーデ</div>
+          <div class="lp-mfr"><img src="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style4-2.jpg?d=20260806140257" alt="AUTUMNコーデ" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-mferr">AUTUMN<br><span>画像読込待ち</span></div></div><video class="lp-video" src="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style4-3.mp4?d=20260806140257" poster="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style4-2.jpg?d=20260806140257" muted loop playsinline preload="none" controls></video>
+          <div class="lp-items"><div class="lp-ih">AUTUMN｜秋の COORDINATE ITEMS</div><a class="lp-item" href="https://www.style-deli.com/c/all/850269" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/850/850269/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【BLK001】シアーレースTシャツ<div class="lp-p">¥6,300（税込）<span class="lp-num">品番 850269</span></div></div><div class="lp-arw">›</div></a><a class="lp-item" href="https://www.style-deli.com/c/all/850219" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/850/850219/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【BLK001】花柄刺繍ツイルタックパンツ<div class="lp-p">¥9,900（税込）<span class="lp-num">品番 850219</span></div></div><div class="lp-arw">›</div></a><a class="lp-item" href="https://www.style-deli.com/c/all/850171" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/850/850171/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【BLK001】ビックダブルテーラードジャケット<div class="lp-p">¥12,100（税込）<span class="lp-num">品番 850171</span></div></div><div class="lp-arw">›</div></a><a class="lp-item" href="https://www.style-deli.com/c/all/850255" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/850/850255/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【BLK001】レザーミニボストンバッグ<div class="lp-p">¥25,000（税込）<span class="lp-num">品番 850255</span></div></div><div class="lp-arw">›</div></a></div>
+        </div>
+      </div>
+      <a class="lp-backtop" href="#lpoits-index" data-jump="lpoits-index">▲ コーデ一覧へ戻る</a>
+    </section>
+    <!-- ===== STYLE 05 ===== -->
+    <section class="lp-block" id="lpoits-s05">
+      <div class="lp-bhead"><div class="lp-no"><small>STYLE</small>05</div>
+        <div class="lp-mi">MAIN ITEM <br><b>【BLK001】サラ落ちキャミオールインワン</b></div></div>
+      <a class="lp-mitem" href="https://www.style-deli.com/c/all/850245" target="_blank" rel="noopener">
+        <div class="lp-mitem-imgw">
+          <img class="lp-mitem-img" src="https://styledeli.itembox.cloud/product/103/000000010350/000000010350-14.jpg?size=l&w=ODAw&t=20260716152520" alt="【BLK001】サラ落ちキャミオールインワン" loading="lazy" onerror="LPOITS.imgErr(this)">
+          <div class="lp-ph lp-mitem-fb" style="display:none">ITEM</div>
+        </div>
+        <div class="lp-mitem-info">
+          <span class="lp-l">MAIN ITEM ／ 主役の1着</span>
+          <b class="lp-mitem-name">【BLK001】サラ落ちキャミオールインワン</b>
+          <span class="lp-mitem-price">¥11,000（税込）</span>
+          <span class="lp-mitem-cta">主役アイテムを見る ›</span>
+          <span class="lp-mitem-num">品番 850245</span>
+        </div></a>
+      <p class="lp-desc">さらりと落ち感のあるオールインワンは、夏は一枚で涼やかに、秋はニットや長袖トップスを重ねて表情をチェンジ。シンプルながら洗練された着こなしを楽しめます。</p>
+      <div class="lp-stack">
+        <div class="lp-season lp-summer">
+          <div class="lp-sh"><span class="lp-seasontag">SUMMER</span>夏コーデ</div>
+          <div class="lp-mfr"><img src="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style5-1.jpg?d=20260806140257" alt="SUMMERコーデ" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-mferr">SUMMER<br><span>画像読込待ち</span></div></div>
+          <div class="lp-items"><div class="lp-ih">SUMMER｜夏の COORDINATE ITEMS</div><a class="lp-item" href="https://www.style-deli.com/c/all/850245" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/850/850245/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【BLK001】サラ落ちキャミオールインワン<div class="lp-p">¥11,000（税込）<span class="lp-num">品番 850245</span></div></div><div class="lp-arw">›</div></a><a class="lp-item" href="https://www.style-deli.com/c/all/850241" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/850/850241/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【BLK001】麻タッチフレンチスリーブプルオーバー<div class="lp-p">¥6,300（税込）<span class="lp-num">品番 850241</span></div></div><div class="lp-arw">›</div></a><a class="lp-item" href="https://www.style-deli.com/c/all/850241" target="_blank" rel="noopener"> <!-- TODO:トートバッグ品番未確定（暫定850241） --><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/850/850241/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【BLK001】軽量メッシュ編みペーパーテイストトートバッグ<div class="lp-p">¥7,300（税込）<span class="lp-num">品番 850241</span></div></div><div class="lp-arw">›</div></a></div>
+        </div>
+        <div class="lp-change">
+          <span class="lp-change-badge"><span class="s">SUMMER</span><i>→</i><span class="a">AUTUMN</span></span>
+          <span class="lp-change-note">同じ1着で、秋の着回しにチェンジ</span>
+        </div>
+        <div class="lp-season lp-autumn">
+          <div class="lp-sh"><span class="lp-seasontag">AUTUMN</span>秋コーデ</div>
+          <div class="lp-mfr"><img src="https://styledeli.itembox.cloud/item/assets/images/contents/lp260810/style5-2.jpg?d=20260806140257" alt="AUTUMNコーデ" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-mferr">AUTUMN<br><span>画像読込待ち</span></div></div>
+          <div class="lp-items"><div class="lp-ih">AUTUMN｜秋の COORDINATE ITEMS</div><a class="lp-item" href="https://www.style-deli.com/c/all/850245" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/850/850245/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【BLK001】サラ落ちキャミオールインワン<div class="lp-p">¥11,000（税込）<span class="lp-num">品番 850245</span></div></div><div class="lp-arw">›</div></a><a class="lp-item" href="https://www.style-deli.com/c/all/850221" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/850/850221/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【BLK001】サマーメッシュ編みヘンリーネックプルオーバー<div class="lp-p">¥7,500（税込）<span class="lp-num">品番 850221</span></div></div><div class="lp-arw">›</div></a><a class="lp-item" href="https://www.style-deli.com/c/all/850250" target="_blank" rel="noopener"><div class="lp-ithw"><img src="https://www.style-deli.com/item_img/850/850250/image.jpg" alt="" loading="lazy" onerror="LPOITS.imgErr(this)"><div class="lp-ph lp-ith" style="display:none">IMG</div></div><div class="lp-it">【BLK001】スマホショルダークロスボディーバッグ<div class="lp-p">¥5,800（税込）<span class="lp-num">品番 850250</span></div></div><div class="lp-arw">›</div></a></div>
+        </div>
+      </div>
+      <a class="lp-backtop" href="#lpoits-index" data-jump="lpoits-index">▲ コーデ一覧へ戻る</a>
+    </section>
+
+  <!-- ★ キャンペーン導線（下部再掲）：終了後は自動的に非表示 -->
+  <div id="lpoits-cp-bottom"></div>
+
+  <div class="lp-end">STYLE DELI ｜ ONE ITEM, TWO SEASONS</div>
+
+<script>
+(function(){
+  var root=document.getElementById('lpoits');
+  if(!root) return;
+
+  /* ===== 設定：キャンペーン ===== */
+  // キャンペーン詳細ページURL（決まったら差し替え） 要修正
+  var CP_URL = "#";
+  // 開催期間（JST）: 2026/8/11 19:00 〜 2026/8/17 18:59
+  // ※UTC換算: 開始 8/11 10:00 UTC / 終了境界 8/17 10:00 UTC
+  var START = Date.UTC(2026,7,11,10,0,0);
+  var END   = Date.UTC(2026,7,17,10,0,0);
+
+  var CP = {
+    before:{cls:'before',tag:'COMING SOON',ttl:'8/11(火) 19:00 スタート',
+             sub:'対象アイテム20%OFFキャンペーンを開催予定',btn:'キャンペーン詳細を見る ›'},
+    during:{cls:'during',tag:'20% OFF 開催中',ttl:'対象アイテム 20%OFF',
+             sub:'8/17(月) 18:59まで｜この夏秋コーデもお得に',btn:'キャンペーンページへ ›'}
+    /* after は表示しない（キー無し＝非表示） */
+  };
+
+  function state(){
+    var n=Date.now();
+    if(n<START) return 'before';
+    if(n<END)   return 'during';
+    return 'after';
+  }
+  function renderCP(){
+    var top=document.getElementById('lpoits-cp-top');
+    var bottom=document.getElementById('lpoits-cp-bottom');
+    var s=CP[state()];
+    if(!s){ if(top)top.innerHTML=''; if(bottom)bottom.innerHTML=''; return; } // 終了後は非表示
+    var h='<div class="lp-cp '+s.cls+'"><div class="lp-cp-body">'
+        +'<span class="tag">'+s.tag+'</span>'
+        +'<div class="cp-ttl">'+s.ttl+'</div>'
+        +'<p class="cp-sub">'+s.sub+'</p>'
+        +'<a class="cp-btn" href="'+CP_URL+'">'+s.btn+'</a></div></div>';
+    if(top)top.innerHTML=h; if(bottom)bottom.innerHTML=h;
+  }
+  renderCP();
+
+  /* ===== 画像フォールバック ===== */
+  window.LPOITS = window.LPOITS || {};
+  window.LPOITS.imgErr = function(el){
+    el.style.display='none';
+    var e=el.nextElementSibling; if(e) e.style.display='flex';
+  };
+
+  /* ===== インデックス／戻るボタンのスムーススクロール（URLハッシュを汚さない） ===== */
+  root.querySelectorAll('[data-jump]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-jump'));
+      if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+
+  /* ===== 動画：可視範囲に入ったら自動再生／外れたら停止（muted想定） ===== */
+  var vids=root.querySelectorAll('video.lp-video');
+  if(vids.length && 'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var v=en.target;
+        if(en.isIntersecting){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+        else { v.pause(); }
+      });
+    },{threshold:0.5});
+    vids.forEach(function(v){ io.observe(v); });
+  }
+})();
+</script>
+</div>
+<!-- ============ /STYLE DELI LP ============ -->
