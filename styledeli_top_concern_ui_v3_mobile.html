@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STYLE DELI｜お悩み別カテゴリー UI案 v3（モバイルファースト）</title>
+<style>
+  :root{
+    --ink:#2b2724;--sub:#8a7f75;--line:#e7ded3;--bg:#f6f2ec;--card:#fff;
+    --accent:#8a6f5e;
+    --g1:#8f5b6e;--g2:#5f7d8a;--g3:#7a8b6f;--g4:#b08d57;--g5:#9a6a86;
+    --soft:#efe7dd;
+    --shadow:0 1px 3px rgba(60,45,40,.05),0 12px 30px rgba(60,45,40,.06);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Noto Sans JP",sans-serif;
+    line-height:1.8;font-size:14px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 22px 80px;}
+  header.hero{max-width:920px;margin:0 auto;padding:48px 22px 24px;border-bottom:1px solid var(--line);}
+  .brand{font-size:11.5px;letter-spacing:.24em;color:var(--accent);font-weight:800;margin:0 0 14px;}
+  h1{font-size:24px;line-height:1.5;margin:0;font-weight:800;}
+  h1 small{display:block;font-size:13.5px;color:var(--sub);font-weight:500;margin-top:10px;line-height:1.7;}
+  .v3{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--g2);border-radius:5px;padding:2px 9px;margin-left:8px;vertical-align:middle;letter-spacing:.04em;}
+  .why{background:#eef2f0;border:1px solid #cfe0d8;border-left:4px solid var(--g3);border-radius:0 12px 12px 0;padding:15px 20px;margin-top:24px;font-size:13.5px;color:#3f4d45;}
+  .why b{color:var(--ink);}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin:44px 0 6px;}
+  .sec-num{font-size:11.5px;font-weight:800;color:#fff;background:var(--accent);border-radius:6px;padding:3px 10px;flex:none;}
+  h2{font-size:18px;margin:0;font-weight:800;}
+  .lead{color:var(--sub);font-size:13px;margin:6px 0 12px;}
+  .tag-line{font-size:11px;font-weight:800;letter-spacing:.05em;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:2px;}
+  .t-top{background:#efe3ea;color:var(--g1);}
+  .t-page{background:#e3ecef;color:var(--g2);}
+  .t-nav{background:#e8efe3;color:var(--g3);}
+
+  .groups{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+  .gr{flex:1;min-width:150px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;box-shadow:var(--shadow);}
+  .gr .h{font-weight:800;font-size:13px;display:flex;align-items:center;gap:7px;}
+  .gr .h::before{content:"";width:9px;height:9px;border-radius:3px;display:inline-block;}
+  .gr.a1 .h::before{background:var(--g1);}.gr.a2 .h::before{background:var(--g2);}.gr.a3 .h::before{background:var(--g3);}.gr.a4 .h::before{background:var(--g4);}.gr.a5 .h::before{background:var(--g5);}
+  .gr .c{font-size:11.5px;color:var(--sub);margin-top:3px;}
+
+  /* phone frame */
+  .stage{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start;margin-top:16px;}
+  .phone{width:300px;flex:none;margin:0 auto;background:#2b2724;border-radius:36px;padding:11px;box-shadow:0 20px 44px rgba(60,45,40,.18);}
+  .phone .scr{background:#fff;border-radius:26px;overflow:hidden;}
+  .phone .status{background:#f0e9e0;height:26px;display:flex;align-items:center;justify-content:center;position:relative;}
+  .phone .status::before{content:"";width:56px;height:6px;border-radius:6px;background:#cbbdae;}
+  .pnav{display:flex;align-items:center;gap:9px;padding:11px 14px;border-bottom:1px solid var(--line);font-size:11px;}
+  .pnav .logo{font-weight:800;letter-spacing:.12em;font-size:10.5px;}
+  .pnav .burger{margin-left:auto;display:flex;flex-direction:column;gap:3px;}
+  .pnav .burger span{width:16px;height:2px;background:var(--ink);border-radius:2px;}
+  .pbody{padding:15px 15px 20px;}
+  .p-title{font-size:14px;font-weight:800;margin:0 0 2px;}
+  .p-sub{font-size:9.5px;color:var(--sub);letter-spacing:.14em;margin:0 0 13px;}
+
+  /* tabs (A) — horizontal scroll */
+  .ptabs{display:flex;gap:7px;overflow-x:auto;padding-bottom:6px;margin-bottom:12px;-ms-overflow-style:none;scrollbar-width:none;}
+  .ptabs::-webkit-scrollbar{display:none;}
+  .ptab{flex:none;font-size:11px;font-weight:700;padding:6px 13px;border-radius:20px;border:1px solid var(--line);background:#fff;color:var(--sub);cursor:pointer;white-space:nowrap;}
+  .ptab.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;align-content:flex-start;}
+  .chip{font-size:11px;padding:7px 12px;border-radius:9px;background:#f4efe8;border:1px solid #e7ded3;color:#4a4038;cursor:pointer;}
+  .chip:hover{background:var(--soft);border-color:var(--accent);}
+  .panel{display:none;}.panel.show{display:block;animation:fade .22s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(3px);}to{opacity:1;transform:none;}}
+  .swipe{font-size:9.5px;color:var(--sub);margin-top:8px;text-align:center;}
+
+  /* full index (B) */
+  .idx-grp{margin-bottom:14px;}
+  .idx-h{font-size:11px;font-weight:800;display:flex;align-items:center;gap:6px;margin:0 0 8px;padding-bottom:5px;border-bottom:1px dashed var(--line);}
+  .idx-h .dot{width:8px;height:8px;border-radius:2px;display:inline-block;}
+  .idx-h .n{margin-left:auto;font-size:9.5px;color:var(--sub);font-weight:600;}
+  .idx-chips{display:flex;flex-wrap:wrap;gap:6px;}
+  .idx-chips .chip{font-size:10.5px;padding:6px 10px;}
+  .scrollhint{position:relative;}
+  .scrollhint::after{content:"↓ スクロールで全グループ";position:absolute;left:50%;transform:translateX(-50%);bottom:-2px;font-size:9px;color:var(--sub);background:#fff;padding:0 8px;}
+
+  /* accordion (C mobile) */
+  .acc-item{border:1px solid var(--line);border-radius:11px;margin-bottom:8px;overflow:hidden;background:#fff;}
+  .acc-head{display:flex;align-items:center;gap:8px;padding:11px 13px;cursor:pointer;font-size:12px;font-weight:800;}
+  .acc-head .dot{width:9px;height:9px;border-radius:3px;}
+  .acc-head .n{margin-left:auto;font-size:9.5px;color:var(--sub);font-weight:600;margin-right:6px;}
+  .acc-head .cv{font-size:12px;color:var(--sub);transition:.2s;}
+  .acc-head.open .cv{transform:rotate(180deg);}
+  .acc-body{display:none;padding:0 13px 13px;}
+  .acc-body.show{display:block;}
+  .acc-body .chips{margin-top:2px;}
+
+  /* PC note thumbnail */
+  .pcnote{flex:1;min-width:240px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);}
+  .pcnote .h{font-size:12px;font-weight:800;color:var(--g3);margin:0 0 8px;}
+  .mini-mega{border:1px solid var(--line);border-radius:9px;padding:10px;display:grid;grid-template-columns:repeat(5,1fr);gap:7px;background:#fdfbf8;}
+  .mini-mega .c .t{font-size:8px;font-weight:800;color:var(--ink);margin-bottom:4px;}
+  .mini-mega .c i{display:block;height:4px;border-radius:3px;background:#e7ded3;margin:3px 0;}
+  .mini-cap{font-size:11px;color:var(--sub);margin-top:9px;}
+
+  .pros{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+  .pro,.con{font-size:11.5px;border-radius:8px;padding:8px 12px;flex:1;min-width:180px;}
+  .pro{background:#eaf1e6;color:#4c5c42;}.con{background:#f4ece6;color:#6a5647;}
+  .pro b,.con b{display:block;margin-bottom:2px;}
+
+  .rec{background:#fff;border:1px solid var(--line);border-left:4px solid var(--g2);border-radius:0 14px 14px 0;padding:18px 22px;box-shadow:var(--shadow);margin-top:14px;}
+  .rec b{color:var(--ink);}
+  .layers{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
+  .layer{display:flex;gap:12px;align-items:flex-start;background:#faf6f0;border:1px solid var(--line);border-radius:12px;padding:13px 15px;}
+  .layer .no{font-size:10px;font-weight:800;color:#fff;background:var(--g2);border-radius:6px;padding:3px 8px;flex:none;margin-top:2px;}
+  .layer .tt{font-weight:800;font-size:13px;}
+  .layer .dd{font-size:12px;color:var(--sub);margin-top:1px;}
+  .dummy{font-size:11.5px;color:var(--sub);background:#efe7dd;border-radius:8px;padding:9px 14px;margin-top:14px;display:inline-block;}
+  footer{max-width:920px;margin:34px auto 0;padding:20px 22px;color:var(--sub);font-size:11.5px;border-top:1px solid var(--line);}
+</style>
+</head>
+<body>
+<header class="hero">
+  <p class="brand">STYLE DELI ／ 見せ方・導線</p>
+  <h1>「お悩み別カテゴリー」UI案<span class="v3">v3 ／ モバイルファースト</span>
+    <small>スマホ表示を基準に組み直しました。全項目を5グループに束ね、スマホでも破綻せず全部にたどり着ける形です。C案はモバイル＝アコーディオンに描き替えました。</small>
+  </h1>
+  <div class="why">
+    <b>モバイル基準での結論：</b>スマホでは <b>A案（タブ）</b>がいちばん扱いやすく、専用ページの <b>B案（全件一覧）</b>はチップが折り返すので幅の心配なし。<b>C案は"PCはメガメニュー／スマホはアコーディオン"</b>に切り替える前提にしました。
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- premise -->
+  <section>
+    <div class="sec-head"><span class="sec-num">前提</span><h2>全カテゴリーを5グループに整理</h2></div>
+    <p class="lead">30項目以上をフラットに並べず、まず大きな5グループへ。スマホでも指で追いやすい単位にします。</p>
+    <div class="groups">
+      <div class="gr a1"><div class="h">素材で選ぶ</div><div class="c">コットン100%／軽量／通年／暖かい・涼しい…</div></div>
+      <div class="gr a2"><div class="h">体型で選ぶ</div><div class="c">高身長／小柄／細身／LL／マタニティ…</div></div>
+      <div class="gr a3"><div class="h">お悩みカバー</div><div class="c">体型ライン／ヒップ／二の腕／腿／ゴム…</div></div>
+      <div class="gr a4"><div class="h">シーンで選ぶ</div><div class="c">仕事／オケージョン／旅行／リラックス…</div></div>
+      <div class="gr a5"><div class="h">おすすめ</div><div class="c">ロングセラー／イチ推し／大好評…</div></div>
+    </div>
+  </section>
+
+  <!-- A -->
+  <section>
+    <div class="sec-head"><span class="sec-num">A案</span><h2>タブ切り替え型</h2></div>
+    <span class="tag-line t-top">トップ設置向き ／ スマホ本命</span>
+    <p class="lead">タブを横スワイプで切り替え。1グループずつなので縦も短く、トップに置いても場所を取りません。（タブは実際に押せます）</p>
+    <div class="stage">
+      <div class="phone"><div class="scr">
+        <div class="status"></div>
+        <div class="pnav"><span class="logo">STYLE DELI</span><span class="burger"><span></span><span></span><span></span></span></div>
+        <div class="pbody">
+          <p class="p-title">お悩みで探す</p>
+          <p class="p-sub">STYLE BY CONCERN</p>
+          <div class="ptabs">
+            <button class="ptab active" data-p="a1">素材</button>
+            <button class="ptab" data-p="a2">体型</button>
+            <button class="ptab" data-p="a3">お悩みカバー</button>
+            <button class="ptab" data-p="a4">シーン</button>
+            <button class="ptab" data-p="a5">おすすめ</button>
+          </div>
+          <div class="panel show" id="a1"><div class="chips"><span class="chip">コットン100%</span><span class="chip">特選素材</span><span class="chip">通年</span><span class="chip">とくに暖かい</span><span class="chip">とくに涼しい</span><span class="chip">軽量</span><span class="chip">肌ざわりがいい</span></div></div>
+          <div class="panel" id="a2"><div class="chips"><span class="chip">高身長さん</span><span class="chip">小柄さん</span><span class="chip">細身さん</span><span class="chip">LL体型OK</span><span class="chip">マタニティ</span></div></div>
+          <div class="panel" id="a3"><div class="chips"><span class="chip">体型ラインを隠せる</span><span class="chip">ヒップが隠れる丈</span><span class="chip">二の腕カバー</span><span class="chip">腿太さん対応</span><span class="chip">袖幅ゆったり羽織り</span><span class="chip">ウエスト全周ゴム</span><span class="chip">Vネック</span><span class="chip">授乳中に便利</span></div></div>
+          <div class="panel" id="a4"><div class="chips"><span class="chip">きちんと仕事服</span><span class="chip">式典・オケージョン</span><span class="chip">旅行・リゾート</span><span class="chip">リラックス</span><span class="chip">軽い運動</span><span class="chip">高級レストラン</span><span class="chip">華のある夜</span><span class="chip">普遍的シンプル</span></div></div>
+          <div class="panel" id="a5"><div class="chips"><span class="chip">ロングセラー</span><span class="chip">これは便利！</span><span class="chip">齊藤のイチ推し</span><span class="chip">お客様から大好評</span></div></div>
+          <p class="swipe">◂ タブは横スワイプ ▸</p>
+        </div>
+      </div></div>
+      <div class="pros" style="flex-direction:column;max-width:300px;">
+        <div class="pro"><b>◎ スマホで強い</b>縦が短い／横スワイプで全グループ／トップ据え置きOK</div>
+        <div class="con"><b>△ 注意</b>一度に1グループのみ表示</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section>
+    <div class="sec-head"><span class="sec-num">B案</span><h2>全件一覧型（「お悩みで探す」専用ページ）</h2></div>
+    <span class="tag-line t-page">専用ページ向き ／ 幅の心配なし</span>
+    <p class="lead">チップは自動で折り返すので、スマホでも横あふれしません。縦に長いぶん、トップ直置きより"開いた先の専用ページ"向き。</p>
+    <div class="stage">
+      <div class="phone"><div class="scr">
+        <div class="status"></div>
+        <div class="pnav"><span class="logo">STYLE DELI</span><span class="burger"><span></span><span></span><span></span></span></div>
+        <div class="pbody scrollhint" style="padding-bottom:26px;">
+          <p class="p-title">お悩みで探す</p>
+          <p class="p-sub">STYLE BY CONCERN</p>
+          <div class="idx-grp"><div class="idx-h"><span class="dot" style="background:var(--g1)"></span>素材で選ぶ<span class="n">7</span></div>
+            <div class="idx-chips"><span class="chip">コットン100%</span><span class="chip">特選素材</span><span class="chip">通年</span><span class="chip">とくに暖かい</span><span class="chip">とくに涼しい</span><span class="chip">軽量</span><span class="chip">肌ざわりがいい</span></div></div>
+          <div class="idx-grp"><div class="idx-h"><span class="dot" style="background:var(--g2)"></span>体型で選ぶ<span class="n">5</span></div>
+            <div class="idx-chips"><span class="chip">高身長さん</span><span class="chip">小柄さん</span><span class="chip">細身さん</span><span class="chip">LL体型OK</span><span class="chip">マタニティ</span></div></div>
+          <div class="idx-grp"><div class="idx-h"><span class="dot" style="background:var(--g3)"></span>お悩みカバー<span class="n">8</span></div>
+            <div class="idx-chips"><span class="chip">体型ラインを隠せる</span><span class="chip">ヒップが隠れる丈</span><span class="chip">二の腕カバー</span><span class="chip">腿太さん対応</span><span class="chip">袖幅ゆったり羽織り</span><span class="chip">ウエスト全周ゴム</span></div></div>
+        </div>
+      </div></div>
+      <div class="pros" style="flex-direction:column;max-width:300px;">
+        <div class="pro"><b>◎ いいところ</b>チップ折り返しで幅OK／全部ひと目／SEOに強い</div>
+        <div class="con"><b>△ 注意</b>縦は長め＝トップ直置きより専用ページ向き</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- C -->
+  <section>
+    <div class="sec-head"><span class="sec-num">C案</span><h2>アコーディオン型（モバイル）＝ PCではメガメニュー</h2></div>
+    <span class="tag-line t-nav">ナビ常設 ／ 端末で姿を変える</span>
+    <p class="lead">スマホはハンバーガーメニューの中で「グループをタップ→展開」。PCでは同じ中身が横並びのメガメニューになります。（アコーディオンは実際に開けます）</p>
+    <div class="stage">
+      <div class="phone"><div class="scr">
+        <div class="status"></div>
+        <div class="pnav"><span class="logo">MENU</span><span class="burger"><span></span><span></span><span></span></span></div>
+        <div class="pbody">
+          <p class="p-title" style="margin-bottom:12px;">お悩みで探す</p>
+          <div class="acc-item">
+            <div class="acc-head open" data-a="c1"><span class="dot" style="background:var(--g1)"></span>素材で選ぶ<span class="n">7</span><span class="cv">▾</span></div>
+            <div class="acc-body show" id="c1"><div class="chips"><span class="chip">コットン100%</span><span class="chip">通年</span><span class="chip">とくに暖かい</span><span class="chip">とくに涼しい</span><span class="chip">軽量</span><span class="chip">肌ざわりがいい</span></div></div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-head" data-a="c2"><span class="dot" style="background:var(--g2)"></span>体型で選ぶ<span class="n">5</span><span class="cv">▾</span></div>
+            <div class="acc-body" id="c2"><div class="chips"><span class="chip">高身長さん</span><span class="chip">小柄さん</span><span class="chip">細身さん</span><span class="chip">LL体型OK</span><span class="chip">マタニティ</span></div></div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-head" data-a="c3"><span class="dot" style="background:var(--g3)"></span>お悩みカバー<span class="n">8</span><span class="cv">▾</span></div>
+            <div class="acc-body" id="c3"><div class="chips"><span class="chip">体型ラインを隠せる</span><span class="chip">ヒップが隠れる丈</span><span class="chip">二の腕カバー</span><span class="chip">腿太さん対応</span><span class="chip">ウエスト全周ゴム</span></div></div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-head" data-a="c4"><span class="dot" style="background:var(--g4)"></span>シーンで選ぶ<span class="n">8</span><span class="cv">▾</span></div>
+            <div class="acc-body" id="c4"><div class="chips"><span class="chip">きちんと仕事服</span><span class="chip">旅行・リゾート</span><span class="chip">リラックス</span><span class="chip">華のある夜</span></div></div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-head" data-a="c5"><span class="dot" style="background:var(--g5)"></span>おすすめ<span class="n">4</span><span class="cv">▾</span></div>
+            <div class="acc-body" id="c5"><div class="chips"><span class="chip">ロングセラー</span><span class="chip">齊藤のイチ推し</span><span class="chip">お客様から大好評</span></div></div>
+          </div>
+        </div>
+      </div></div>
+      <div class="pcnote">
+        <p class="h">PCでは同じ中身がメガメニューに</p>
+        <div class="mini-mega">
+          <div class="c"><div class="t">素材</div><i></i><i></i><i></i><i></i></div>
+          <div class="c"><div class="t">体型</div><i></i><i></i><i></i></div>
+          <div class="c"><div class="t">カバー</div><i></i><i></i><i></i><i></i></div>
+          <div class="c"><div class="t">シーン</div><i></i><i></i><i></i><i></i></div>
+          <div class="c"><div class="t">おすすめ</div><i></i><i></i></div>
+        </div>
+        <p class="mini-cap">同じカテゴリー構成のまま、画面幅で「アコーディオン↔メガメニュー」を出し分けます。中身・URLは共通なので二重管理になりません。</p>
+        <div class="pros" style="margin-top:12px;">
+          <div class="pro"><b>◎ いいところ</b>全ページから届く／スマホでも縦を圧迫しない</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- recommendation -->
+  <section>
+    <div class="sec-head"><span class="sec-num">おすすめ</span><h2>モバイルファーストの組み合わせ</h2></div>
+    <div class="rec">
+      <p style="margin-top:0;">スマホ流入が主軸の想定なので、<b>スマホで軽い形を土台</b>にして、PCで拡張する構成がベストです👇</p>
+      <div class="layers">
+        <div class="layer"><span class="no">土台</span><div><div class="tt">トップ ＝ A案（タブ）</div><div class="dd">スマホで縦を取らず、全グループの入口を常設。まずここから。</div></div></div>
+        <div class="layer"><span class="no">受け皿</span><div><div class="tt">専用ページ ＝ B案（全件一覧）</div><div class="dd">タブやメニューから飛んだ先で、全カテゴリーをひと目に。</div></div></div>
+        <div class="layer"><span class="no">拡張</span><div><div class="tt">ナビ ＝ C案（スマホ:アコーディオン／PC:メガメニュー）</div><div class="dd">どのページからでも呼び出したくなったら追加。端末で姿を変える。</div></div></div>
+      </div>
+      <p style="margin-bottom:0;margin-top:14px;">最小構成なら<b>A＋B</b>でスタート、様子を見て<b>C</b>を足す——が、スマホにやさしくて無理のない進め方です。</p>
+    </div>
+    <span class="dummy">※ カテゴリー名・件数・写真はすべてダミー（レイアウト確認用）。実際の名称・数は調整します。</span>
+  </section>
+
+</div>
+<footer>
+  STYLE DELI ／ お悩み別カテゴリー UI案 v3（モバイルファースト）— スマホ基準で全項目を5グループに束ね、A/B/Cを再設計。C案は端末で「アコーディオン↔メガメニュー」を出し分け。｜ 作成：NSN
+</footer>
+
+<script>
+  // A tabs
+  document.querySelectorAll('.ptab').forEach(function(t){
+    t.addEventListener('click',function(){
+      document.querySelectorAll('.ptab').forEach(function(x){x.classList.remove('active');});
+      document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('show');});
+      t.classList.add('active');
+      var el=document.getElementById(t.getAttribute('data-p')); if(el) el.classList.add('show');
+    });
+  });
+  // C accordion
+  document.querySelectorAll('.acc-head').forEach(function(h){
+    h.addEventListener('click',function(){
+      var body=document.getElementById(h.getAttribute('data-a'));
+      var open=h.classList.contains('open');
+      h.classList.toggle('open',!open);
+      if(body) body.classList.toggle('show',!open);
+    });
+  });
+</script>
+</body>
+</html>
