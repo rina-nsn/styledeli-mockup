@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STYLE DELI｜トップ「お悩み別」セクション UI案</title>
+<style>
+  :root{
+    --ink:#2b2724;--sub:#8a7f74;--line:#e6ddd2;--bg:#f6f2ec;--card:#fff;
+    --accent:#8a6f5e;--accent2:#8f5b6e;--soft:#efe7dd;--soft2:#f0e5ea;
+    --img1:linear-gradient(135deg,#ded2c4,#c9b8a6);
+    --img2:linear-gradient(135deg,#d9cfc6,#b7a595);
+    --img3:linear-gradient(135deg,#e2d6cf,#cbb2ac);
+    --img4:linear-gradient(135deg,#cdbfb0,#e5dccf);
+    --shadow:0 1px 3px rgba(60,45,40,.06),0 10px 30px rgba(60,45,40,.06);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Noto Sans JP",sans-serif;
+    line-height:1.8;-webkit-font-smoothing:antialiased;font-size:14px;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 22px 90px;}
+  header.hero{max-width:1000px;margin:0 auto;padding:52px 22px 10px;}
+  .eyebrow{font-size:11px;letter-spacing:.24em;color:var(--accent);font-weight:700;margin:0 0 12px;}
+  h1{font-size:27px;line-height:1.45;margin:0 0 10px;font-weight:800;}
+  h1 .sub{display:block;font-size:14px;color:var(--sub);font-weight:500;margin-top:10px;}
+  .meta{font-size:12px;color:var(--sub);margin-top:16px;border-top:1px solid var(--line);padding-top:12px;}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin:46px 0 10px;}
+  .sec-num{font-size:11px;font-weight:800;color:#fff;background:var(--accent);border-radius:6px;padding:3px 9px;flex:none;}
+  h2{font-size:19px;margin:0;font-weight:800;}
+  .desc{color:#4d453e;margin:8px 0 4px;}
+  .note{font-size:12px;color:var(--sub);background:#efe7dd;border-left:3px solid var(--accent);padding:10px 14px;border-radius:0 8px 8px 0;margin-top:14px;}
+  .rec{border-color:var(--accent2);background:var(--soft2);color:var(--accent2);}
+  .rec b{color:var(--accent2);}
+
+  /* ---- phone frame ---- */
+  .stage{display:flex;gap:34px;flex-wrap:wrap;align-items:flex-start;margin-top:20px;}
+  .phone{width:330px;flex:none;background:#fff;border-radius:34px;padding:11px;box-shadow:var(--shadow);border:1px solid var(--line);margin:0 auto;}
+  .screen{border-radius:24px;overflow:hidden;background:#fff;border:1px solid #f0e9e0;}
+  .statusbar{height:26px;background:#fff;display:flex;align-items:center;justify-content:center;}
+  .statusbar span{width:44px;height:5px;background:#e0d7cc;border-radius:5px;}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid #f0e9e0;}
+  .topbar .logo{font-weight:800;letter-spacing:.14em;font-size:13px;}
+  .topbar .ic{display:flex;gap:12px;color:#9a8f83;font-size:13px;}
+  .scrollbody{max-height:640px;overflow-y:auto;}
+  .scrollbody::-webkit-scrollbar{width:0;}
+
+  .sect{padding:16px 14px 6px;}
+  .sect-label{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+  .sect-label .en{font-size:12px;letter-spacing:.2em;font-weight:800;}
+  .sect-label .jp{font-size:10.5px;color:var(--sub);letter-spacing:.04em;}
+  .sect-label .more{font-size:10px;color:var(--sub);letter-spacing:.1em;}
+  .hl{color:var(--accent2);}
+
+  /* new arrival row */
+  .prow{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;}
+  .prow::-webkit-scrollbar{height:0;}
+  .pcard{width:112px;flex:none;}
+  .pth{width:112px;height:140px;border-radius:8px;background:var(--img1);position:relative;}
+  .pcard:nth-child(2) .pth{background:var(--img2);}
+  .pcard:nth-child(3) .pth{background:var(--img3);}
+  .pcard:nth-child(4) .pth{background:var(--img4);}
+  .pth .dm{position:absolute;left:6px;top:6px;font-size:8px;color:#fff;background:rgba(80,65,58,.35);padding:1px 6px;border-radius:4px;letter-spacing:.08em;}
+  .pcard .pn{font-size:10.5px;margin-top:6px;color:#5c534b;line-height:1.5;}
+  .pcard .pp{font-size:11px;font-weight:700;margin-top:2px;}
+
+  /* concern section (Option A inside phone) */
+  .concern-band{background:linear-gradient(180deg,#fbf7f2,#f3ebe1);margin:6px 0;padding:20px 0 18px;border-top:1px solid #efe7db;border-bottom:1px solid #efe7db;}
+  .concern-lead{text-align:center;padding:0 16px 14px;}
+  .concern-lead .en{font-size:12px;letter-spacing:.22em;font-weight:800;color:var(--accent2);}
+  .concern-lead .jp{font-size:13px;font-weight:700;margin-top:6px;}
+  .concern-lead .cap{font-size:10.5px;color:var(--sub);margin-top:4px;}
+  .chiprow{display:flex;gap:10px;overflow-x:auto;padding:2px 14px 4px;}
+  .chiprow::-webkit-scrollbar{height:0;}
+  .cchip{flex:none;width:82px;text-align:center;}
+  .cchip .ci{width:82px;height:82px;border-radius:50%;background:#fff;border:1px solid #e7dccf;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(80,60,50,.06);}
+  .cchip .cl{font-size:10px;margin-top:8px;color:#4d453e;line-height:1.4;font-weight:600;}
+  svg.ico{width:34px;height:34px;stroke:var(--accent);stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+
+  /* staff wearing cards */
+  .swgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .swcard .swth{height:150px;border-radius:8px;background:var(--img2);position:relative;}
+  .swcard:nth-child(2) .swth{background:var(--img3);}
+  .swcard .swth .dm{position:absolute;left:6px;top:6px;font-size:8px;color:#fff;background:rgba(80,65,58,.35);padding:1px 6px;border-radius:4px;}
+  .swcard .swn{font-size:10px;color:#5c534b;margin-top:6px;}
+
+  .caption{font-size:11px;color:var(--sub);text-align:center;margin-top:12px;}
+
+  /* ---- option panels (large) ---- */
+  .opt{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 22px 24px;box-shadow:var(--shadow);margin-top:16px;}
+  .opt-h{display:flex;align-items:center;gap:10px;margin-bottom:4px;}
+  .opt-h .tag{font-size:11px;font-weight:800;color:#fff;background:var(--accent2);border-radius:6px;padding:3px 10px;}
+  .opt-h h3{margin:0;font-size:16px;}
+  .opt .sub{font-size:12.5px;color:var(--sub);margin:2px 0 16px;}
+  .demo{background:#faf6f0;border:1px solid #efe7db;border-radius:12px;padding:20px 18px;}
+
+  /* Option A demo: round icon rail */
+  .railhead{text-align:center;margin-bottom:16px;}
+  .railhead .en{font-size:13px;letter-spacing:.22em;font-weight:800;color:var(--accent2);}
+  .railhead .jp{font-size:13px;color:#4d453e;margin-top:5px;}
+  .rail{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;}
+  .rail .cchip{width:92px;}
+  .rail .cchip .ci{width:92px;height:92px;}
+  .rail .cchip .cl{font-size:11px;}
+
+  /* Option B demo: editorial cards */
+  .edgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .edcard{border-radius:12px;overflow:hidden;background:#fff;border:1px solid #eee3d7;}
+  .edcard .im{height:150px;position:relative;background:var(--img1);}
+  .edcard:nth-child(2) .im{background:var(--img3);}
+  .edcard:nth-child(3) .im{background:var(--img2);}
+  .edcard .im .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(45,35,30,.5));}
+  .edcard .im .lb{position:absolute;left:12px;bottom:10px;color:#fff;}
+  .edcard .im .lb .t{font-size:13px;font-weight:800;letter-spacing:.02em;}
+  .edcard .im .lb .n{font-size:10px;opacity:.9;letter-spacing:.08em;margin-top:2px;}
+  .edcard .im .dm{position:absolute;left:8px;top:8px;font-size:8px;color:#fff;background:rgba(80,65,58,.4);padding:1px 6px;border-radius:4px;}
+  .edcard .cc{padding:9px 11px 11px;font-size:10.5px;color:#6a6058;}
+
+  /* Option C demo: copy band + pills */
+  .cband{text-align:center;padding:8px 6px;}
+  .cband .q{font-size:17px;font-weight:800;letter-spacing:.02em;}
+  .cband .s{font-size:12px;color:var(--sub);margin:6px 0 16px;}
+  .pills{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;}
+  .pill{font-size:12px;font-weight:700;padding:9px 16px;border-radius:999px;background:#fff;border:1px solid #ddcfc0;color:#4d453e;}
+  .pill.on{background:var(--accent2);color:#fff;border-color:var(--accent2);}
+
+  .pros{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;margin-top:16px;font-size:12.5px;}
+  .pros .g,.pros .b{padding-left:20px;position:relative;}
+  .pros .g::before{content:"◎";position:absolute;left:0;color:var(--accent2);font-weight:800;}
+  .pros .b::before{content:"△";position:absolute;left:0;color:#b6a898;font-weight:800;}
+
+  .verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;}
+  .verdict .v{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff;font-size:12px;}
+  .verdict .v .h{font-weight:800;font-size:13px;margin-bottom:6px;}
+  .verdict .v.star{border-color:var(--accent2);background:var(--soft2);}
+  .verdict .v .use{color:var(--accent2);font-weight:700;}
+
+  footer{max-width:1000px;margin:36px auto 0;padding:20px;color:var(--sub);font-size:12px;border-top:1px solid var(--line);text-align:center;}
+  @media(max-width:720px){
+    .edgrid{grid-template-columns:1fr;}
+    .verdict{grid-template-columns:1fr;}
+    .pros{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <p class="eyebrow">STYLE DELI ／ トップページ 導線UI提案</p>
+  <h1>トップに「お悩み別」レイヤーを置く
+    <span class="sub">新着 ／ STAFF WEARING と同列の"探す入口"として。UI案を3パターン＋配置イメージで。</span>
+  </h1>
+  <div class="meta">画面はすべて<b>イメージモック（ダミー画像・仮テキスト）</b>です。実装時は実写・実商品に差し替えます。※移行中サイトはパスワード保護中のため、STYLE DELIの一般的なトンマナで作成。</div>
+</header>
+
+<div class="wrap">
+
+  <!-- placement -->
+  <section>
+    <div class="sec-head"><span class="sec-num">A</span><h2>まず「どこに挟まるか」＝トップの流れ</h2></div>
+    <p class="desc">新着とSTAFF WEARINGの間に、同じ"探す入口"のトーンで <span class="hl">STYLE by CONCERN（お悩みで探す）</span> を挿入したイメージです。スマホでスクロールしていくと自然に出会える位置。</p>
+    <div class="stage">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span></span></div>
+          <div class="topbar"><div class="logo">STYLE DELI</div><div class="ic">♡&nbsp;&nbsp;⌕&nbsp;&nbsp;≡</div></div>
+          <div class="scrollbody">
+
+            <!-- NEW ARRIVAL -->
+            <div class="sect">
+              <div class="sect-label"><div><span class="en">NEW ARRIVAL</span> <span class="jp">／ 新着</span></div><span class="more">VIEW ALL ＞</span></div>
+              <div class="prow">
+                <div class="pcard"><div class="pth"><span class="dm">ダミー</span></div><div class="pn">麻混ルーズネックニット</div><div class="pp">¥6,900</div></div>
+                <div class="pcard"><div class="pth"><span class="dm">ダミー</span></div><div class="pn">セミワイドデニム</div><div class="pp">¥7,900</div></div>
+                <div class="pcard"><div class="pth"><span class="dm">ダミー</span></div><div class="pn">バルーンスカート</div><div class="pp">¥8,900</div></div>
+              </div>
+            </div>
+
+            <!-- CONCERN (highlighted, new) -->
+            <div class="concern-band">
+              <div class="concern-lead">
+                <div class="en">STYLE by CONCERN</div>
+                <div class="jp">お悩みで探す</div>
+                <div class="cap">気になるところから、ぴったりの一枚を。</div>
+              </div>
+              <div class="chiprow">
+                <div class="cchip"><div class="ci"><svg class="ico" viewBox="0 0 24 24"><path d="M8 3l4 3 4-3 4 4-3 3v11H7V10L4 7z"/></svg></div><div class="cl">二の腕をカバー</div></div>
+                <div class="cchip"><div class="ci"><svg class="ico" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 4v3M12 4v4M16 4v3"/></svg></div><div class="cl">低身長さん</div></div>
+                <div class="cchip"><div class="ci"><svg class="ico" viewBox="0 0 24 24"><path d="M6 9c3-2 9-2 12 0M5 13c4-2.5 10-2.5 14 0"/><path d="M7 9c-1 4-1 7 0 11M17 9c1 4 1 7 0 11"/></svg></div><div class="cl">体のラインを拾わない</div></div>
+                <div class="cchip"><div class="ci"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8 13c1.5 1.5 6.5 1.5 8 0"/></svg></div><div class="cl">お腹まわりラク</div></div>
+                <div class="cchip"><div class="ci"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div><div class="cl">暑い日も涼しい</div></div>
+                <div class="cchip"><div class="ci"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3s6 7 6 11a6 6 0 01-12 0c0-4 6-11 6-11z"/></svg></div><div class="cl">自宅で洗える</div></div>
+              </div>
+            </div>
+
+            <!-- STAFF WEARING -->
+            <div class="sect">
+              <div class="sect-label"><div><span class="en">STAFF WEARING</span> <span class="jp">／ スタッフ着用</span></div><span class="more">VIEW ALL ＞</span></div>
+              <div class="swgrid">
+                <div class="swcard"><div class="swth"><span class="dm">ダミー</span></div><div class="swn">Staff M / 158cm ｜ 通勤コーデ</div></div>
+                <div class="swcard"><div class="swth"><span class="dm">ダミー</span></div><div class="swn">Staff A / 165cm ｜ 休日コーデ</div></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:250px;">
+        <div class="note rec"><b>ポイント：</b>お悩み別だけ背景色をほんの少し変えて"面"にすると、新着・STAFF WEARINGの商品グリッドの中で埋もれず、でも浮きすぎない。英語ラベル（STYLE by CONCERN）＋日本語サブでブランドの温度に馴染ませています。</div>
+        <p class="desc" style="margin-top:16px;">配置の考え方：<br>
+        ・<b>新着</b>＝「何が出た？」（鮮度）<br>
+        ・<b>お悩み別</b>＝「私に合うのは？」（自分ごと化）← ここが今回の追加レイヤー<br>
+        ・<b>STAFF WEARING</b>＝「どう着る？」（着用イメージ）<br>
+        3つが並ぶと"探し方"がきれいに揃います。ファーストビュー直下の一等地に置くほど、回遊の起点として効きます。</p>
+      </div>
+    </div>
+    <p class="caption">▲ スマホ・トップページの流れ（イメージ）。お悩み別は横スクロールの丸アイコン＝Option Aを採用した例。</p>
+  </section>
+
+  <!-- Option A -->
+  <section>
+    <div class="sec-head"><span class="sec-num">B</span><h2>お悩みセクション UI ― 3パターン</h2></div>
+
+    <div class="opt">
+      <div class="opt-h"><span class="tag">Option A</span><h3>丸アイコン横スクロール（アイコンレール）</h3></div>
+      <p class="sub">アイコン＋短いラベルを横スクロールで。省スペースで軽く、いくつでも並べられる。カテゴリーショートカットの王道。</p>
+      <div class="demo">
+        <div class="railhead"><div class="en">STYLE by CONCERN</div><div class="jp">お悩みで探す</div></div>
+        <div class="rail">
+          <div class="cchip"><div class="ci"><svg class="ico" viewBox="0 0 24 24"><path d="M8 3l4 3 4-3 4 4-3 3v11H7V10L4 7z"/></svg></div><div class="cl">二の腕をカバー</div></div>
+          <div class="cchip"><div class="ci"><svg class="ico" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 4v3M12 4v4M16 4v3"/></svg></div><div class="cl">低身長さん</div></div>
+          <div class="cchip"><div class="ci"><svg class="ico" viewBox="0 0 24 24"><path d="M6 9c3-2 9-2 12 0M5 13c4-2.5 10-2.5 14 0"/><path d="M7 9c-1 4-1 7 0 11M17 9c1 4 1 7 0 11"/></svg></div><div class="cl">ラインを拾わない</div></div>
+          <div class="cchip"><div class="ci"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8 13c1.5 1.5 6.5 1.5 8 0"/></svg></div><div class="cl">お腹まわりラク</div></div>
+          <div class="cchip"><div class="ci"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div><div class="cl">暑い日も涼しい</div></div>
+        </div>
+      </div>
+      <div class="pros">
+        <div class="g">場所を取らず、お悩みを何個でも並べられる</div>
+        <div class="g">実装が軽い・運用でカテゴリー増減しやすい</div>
+        <div class="b">写真で語れないぶん、情緒・世界観は出しにくい</div>
+        <div class="b">アイコンのデザイン品質で印象が左右される</div>
+      </div>
+    </div>
+
+    <!-- Option B -->
+    <div class="opt">
+      <div class="opt-h"><span class="tag">Option B</span><h3>エディトリアルカード（写真主役）</h3></div>
+      <p class="sub">お悩みごとに着用写真＋コピー。STAFF WEARINGと同じ"見せる"温度。世界観とブランドらしさが一番出る。</p>
+      <div class="demo">
+        <div class="railhead"><div class="en">STYLE by CONCERN</div><div class="jp">お悩みで探す</div></div>
+        <div class="edgrid">
+          <div class="edcard"><div class="im"><span class="dm">ダミー</span><div class="ov"></div><div class="lb"><div class="t">二の腕、気になる日に</div><div class="n">FOR SLIMMER ARMS ＞</div></div></div><div class="cc">するんと隠れて、動きやすい。二の腕をカバーする36型</div></div>
+          <div class="edcard"><div class="im"><span class="dm">ダミー</span><div class="ov"></div><div class="lb"><div class="t">低身長さんの丈問題に</div><div class="n">FOR PETITE ＞</div></div></div><div class="cc">裾直し不要で、きれいに着られる丈感セレクト</div></div>
+          <div class="edcard"><div class="im"><span class="dm">ダミー</span><div class="ov"></div><div class="lb"><div class="t">締め付けたくない日に</div><div class="n">EASY & RELAXED ＞</div></div></div><div class="cc">全周ゴム・ストレッチ。ラクなのにきちんと見え</div></div>
+        </div>
+      </div>
+      <div class="pros">
+        <div class="g">写真とコピーで"自分ごと化"が最も強い＝クリック率◎</div>
+        <div class="g">STAFF WEARINGと世界観が揃い、ブランドらしい</div>
+        <div class="g">SEO用の特集ページ入口としても機能する</div>
+        <div class="b">お悩みごとに撮影・コピーの制作コストがかかる</div>
+      </div>
+    </div>
+
+    <!-- Option C -->
+    <div class="opt">
+      <div class="opt-h"><span class="tag">Option C</span><h3>コピー主役のバナー帯＋ボタン</h3></div>
+      <p class="sub">「こんなお悩み、ありませんか？」と語りかけ、お悩みをボタンで。写真ゼロで作れて、言葉で共感を作るタイプ。</p>
+      <div class="demo">
+        <div class="cband">
+          <div class="q">こんなお悩み、ありませんか？</div>
+          <div class="s">気になるところから、あなたにぴったりの一枚を見つけましょう。</div>
+          <div class="pills">
+            <span class="pill on">二の腕をカバー</span>
+            <span class="pill">低身長さん向け</span>
+            <span class="pill">体のラインを拾わない</span>
+            <span class="pill">お腹まわりがラク</span>
+            <span class="pill">暑い日も涼しい</span>
+            <span class="pill">自宅で洗える</span>
+          </div>
+        </div>
+      </div>
+      <div class="pros">
+        <div class="g">写真不要で今すぐ作れる・改修が最速</div>
+        <div class="g">コピーで共感を作りやすい／季節替えもラク</div>
+        <div class="b">ビジュアルの華やかさは控えめ</div>
+        <div class="b">数が多いとボタンの海になりやすい（8個程度まで）</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- verdict -->
+  <section>
+    <div class="sec-head"><span class="sec-num">C</span><h2>おすすめの使い分け</h2></div>
+    <div class="verdict">
+      <div class="v star"><div class="h">◎ 本命：Option B</div>お金と時間をかけられるなら断然これ。<span class="use">トップの"顔"として</span>看板お悩み3〜6個を写真で。STAFF WEARINGと並んで世界観が完成。</div>
+      <div class="v"><div class="h">◯ 現実解：A で開始</div>撮影が間に合わなければ、まず<span class="use">Aのアイコンレールで先行公開</span>→写真が揃ったお悩みから順にBへ格上げ。段階移行がラク。</div>
+      <div class="v"><div class="h">◯ 即・低コスト：C</div>改修コストを最小にしたい／季節特集をすぐ回したいときの<span class="use">スピード重視の受け皿</span>。バナー運用と好相性。</div>
+    </div>
+    <p class="note rec"><b>提案の締めとして：</b>「トップにはOption Bのエディトリアルカードで看板お悩み3〜6個を置き、そこから各お悩みの特集ページ（or 絞り込み結果）へ。撮影が揃うまではAのアイコンレールで先行スタート」——この二段構えを打ち合わせの落としどころに。グローバルナビの「お悩みで探す」は全お悩みの一覧入口として常設し、トップは"看板だけ"を見せる、と役割分担するとキレイです。</p>
+  </section>
+
+</div>
+<footer>STYLE DELI ／ トップ「お悩み別」セクション UI案（イメージモック）　—　画像・テキストはすべてダミーです。実装時に実写・実商品へ差し替え。</footer>
+</body>
+</html>
