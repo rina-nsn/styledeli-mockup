@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>アメブロ → Shopifyブログ 移行方針｜STYLE DELI</title>
+<style>
+  :root{
+    --bg:#faf9f7; --surface:#fff;
+    --ink:#1c1a17; --ink-2:#4a453e; --ink-3:#7a736a;
+    --line:#e6e1da;
+    --accent:#8a6d3b; --accent-soft:#f5efe4;
+    --ok:#2f6b46; --ok-soft:#eaf3ed;
+    --stop:#9b2f34;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+    font-size:16px;line-height:1.85;letter-spacing:.01em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 18px 88px}
+
+  header{padding:44px 0 26px;border-bottom:1px solid var(--line);margin-bottom:36px}
+  .eyebrow{font-size:12px;letter-spacing:.14em;color:var(--accent);font-weight:700;margin:0 0 12px}
+  h1{font-size:25px;line-height:1.45;margin:0 0 14px;font-weight:700}
+  .meta{font-size:13px;color:var(--ink-3);margin:0;line-height:1.7}
+
+  section{margin:0 0 44px}
+  h2{font-size:19px;line-height:1.5;margin:0 0 14px;font-weight:700;display:flex;gap:11px;align-items:baseline}
+  h2 .num{
+    font-size:12px;color:#fff;background:var(--ink);
+    min-width:23px;height:23px;border-radius:6px;
+    display:inline-flex;align-items:center;justify-content:center;
+    flex:0 0 auto;font-weight:700;letter-spacing:0;transform:translateY(-2px);
+  }
+  h2.pin .num{background:var(--accent)}
+  p{margin:0 0 15px}
+  .lede{color:var(--ink-2);font-size:14.5px;margin:0 0 18px}
+  .hl{background:linear-gradient(transparent 62%, #ffe9a8 62%);font-weight:700}
+
+  .box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 18px;margin:0 0 16px}
+  .box.accent{background:var(--accent-soft);border-color:#e3d5b8}
+  .box.ok{background:var(--ok-soft);border-color:#cfe3d6}
+  .box > :last-child{margin-bottom:0}
+  .box-title{font-size:13px;font-weight:700;letter-spacing:.05em;margin:0 0 10px;color:var(--accent)}
+  .box.ok .box-title{color:var(--ok)}
+
+  /* ---- rule rows ---- */
+  .rule{
+    background:var(--surface);border:1px solid var(--line);border-radius:11px;
+    padding:15px 16px;margin:0 0 10px;
+    display:grid;grid-template-columns:auto 1fr;gap:4px 13px;align-items:start;
+  }
+  .rule .mark{
+    grid-row:1/3;width:32px;height:32px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:19px;font-weight:700;line-height:1;
+  }
+  .rule .mark.y{background:var(--ok-soft);color:var(--ok);border:2px solid #9dc7ae}
+  .rule .mark.n{background:#f1efec;color:#9b948a;border:2px solid #d8d2c9}
+  .rule h4{margin:0;font-size:15.5px;font-weight:700;line-height:1.5}
+  .rule .verdict{font-size:12.5px;font-weight:700;margin:2px 0 0;letter-spacing:.02em}
+  .rule .verdict.y{color:var(--ok)}
+  .rule .verdict.n{color:var(--ink-3)}
+  .rule p{grid-column:2;margin:8px 0 0;font-size:14px;color:var(--ink-2);line-height:1.8}
+  @media (max-width:400px){
+    .rule{grid-template-columns:auto 1fr}
+    .rule p{grid-column:1/3}
+  }
+
+  .why{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;margin:0 0 11px}
+  .why h4{margin:0 0 7px;font-size:15px;font-weight:700;line-height:1.55;color:var(--stop)}
+  .why p{margin:0;font-size:14px;color:var(--ink-2);line-height:1.8}
+
+  .type{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:15px 16px;margin:0 0 10px}
+  .type h4{margin:0 0 6px;font-size:15px;font-weight:700;line-height:1.6}
+  .type p{margin:0;font-size:14px;color:var(--ink-2);line-height:1.8}
+  .where{
+    display:inline-block;font-size:11.5px;background:#f1ede6;color:var(--ink-3);
+    padding:2px 9px;border-radius:5px;margin-left:6px;font-weight:700;
+    letter-spacing:.02em;white-space:nowrap;
+  }
+
+  .est{
+    background:var(--accent-soft);border:1px solid #e3d5b8;border-radius:11px;
+    padding:17px 18px;margin:16px 0 0;
+  }
+  .est .n{font-size:24px;font-weight:700;line-height:1.3}
+  .est .n small{font-size:14px;color:var(--accent);margin-left:3px}
+  .est p{margin:5px 0 0;font-size:13.5px;color:#5f4a24;line-height:1.75}
+
+  ul.plain{margin:0;padding-left:1.25em}
+  ul.plain li{margin:0 0 9px;font-size:14px;color:var(--ink-2)}
+  ul.plain li:last-child{margin-bottom:0}
+
+  footer{margin-top:52px;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-3);line-height:1.9}
+
+  @media (max-width:480px){
+    body{font-size:15.5px}
+    h1{font-size:22px}
+    h2{font-size:17.5px}
+    .wrap{padding:0 15px 68px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">STYLE DELI ／ Shopify移行プロジェクト</p>
+  <h1>アメブロ → Shopifyブログ 移行方針</h1>
+  <p class="meta">2026年8月19日｜作成：鈴木<br>Shopify移行と同時に着手する前提</p>
+</header>
+
+<!-- 1 -->
+<section>
+  <h2><span class="num">1</span>結論</h2>
+  <div class="box accent">
+    <p>ブログを自社ドメインに持ってくる方向性は<strong>正しい</strong>と思います。Shopify移行と同時に進めます。</p>
+    <p>ただし<strong class="hl">全記事の移行はしません。</strong>アメブロには2012年から約2,000〜3,000本ありますが、Shopifyに移すのは<strong>200本程度</strong>に絞ります。</p>
+    <p style="margin-bottom:0">アメブロは<strong>閉じずに残し</strong>、Shopifyブログへの送客に使います。</p>
+  </div>
+</section>
+
+<!-- 2 -->
+<section>
+  <h2 class="pin"><span class="num">2</span>決めていただきたいこと：選別ルール</h2>
+  <p class="lede">記事を5パターンに分けました。<strong>それぞれ「移す／移さない」をご確認ください。</strong>推奨案を記載しているので、問題なければそのままでOKです。ここが決まれば、あとは私の方で進められます。</p>
+
+  <div class="rule">
+    <div class="mark y">○</div>
+    <div>
+      <h4>今も買える商品の記事</h4>
+      <div class="verdict y">移す</div>
+    </div>
+    <p>直近1〜2年のコーデ・着用記事のうち、現行商品に紐づくもの。<strong>そのまま売上につながります。</strong></p>
+  </div>
+
+  <div class="rule">
+    <div class="mark y">○</div>
+    <div>
+      <h4>商品に紐づかない読み物</h4>
+      <div class="verdict y">移す</div>
+    </div>
+    <p>「体型カバーの選び方」「シワになりにくい素材の話」など、<strong>検索から人が来るタイプ</strong>の記事。年数は問いません。古くても価値が落ちないためです。</p>
+  </div>
+
+  <div class="rule">
+    <div class="mark y">○</div>
+    <div>
+      <h4>廃番だが、後継商品がある記事</h4>
+      <div class="verdict y">移す（リンクを張り替え）</div>
+    </div>
+    <p>定番の色違い・型違いが今もある場合。<strong>リンク先を後継商品に差し替えて</strong>移します。ここが一番判断が分かれるところなので、ご意見あれば。</p>
+  </div>
+
+  <div class="rule">
+    <div class="mark n">×</div>
+    <div>
+      <h4>廃番で、後継商品もない記事</h4>
+      <div class="verdict n">移さない</div>
+    </div>
+    <p>買えない商品の記事です。移しても売上にならず、<strong>サイト全体の評価を下げる方向に働きます。</strong>アメブロに置いたままにします（消しません）。</p>
+  </div>
+
+  <div class="rule">
+    <div class="mark n">×</div>
+    <div>
+      <h4>お知らせ・告知・日常</h4>
+      <div class="verdict n">移さない</div>
+    </div>
+    <p>入荷案内、イベント告知、スタッフの日常。検索されることがなく、量が増えるほどサイトの評価を薄めます。<strong>今後もアメブロ側で続けます。</strong></p>
+  </div>
+
+  <div class="est">
+    <div class="n">およそ200<small>本</small></div>
+    <p>推奨どおりに進めた場合の移行本数です。全体の1割弱にあたります。<br>正確な数は、全記事を機械的に分類すれば出せます。</p>
+  </div>
+
+  <div class="box" style="margin-top:16px">
+    <p class="box-title">1点だけセットでお願いしたいこと</p>
+    <p style="margin-bottom:0"><strong>移した記事は、アメブロ側から削除します。</strong>同じ記事を2か所に残すとGoogleがどちらか一方しか評価せず、通常はアメブロ側が勝つため、<strong class="hl">移したShopify側が評価されないまま終わります。</strong>「コピーして両方残す」だけは避けたいです。</p>
+  </div>
+</section>
+
+<!-- 3 -->
+<section>
+  <h2><span class="num">3</span>なぜ全部移さないのか</h2>
+
+  <div class="why">
+    <h4>① 大半が「もう買えない商品」の記事だから</h4>
+    <p>アメブロの記事は2012年12月まで遡り、全213ページあります。その大半が当時の新作紹介で、商品はほぼ全て廃番です。買えない商品の記事を大量に移すと、<strong>新しいサイト全体の評価を下げる方向に働きます。</strong></p>
+  </div>
+
+  <div class="why">
+    <h4>② 「直近1年分」という切り方も適切ではないから</h4>
+    <p>「今週の新作」は3週間で価値がゼロになりますが、「体型カバーの選び方」は5年前の記事でも今も読まれます。<strong>日付ではなく、記事の中身で選ぶ必要があります。</strong>だから前ページのようなルールにしています。</p>
+  </div>
+
+  <div class="why">
+    <h4>③ アメブロの読者との接点は移せないから</h4>
+    <p>Shopifyのブログには読者機能もランキングもフィードもなく、<strong>流入ゼロからのスタート</strong>です。アメブロを畳むと既存のお客様との接点を失います。「移行」ではなく「増設」として設計します。</p>
+  </div>
+</section>
+
+<!-- 4 -->
+<section>
+  <h2><span class="num">4</span>移行後のブログ運用</h2>
+  <p class="lede">今後の記事は、3つに分けて置き場所を変えます。</p>
+
+  <div class="type">
+    <h4>① 検索から来てもらう記事<span class="where">Shopifyのみ</span></h4>
+    <p>「40代 夏 ワンピース」「シワになりにくい服」など、悩みから検索される記事。<strong>必ず商品ページへリンクを貼ります。</strong>ここが検索流入と売上の主軸になります。目安は月4〜8本。</p>
+  </div>
+
+  <div class="type">
+    <h4>② 実着用・コーデ記事<span class="where">Shopify＋アメブロに抜粋</span></h4>
+    <p>今のアメブロの主力コンテンツ。<strong>本文はShopifyに置き、アメブロには抜粋＋続きへのリンク</strong>を投稿します。読者さんとの接点を保ったまま、自社ドメインに評価を貯められます。</p>
+  </div>
+
+  <div class="type">
+    <h4>③ お知らせ・日常<span class="where">アメブロのみ</span></h4>
+    <p>入荷告知、ライブ案内、スタッフの日常など。これまでどおりアメブロで続けます。</p>
+  </div>
+
+  <div class="box ok">
+    <p class="box-title">AIの使い方について</p>
+    <p>AIで記事を大量生成して検索順位を狙う行為は、Googleがスパムポリシーで明確に禁止しています（Scaled Content Abuse）。該当すると<strong>サイト全体が検索から外れる</strong>ため、「AIで数百本」という方向には進めません。</p>
+    <p style="margin-bottom:0">AIは構成案・見出し・下書きに使い、そこに<strong class="hl">STYLE DELIにしかない情報</strong>——実際の商品写真、スタッフの実着用データ（身長・体型・サイズ感）——を必ず載せます。他社のAI量産記事に勝てるのはこの部分です。</p>
+  </div>
+</section>
+
+<!-- 5 -->
+<section>
+  <h2><span class="num">5</span>こちらで進めること</h2>
+  <p class="lede">以下は判断不要です。ルールが決まり次第、着手します。</p>
+  <div class="box">
+    <ul class="plain">
+      <li><strong>全記事のバックアップ取得</strong>— アメブロには公式の一括エクスポート機能がなく、記事が消えたら復旧できない状態です。移行対象かどうかに関わらず、全記事を手元に保存します。</li>
+      <li><strong>記事の機械的な分類</strong>— 全記事をルールに沿って仕分けし、移行対象の正確な本数を出します。</li>
+      <li><strong>アクセス状況の確認</strong>— アメブロのアクセスのうちGoogle検索から来ている割合を確認し、移す本数を微調整します。</li>
+      <li><strong>移行作業と、旧記事の削除</strong>— 本文と画像をShopifyへ移し、移した記事はアメブロから削除します。</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  記事数は2026年8月19日時点でアメブロのアーカイブページ数から算出した推定値です。<br>
+  正確な数値は、全記事の分類後に確定します。
+</footer>
+
+</div>
+</body>
+</html>
